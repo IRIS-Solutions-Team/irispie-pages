@@ -1,0 +1,32 @@
+site_name: Iris Pie
+
+theme:
+    name: material
+    font:
+        text: Work Sans
+        code: Source Code Pro
+    palette:
+        scheme: slate
+        primary: blue grey
+        accent: orange
+    features:
+        - navigation.tabs
+        - search.suggest
+    icon:
+        logo: iris0
+    favicon: favicon/iris0.png
+    custom_dir: custom
+
+repo_url: https://github.com/iris-solutions-team/irispie
+repo_name: iris-solutions-team/irispie
+ 
+extra_css:
+    - stylesheets/extra.css
+
+extra:
+    site_tagline: The Fine Art of Macro Modeling
+
+plugins:
+    - search
+    - awesome-pages
+

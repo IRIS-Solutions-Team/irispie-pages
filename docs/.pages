@@ -1,0 +1,7 @@
+
+nav:
+    - Home: index.md
+    - Setup: setup
+    - Models: models
+    - Data Management: data-management
+

@@ -1,0 +1,28 @@
+:root [data-md-color-scheme=slate] {
+    --md-hue: 205;
+    --md-typeset-a-color: #fff;
+}
+
+.md-nav__item .md-nav__link--active {
+}
+
+.md-header__title {
+    font-size: 1.5rem;
+    height: 6rem;
+}
+
+.md-tagline {
+    font-size: 1.5rem;
+    font-weight: 100;
+    color: var(--md-default-fg-color--light);
+}
+
+.md-header__topic {
+    padding-top: 1.75rem;
+}
+
+.md-header__button.md-logo img, .md-header__button.md-logo svg {
+    height: 3rem;
+}
+
+

@@ -1,3 +1,5 @@
+name: Build pages
+
 on:
   - workflow_dispatch
 

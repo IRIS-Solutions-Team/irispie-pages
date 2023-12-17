@@ -1,0 +1,6 @@
+
+nav:
+    - Overview: index.md
+    - Vector autoregressions: vars
+    - Dynamic factor models: dynafacts
+

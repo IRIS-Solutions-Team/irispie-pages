@@ -1,0 +1,6 @@
+
+nav:
+    - Overview: index.md
+    - Plotly interface: plotly
+    - Chartpacks: chartpacks
+

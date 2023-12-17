@@ -4,14 +4,18 @@ theme:
     name: material
     font:
         text: Work Sans
-        code: Source Code Pro
+        code: Sometype Mono
     palette:
         scheme: slate
         primary: blue grey
         accent: orange
     features:
         - navigation.tabs
+        - navigation.indexes
+        - navigation.top
         - search.suggest
+        - content.code.copy
+        - content.code.select
     icon:
         logo: iris0
     favicon: favicon/iris0.png
@@ -19,14 +23,27 @@ theme:
 
 repo_url: https://github.com/iris-solutions-team/irispie
 repo_name: iris-solutions-team/irispie
- 
+
+use_directory_urls: false
+
 extra_css:
     - stylesheets/extra.css
 
 extra:
-    site_tagline: The Fine Art of Macro Modeling
+    site_tagline: The Fine Pie of Macro Modeling
 
 plugins:
+    - toc
     - search
     - awesome-pages
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.mark
 

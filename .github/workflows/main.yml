@@ -9,10 +9,10 @@ jobs:
   mkdocs-build:
     runs-on: ubuntu-latest
     steps:
-    
+
       - name: Checkout repository
         uses: actions/checkout@v4
-        
+
       - name: Get Python
         uses: actions/setup-python@v4
         with:
@@ -37,8 +37,8 @@ jobs:
         with:
           path: ./site
           name: site
-         
-      
+
+
   deploy:
     permissions:
       contents: read
@@ -69,3 +69,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v3
+

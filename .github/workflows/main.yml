@@ -25,13 +25,14 @@ jobs:
             mkdocs-awesome-pages-plugin \
             mkdocs-toc-plugin \
 
+      - name: Install irispie
+        run: |
+          pip install irispie
+
       - name: Test
         run: |
-            mkdir site
-            cd site
-            date > index.html
-            cd ..
-
+          python .github/workflows/create_index.py
+        
       - name: Upload site as artifact
         uses: actions/upload-artifact@v3
         with:

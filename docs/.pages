@@ -5,5 +5,5 @@ nav:
     - Structural models: structural_models
     - Time series models: time_series_models
     - Data management: data_management
-    - Data visualization: data_visualization
+    - Visualization & reporting: visualization_reporting
 

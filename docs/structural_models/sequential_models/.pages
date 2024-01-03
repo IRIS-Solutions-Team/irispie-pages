@@ -1,4 +1,6 @@
 
 nav:
-    - Overview: index.md
+    - index.md
+    - writing.md
+    - reference.md
 

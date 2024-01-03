@@ -29,12 +29,14 @@ jobs:
         run: |
           pip install irispie
 
-      - name: Test
+      - name: Populate documentation files
         run: |
-          python .github/workflows/create_index.py
-          tree
+          python scripts/populator.py
+
+      - name: Build static site
+        run: |
           mkdocs build
-        
+
       - name: Upload site as artifact
         uses: actions/upload-artifact@v3
         with:

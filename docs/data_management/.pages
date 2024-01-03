@@ -1,7 +1,7 @@
 
 nav:
-    - Overview: index.md
-    - Databoxes: databoxes
-    - Time series: series
-    - Dates: dates
+    - index.md
+    - databoxes.md
+    - time_series.md
+    - dates.md
 

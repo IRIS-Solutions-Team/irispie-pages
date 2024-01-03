@@ -1,12 +1,12 @@
 
-# Overview of structural models
+:octicons-git-compare-24: Structural models
+============================================
 
 
 Iris Pie includes two types of structural models:
 
-* Simultaneous models (`Simultaneous` objects)
+* [`Simultaneous`](simultaneous_models) models
 
-* Sequential systems of equations  (`Sequential` objects)
-
+* [`Sequential`](sequential_models) models
 
 

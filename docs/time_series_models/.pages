@@ -1,6 +1,7 @@
 
 nav:
-    - Overview: index.md
-    - Vector autoregressions: vars
-    - Dynamic factor models: dynafacts
+    - index.md
+    - vector_autoregressions
+    - dynamic_factors
+    - arma_gens
 

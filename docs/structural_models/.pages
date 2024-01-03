@@ -1,10 +1,10 @@
 
 nav:
-    - Overview: index.md
-    - Simultaneous models: simultaneous_models
-    - Sequential models: sequential_models
-    - Simulation plans: simulation_plans
-    - Steady plans: steady_plans
-    - Model language: model_language
-    - Preparser: preparser
+    - index.md
+    - simultaneous_models
+    - sequential_models
+    - simulation_plans.md
+    - steady_plans.md
+    - model_language.md
+    - preparser.md
 

@@ -25,9 +25,10 @@ jobs:
             mkdocs-awesome-pages-plugin \
             mkdocs-toc-plugin \
 
-      - name: Install irispie
+      - name: Install irispie, loguru
         run: |
           pip install irispie
+          pip install loguru
 
       - name: Populate documentation files
         run: |

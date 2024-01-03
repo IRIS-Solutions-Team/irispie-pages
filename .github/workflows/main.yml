@@ -27,9 +27,11 @@ jobs:
 
       - name: Install irispie, loguru, rich
         run: |
-          pip install irispie
-          pip install loguru
-          pip install rich
+          pip install \
+            irispie \
+            loguru \
+            rich \
+            GitPython \
 
       - name: Populate documentation files
         run: |

@@ -16,7 +16,7 @@ jobs:
       - name: Get Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.12"
+          python-version: "3.12.0"
 
       - name: Install mkdocs-material
         run: |
@@ -25,10 +25,11 @@ jobs:
             mkdocs-awesome-pages-plugin \
             mkdocs-toc-plugin \
 
-      - name: Install irispie, loguru
+      - name: Install irispie, loguru, rich
         run: |
           pip install irispie
           pip install loguru
+          pip install rich
 
       - name: Populate documentation files
         run: |

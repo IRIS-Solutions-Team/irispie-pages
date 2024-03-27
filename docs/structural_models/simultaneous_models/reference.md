@@ -26,6 +26,8 @@ Property | Description
 [:octicons-package-24:`is_deterministic`](#is_deterministic) | True for models declared as deterministic
 [:octicons-package-24:`is_flat`](#is_flat) | True for models declared as flat
 [:octicons-package-24:`is_linear`](#is_linear) | True for models declared as linear
+[:octicons-package-24:`max_lag`](#max_lag) | Maximul lag in the model (negative or zero)
+[:octicons-package-24:`max_lead`](#max_lead) | Maximul lead in the model (positive or zero)
 [:octicons-package-24:`num_measurement_equations`](#num_measurement_equations) | Number of measurement equations
 [:octicons-package-24:`num_transition_equations`](#num_transition_equations) | Number of transition equations
 

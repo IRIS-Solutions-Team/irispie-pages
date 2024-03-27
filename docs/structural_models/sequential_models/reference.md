@@ -109,15 +109,14 @@ model object.
     definition of non-standard functions used in the equations.
 
 ???+ input "description"
-    Desscription of the model specified as a text string.
+    Description of the model specified as a text string.
 
 
 ### Returns ###
 
 
 ???+ returns "self"
-
-    `Sequential` model object created from the `file_names`.
+    A new `Sequential` model object created from the `file_names`.
         
 
 
@@ -135,6 +134,7 @@ model object.
 self = Sequential.from_string(
     string,
     /,
+    *,
     context=None,
     description="",
 )
@@ -150,7 +150,6 @@ Read and parse a text `string` with a model source code, and create a
 ???+ input "string"
 
     Text string from which the `Sequential` model object will be created.
-
 
 See [`Sequential.from_file`](#sequentialfrom_file) for other input arguments.
 
@@ -488,7 +487,7 @@ simulating the model.
 
 ???+ input "plan"
     `PlanSimulate` object with a simulation plan, i.e. information about
-    which LHS variables to exogenize in which periods. If `plan=None`, no
+    which LHS variables to exogenize at which dates. If `plan=None`, no
     simulation plan is imposed on the simulation.
 
 

@@ -5,7 +5,7 @@ import os
 import re
 import yaml
 import operator as _op
-from loguru import logger
+import wlogging
 from types import (FunctionType, MethodType, )
 from typing import (Callable, )
 
@@ -15,6 +15,7 @@ from typing import (Callable, )
 # docs_root = mkdocs["docs_dir"]
 
 docs_root = "docs"
+logger = wlogging.get_colored_logger(__name__, level=wlogging.INFO, )
 
 def main():
     klasses = [
@@ -177,4 +178,5 @@ _DOCSTRING_EXTRACTOR = {
 
 if __name__ == "__main__":
     main()
+
 

@@ -217,7 +217,7 @@ self = Series(
 ==Constrained Hodrick-Prescott filter==
 
 
-### Function for creating new Series objects ###
+### Functional form creating a new Series object ###
 
 
 ```
@@ -232,7 +232,7 @@ trend, gap = irispie.hpf(
 ```
 
 
-### Methods for changing the existing Series object in-place ###
+### Class method changing an existing Series object in-place ###
 
 
 ```

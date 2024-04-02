@@ -13,7 +13,7 @@ Categorical list of functions
 
 Function | Description
 ----------|------------
-[:octicons-file-24:`Rephrase`](#rephrase) | Create a new `Rephrase` object
+[:octicons-file-24:&nbsp;Rephrase](#rephrase) | Create a new `Rephrase` object
 
 
 
@@ -27,12 +27,8 @@ Property | Description
 
 
 
-
----
-
-&#9744;&nbsp;`Rephrase`
-----------------------------------
-
+☐ `Rephrase`
+--------------
 
 ==Create a new `Rephrase` object==
         

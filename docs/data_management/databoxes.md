@@ -16,17 +16,17 @@ Categorical list of functions
 
 Function | Description
 ----------|------------
-[:octicons-file-24:`Databox.from_dict`](#databoxfrom_dict) | Create a `Databox` from a NumPy array
-[:octicons-file-24:`Databox.from_dict`](#databoxfrom_dict) | Create a `Databox` from a `dict`
-[:octicons-file-24:`empty`](#empty) | Create a new empty `Databox`
+[:octicons-file-24:&nbsp;Databox.from_dict](#databoxfrom_dict) | Create a `Databox` from a NumPy array
+[:octicons-file-24:&nbsp;Databox.from_dict](#databoxfrom_dict) | Create a `Databox` from a `dict`
+[:octicons-file-24:&nbsp;empty](#empty) | Create a new empty `Databox`
 
 
 ### Importing and exporting databoxes ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:`from_sheet`](#from_sheet) | Import `Databox` from a CSV or spreadsheet file
-[:octicons-file-24:`to_sheet`](#to_sheet) | Export `Databox` to a CSV or spreadsheet file
+[:octicons-file-24:&nbsp;from_sheet](#from_sheet) | Import `Databox` from a CSV or spreadsheet file
+[:octicons-file-24:&nbsp;to_sheet](#to_sheet) | Export `Databox` to a CSV or spreadsheet file
 
 
 
@@ -40,60 +40,40 @@ Property | Description
 
 
 
-
----
-
-&#9744;&nbsp;`Databox.from_dict`
-----------------------------------
-
+☐ `Databox.from_dict`
+-----------------------
 
 ==Create a `Databox` from a NumPy array==
         
 
 
 
-
----
-
-&#9744;&nbsp;`Databox.from_dict`
-----------------------------------
-
+☐ `Databox.from_dict`
+-----------------------
 
 ==Create a `Databox` from a `dict`==
         
 
 
 
-
----
-
-&#9744;&nbsp;`empty`
-----------------------------------
-
+☐ `empty`
+-----------
 
 ==Create a new empty `Databox`==
         
 
 
 
-
----
-
-&#9744;&nbsp;`from_sheet`
-----------------------------------
-
+☐ `from_sheet`
+----------------
 
 ==Import `Databox` from a CSV or spreadsheet file==
         
 
 
 
-
----
-
-&#9744;&nbsp;`to_sheet`
-----------------------------------
-
+☐ `to_sheet`
+--------------
 
 ==Export `Databox` to a CSV or spreadsheet file==
         

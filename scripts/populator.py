@@ -45,7 +45,7 @@ def _document_class(klass: type, ) -> None:
     property_to_docstring = _create_attribute_to_docstring(properties, )
     attribute_to_docstring = dict(sorted(
         attribute_to_docstring.items(),
-        key=lambda item: item[0]._pages_call_name,
+        key=lambda item: (-item[0]._pages_priority, item[0]._pages_call_name.lower(), ),
     ))
     docstring = _preprocess_docstring(klass.__doc__, )
     docstring += _create_categorical_list(klass, attribute_to_docstring, )
@@ -92,7 +92,7 @@ def _create_categorical_list(klass: type, attribute_to_docstring: dict, ) -> str
         attribute_to_docstring_of_category = _collect_attribute_to_docstring_of_category(attribute_to_docstring, category, )
         for attribute in attribute_to_docstring_of_category.keys():
             icon = _ICONS.get(attribute._pages_category, _ICONS[None], )
-            docstring += f"[{icon}`{attribute._pages_call_name}`](#{_get_anchor(attribute._pages_call_name)}) | {attribute._pages_tagline}\n"
+            docstring += f"[{icon}&nbsp;{attribute._pages_call_name}](#{_get_anchor(attribute._pages_call_name, )}) | {attribute._pages_tagline}\n"
         docstring += "\n\n"
     return docstring
 
@@ -108,7 +108,7 @@ def _create_property_list(klass: type, property_to_docstring: dict, ) -> str:
     property_to_docstring_of_category = _collect_attribute_to_docstring_of_category(property_to_docstring, category, )
     for property in property_to_docstring_of_category.keys():
         icon = _ICONS.get(property._pages_category, _ICONS[None], )
-        docstring += f"[{icon}`{property._pages_call_name}`](#{_get_anchor(property._pages_call_name)}) | {property._pages_tagline}\n"
+        docstring += f"[{icon}&nbsp;{property._pages_call_name}](#{_get_anchor(property._pages_call_name)}) | {property._pages_tagline}\n"
     docstring += "\n\n"
     return docstring
 
@@ -157,13 +157,7 @@ def _collect_attribute_to_docstring_of_category(attribute_to_docstring: dict, ca
 
 def _finalize_attribute_docstring(attribute, docstring: str, ) -> str:
     docstring = _preprocess_docstring(docstring, )
-    icon = _ICONS.get(attribute._pages_category, _ICONS[None], )
-    icon = "&#9744;&nbsp;"
-    preface = (
-        "\n\n---\n\n"
-        f"{icon}`{attribute._pages_call_name}`\n----------------------------------\n\n"
-    )
-    return preface + docstring
+    return docstring
 
 
 def _get_anchor(call_name: str) -> str:

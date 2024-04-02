@@ -11,41 +11,41 @@ Categorical list of functions
 
 Function | Description
 ----------|------------
-[:octicons-file-24:`Sequential.from_file`](#sequentialfrom_file) | Create new `Sequential` model object from source file or files
-[:octicons-file-24:`Sequential.from_string`](#sequentialfrom_string) | Create sequential model object from string
+[:octicons-file-24:&nbsp;Sequential.from_file](#sequentialfrom_file) | Create new `Sequential` model object from source file or files
+[:octicons-file-24:&nbsp;Sequential.from_string](#sequentialfrom_string) | Create sequential model object from string
 
 
 ### Simulating `Sequential` models ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:`simulate`](#simulate) | Simulate sequential model
+[:octicons-file-24:&nbsp;simulate](#simulate) | Simulate sequential model
 
 
 ### Manipulating `Sequential` model parameters ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:`assign`](#assign) | Assign model parameters
+[:octicons-file-24:&nbsp;assign](#assign) | Assign model parameters
 
 
 ### Information about `Sequential` models ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:`get_databox_names`](#get_databox_names) | Get list of names that are extracted from databox for simulation
-[:octicons-file-24:`get_description`](#get_description) | Get model description text
-[:octicons-file-24:`get_min_max_shifts`](#get_min_max_shifts) | Get minimum and maximum shifts
-[:octicons-file-24:`set_description`](#set_description) | Set model description text
+[:octicons-file-24:&nbsp;get_databox_names](#get_databox_names) | Get list of names that are extracted from databox for simulation
+[:octicons-file-24:&nbsp;get_description](#get_description) | Get model description text
+[:octicons-file-24:&nbsp;get_min_max_shifts](#get_min_max_shifts) | Get minimum and maximum shifts
+[:octicons-file-24:&nbsp;set_description](#set_description) | Set model description text
 
 
 ### Manipulating `Sequential` models ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:`copy`](#copy) | Create a deep copy
-[:octicons-file-24:`reorder_equations`](#reorder_equations) | Reorder model equations
-[:octicons-file-24:`sequentialize`](#sequentialize) | Reorder the model equations so that they can be solved sequentially
+[:octicons-file-24:&nbsp;copy](#copy) | Create a deep copy
+[:octicons-file-24:&nbsp;reorder_equations](#reorder_equations) | Reorder model equations
+[:octicons-file-24:&nbsp;sequentialize](#sequentialize) | Reorder the model equations so that they can be solved sequentially
 
 
 
@@ -56,29 +56,25 @@ Directly accessible properties
 
 Property | Description
 ----------|------------
-[:octicons-package-24:`all_names`](#all_names) | Names of all variables occurring in the model in order of appearance
-[:octicons-package-24:`equation_strings`](#equation_strings) | Equation strings in order of appearance
-[:octicons-package-24:`identity_index`](#identity_index) | Indexes of identity equations
-[:octicons-package-24:`incidence_matrix`](#incidence_matrix) | Incidence matrix with equations in rows and LHS quantities in columns
-[:octicons-package-24:`is_sequential`](#is_sequential) | `True` if the model equations are ordered sequentially
-[:octicons-package-24:`lhs_names`](#lhs_names) | Names of LHS variables in order of their equations
-[:octicons-package-24:`lhs_quantities`](#lhs_quantities) | LHS quantities in order of appearance
-[:octicons-package-24:`max_shift`](#max_shift) | Maximum lead occurring on the RHS of equations
-[:octicons-package-24:`min_shift`](#min_shift) | Maximum lag occurring on the RHS of equations
-[:octicons-package-24:`nonidentity_index`](#nonidentity_index) | Indexes of nonidentity equations
-[:octicons-package-24:`num_equations`](#num_equations) | Number of equations
-[:octicons-package-24:`parameter_names`](#parameter_names) | Names of model parameters
-[:octicons-package-24:`residual_names`](#residual_names) | Names of residuals in order of their equations
-[:octicons-package-24:`rhs_only_names`](#rhs_only_names) | Names of variables appearing only on the RHS of equations
+[:octicons-package-24:&nbsp;all_names](#all_names) | Names of all variables occurring in the model in order of appearance
+[:octicons-package-24:&nbsp;equation_strings](#equation_strings) | Equation strings in order of appearance
+[:octicons-package-24:&nbsp;identity_index](#identity_index) | Indexes of identity equations
+[:octicons-package-24:&nbsp;incidence_matrix](#incidence_matrix) | Incidence matrix with equations in rows and LHS quantities in columns
+[:octicons-package-24:&nbsp;is_sequential](#is_sequential) | `True` if the model equations are ordered sequentially
+[:octicons-package-24:&nbsp;lhs_names](#lhs_names) | Names of LHS variables in order of their equations
+[:octicons-package-24:&nbsp;lhs_quantities](#lhs_quantities) | LHS quantities in order of appearance
+[:octicons-package-24:&nbsp;max_shift](#max_shift) | Maximum lead occurring on the RHS of equations
+[:octicons-package-24:&nbsp;min_shift](#min_shift) | Maximum lag occurring on the RHS of equations
+[:octicons-package-24:&nbsp;nonidentity_index](#nonidentity_index) | Indexes of nonidentity equations
+[:octicons-package-24:&nbsp;num_equations](#num_equations) | Number of equations
+[:octicons-package-24:&nbsp;parameter_names](#parameter_names) | Names of model parameters
+[:octicons-package-24:&nbsp;residual_names](#residual_names) | Names of residuals in order of their equations
+[:octicons-package-24:&nbsp;rhs_only_names](#rhs_only_names) | Names of variables appearing only on the RHS of equations
 
 
 
-
----
-
-&#9744;&nbsp;`Sequential.from_file`
-----------------------------------
-
+☐ `Sequential.from_file`
+--------------------------
 
 ==Create new `Sequential` model object from source file or files==
 
@@ -121,12 +117,8 @@ model object.
 
 
 
-
----
-
-&#9744;&nbsp;`Sequential.from_string`
-----------------------------------
-
+☐ `Sequential.from_string`
+----------------------------
 
 ==Create sequential model object from string==
 
@@ -162,12 +154,8 @@ See [`Sequential.from_file`](sequentialfrom_file) for return values.
 
 
 
-
----
-
-&#9744;&nbsp;`assign`
-----------------------------------
-
+☐ `assign`
+------------
 
 ==Assign model parameters==
 
@@ -213,12 +201,8 @@ etc...
 
 
 
-
----
-
-&#9744;&nbsp;`copy`
-----------------------------------
-
+☐ `copy`
+----------
 
 ==Create a deep copy==
 
@@ -243,12 +227,8 @@ other = self.copy()
 
 
 
-
----
-
-&#9744;&nbsp;`get_databox_names`
-----------------------------------
-
+☐ `get_databox_names`
+-----------------------
 
 ==Get list of names that are extracted from databox for simulation==
 
@@ -275,12 +255,8 @@ names = self.get_databox_names()
 
 
 
-
----
-
-&#9744;&nbsp;`get_description`
-----------------------------------
-
+☐ `get_description`
+---------------------
 
 ==Get model description text==
 
@@ -306,12 +282,8 @@ description = self.get_description()
 
 
 
-
----
-
-&#9744;&nbsp;`get_min_max_shifts`
-----------------------------------
-
+☐ `get_min_max_shifts`
+------------------------
 
 ==Get minimum and maximum shifts==
 
@@ -346,12 +318,8 @@ the maximum lead) among all variables occuring in the model equations.
 
 
 
-
----
-
-&#9744;&nbsp;`reorder_equations`
-----------------------------------
-
+☐ `reorder_equations`
+-----------------------
 
 ==Reorder model equations==
 
@@ -378,12 +346,8 @@ equation indexes.
 
 
 
-
----
-
-&#9744;&nbsp;`sequentialize`
-----------------------------------
-
+☐ `sequentialize`
+-------------------
 
 ==Reorder the model equations so that they can be solved sequentially==
 
@@ -414,12 +378,8 @@ sequentially. The reordered equation indexes are returned as a tuple.
 
 
 
-
----
-
-&#9744;&nbsp;`set_description`
-----------------------------------
-
+☐ `set_description`
+---------------------
 
 ==Set model description text==
 
@@ -445,12 +405,8 @@ self.set_description(description, )
 
 
 
-
----
-
-&#9744;&nbsp;`simulate`
-----------------------------------
-
+☐ `simulate`
+--------------
 
 ==Simulate sequential model==
 

@@ -14,17 +14,17 @@ Categorical list of functions
 
 Function | Description
 ----------|------------
-[:octicons-file-24:`PlanSteady`](#plansteady) | Create new steady plan object
+[:octicons-file-24:&nbsp;PlanSteady](#plansteady) | Create new steady plan object
 
 
 ### Defining exogenized, endogenized and fixed quantities ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:`endogenize`](#endogenize) | Endogenize parameters
-[:octicons-file-24:`exogenize`](#exogenize) | Exogenize steady levels of variables
-[:octicons-file-24:`fix_change`](#fix_change) | Fix steady changes of variables
-[:octicons-file-24:`fix_level`](#fix_level) | Fix steady levels of variables
+[:octicons-file-24:&nbsp;endogenize](#endogenize) | Endogenize parameters
+[:octicons-file-24:&nbsp;exogenize](#exogenize) | Exogenize steady levels of variables
+[:octicons-file-24:&nbsp;fix_change](#fix_change) | Fix steady changes of variables
+[:octicons-file-24:&nbsp;fix_level](#fix_level) | Fix steady levels of variables
 
 
 
@@ -38,60 +38,40 @@ Property | Description
 
 
 
-
----
-
-&#9744;&nbsp;`PlanSteady`
-----------------------------------
-
+☐ `PlanSteady`
+----------------
 
 ==Create new steady plan object==
         
 
 
 
-
----
-
-&#9744;&nbsp;`endogenize`
-----------------------------------
-
+☐ `endogenize`
+----------------
 
 ==Endogenize parameters==
         
 
 
 
-
----
-
-&#9744;&nbsp;`exogenize`
-----------------------------------
-
+☐ `exogenize`
+---------------
 
 ==Exogenize steady levels of variables==
         
 
 
 
-
----
-
-&#9744;&nbsp;`fix_change`
-----------------------------------
-
+☐ `fix_change`
+----------------
 
 ==Fix steady changes of variables==
         
 
 
 
-
----
-
-&#9744;&nbsp;`fix_level`
-----------------------------------
-
+☐ `fix_level`
+---------------
 
 ==Fix steady levels of variables==
         

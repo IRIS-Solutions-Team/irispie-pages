@@ -11,22 +11,22 @@ Categorical list of functions
 
 Function | Description
 ----------|------------
-[:octicons-file-24:`Chartpack`](#chartpack) | Create a new chartpack
+[:octicons-file-24:&nbsp;Chartpack](#chartpack) | Create a new chartpack
 
 
 ### Plotting chartpacks ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:`plot`](#plot) | Plot the chartpack
+[:octicons-file-24:&nbsp;plot](#plot) | Plot the chartpack
 
 
 ### Adding figures and charts to chartpacks ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:`add_chart`](#add_chart) | Add a new chart to an existing figure in the chartpack
-[:octicons-file-24:`add_figure`](#add_figure) | Add a new figure to the chartpack
+[:octicons-file-24:&nbsp;add_chart](#add_chart) | Add a new chart to an existing figure in the chartpack
+[:octicons-file-24:&nbsp;add_figure](#add_figure) | Add a new figure to the chartpack
 
 
 
@@ -37,16 +37,12 @@ Directly accessible properties
 
 Property | Description
 ----------|------------
-[:octicons-package-24:`num_figures`](#num_figures) | Total number of figures in the chartpack
+[:octicons-package-24:&nbsp;num_figures](#num_figures) | Total number of figures in the chartpack
 
 
 
-
----
-
-&#9744;&nbsp;`Chartpack`
-----------------------------------
-
+☐ `Chartpack`
+---------------
 
 ==Create a new chartpack==
 
@@ -105,36 +101,24 @@ self = Chartpack(
 
 
 
-
----
-
-&#9744;&nbsp;`add_chart`
-----------------------------------
-
+☐ `add_chart`
+---------------
 
 ==Add a new chart to an existing figure in the chartpack==
         
 
 
 
-
----
-
-&#9744;&nbsp;`add_figure`
-----------------------------------
-
+☐ `add_figure`
+----------------
 
 ==Add a new figure to the chartpack==
         
 
 
 
-
----
-
-&#9744;&nbsp;`plot`
-----------------------------------
-
+☐ `plot`
+----------
 
 ==Plot the chartpack==
         

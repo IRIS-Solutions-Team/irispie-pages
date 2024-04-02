@@ -21,23 +21,23 @@ Categorical list of functions
 
 Function | Description
 ----------|------------
-[:octicons-file-24:`PlanSimulate`](#plansimulate) | Create new simulation plan object
+[:octicons-file-24:&nbsp;PlanSimulate](#plansimulate) | Create new simulation plan object
 
 
 ### Defining exogenized and endogenized data points ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:`endogenize`](#endogenize) | Endogenize certain quantities at certain dates
-[:octicons-file-24:`exogenize`](#exogenize) | Exogenize certain quantities at certain dates
+[:octicons-file-24:&nbsp;endogenize](#endogenize) | Endogenize certain quantities at certain dates
+[:octicons-file-24:&nbsp;exogenize](#exogenize) | Exogenize certain quantities at certain dates
 
 
 ### Getting information about simulation plans ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:`get_names_endogenized_in_period`](#get_names_endogenized_in_period) | Get names endogenized at a certain date
-[:octicons-file-24:`get_names_exogenized_in_period`](#get_names_exogenized_in_period) | Get names exogenized at a certain date
+[:octicons-file-24:&nbsp;get_names_endogenized_in_period](#get_names_endogenized_in_period) | Get names endogenized at a certain date
+[:octicons-file-24:&nbsp;get_names_exogenized_in_period](#get_names_exogenized_in_period) | Get names exogenized at a certain date
 
 
 
@@ -48,19 +48,15 @@ Directly accessible properties
 
 Property | Description
 ----------|------------
-[:octicons-package-24:`end_date`](#end_date) | End date of the simulation span
-[:octicons-package-24:`frequency`](#frequency) | Date frequency of the simulation span
-[:octicons-package-24:`num_periods`](#num_periods) | Number of periods in the simulation span
-[:octicons-package-24:`start_date`](#start_date) | Start date of the simulation span
+[:octicons-package-24:&nbsp;end_date](#end_date) | End date of the simulation span
+[:octicons-package-24:&nbsp;frequency](#frequency) | Date frequency of the simulation span
+[:octicons-package-24:&nbsp;num_periods](#num_periods) | Number of periods in the simulation span
+[:octicons-package-24:&nbsp;start_date](#start_date) | Start date of the simulation span
 
 
 
-
----
-
-&#9744;&nbsp;`PlanSimulate`
-----------------------------------
-
+☐ `PlanSimulate`
+------------------
 
 ==Create new simulation plan object==
 
@@ -93,24 +89,16 @@ Create a new simulation plan object for a
 
 
 
-
----
-
-&#9744;&nbsp;`endogenize`
-----------------------------------
-
+☐ `endogenize`
+----------------
 
 ==Endogenize certain quantities at certain dates==
         
 
 
 
-
----
-
-&#9744;&nbsp;`exogenize`
-----------------------------------
-
+☐ `exogenize`
+---------------
 
 ==Exogenize certain quantities at certain dates==
 
@@ -150,24 +138,16 @@ self.exogenize(
 
 
 
-
----
-
-&#9744;&nbsp;`get_names_endogenized_in_period`
-----------------------------------
-
+☐ `get_names_endogenized_in_period`
+-------------------------------------
 
 ==Get names endogenized at a certain date==
         
 
 
 
-
----
-
-&#9744;&nbsp;`get_names_exogenized_in_period`
-----------------------------------
-
+☐ `get_names_exogenized_in_period`
+------------------------------------
 
 ==Get names exogenized at a certain date==
         

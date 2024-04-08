@@ -1,6 +1,8 @@
 
 nav:
-    - Home: home
+    - Home:
+        - index.md
+        - install.md
     - Structural models: structural_models
     - Time series models: time_series_models
     - Data management: data_management

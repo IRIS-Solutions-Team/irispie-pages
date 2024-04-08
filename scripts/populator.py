@@ -25,7 +25,8 @@ def main():
         ir.PlanSteady,
         ir.Databox,
         ir.Series,
-        ir.Dater,
+        ir.Period,
+        ir.Span,
         ir.PlotlyWrapper,
         ir.Chartpack,
         ir.Rephrase,
@@ -47,7 +48,7 @@ def _document_class(klass: type, ) -> None:
         attribute_to_docstring.items(),
         key=lambda item: (-item[0]._pages_priority, item[0]._pages_call_name.lower(), ),
     ))
-    docstring = _preprocess_docstring(klass.__doc__, )
+    docstring = _remove_visual_divider(klass.__doc__, )
     docstring += _create_categorical_list(klass, attribute_to_docstring, )
     docstring += _create_property_list(klass, property_to_docstring, )
     docstring += _add_attributes(attribute_to_docstring, )
@@ -59,8 +60,6 @@ _ICONS = {
     None: ":octicons-file-24:",
     "property": ":octicons-package-24:",
 }
-_DIVIDER_PATTERN = re.compile(r"\n·{20,}\n", )
-_DIVIDER_PATTERN_LEGACY = re.compile(r"\n\.{20,}\n", )
 _PAGES_REFERENCE = "_pages_reference"
 _CATEGORY_TABLE_HEADING = (
     "Function | Description\n"
@@ -70,9 +69,11 @@ _PROPERTY_TABLE_HEADING = (
     "Property | Description\n"
     "----------|------------\n"
 )
+_DIVIDER_PATTERN = re.compile(r"\n·{20,}\n", )
+_DIVIDER_PATTERN_LEGACY = re.compile(r"\n\.{20,}\n", )
 
 
-def _preprocess_docstring(docstring: str, ) -> str:
+def _remove_visual_divider(docstring: str, ) -> str:
     docstring = _DIVIDER_PATTERN.sub("", docstring)
     docstring = _DIVIDER_PATTERN_LEGACY.sub("", docstring)
     return docstring
@@ -156,7 +157,7 @@ def _collect_attribute_to_docstring_of_category(attribute_to_docstring: dict, ca
 
 
 def _finalize_attribute_docstring(attribute, docstring: str, ) -> str:
-    docstring = _preprocess_docstring(docstring, )
+    docstring = _remove_visual_divider(docstring, )
     return docstring
 
 

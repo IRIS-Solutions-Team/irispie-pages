@@ -450,7 +450,7 @@ self = Series(
 
 ==Annualized first difference==
 
-See documentation of [temporal change calculations](#temporal-change-calculations) or
+See documentation for [temporal change calculations](#temporal-change-calculations) or
 `help(irispie.Series.temporal_change)`.
         
 
@@ -461,7 +461,7 @@ See documentation of [temporal change calculations](#temporal-change-calculation
 
 ==Annualized first difference of logs==
 
-See documentation of [temporal change calculations](#temporal-change-calculations) or
+See documentation for [temporal change calculations](#temporal-change-calculations) or
 `help(irispie.Series.temporal_change)`.
         
 
@@ -540,7 +540,7 @@ See documentation of [temporal change calculations](#temporal-change-calculation
 
 ==Annualized percent change==
 
-See documentation of [temporal change calculations](#temporal-change-calculations) or
+See documentation for [temporal change calculations](#temporal-change-calculations) or
 `help(irispie.Series.temporal_change)`.
         
 
@@ -551,7 +551,7 @@ See documentation of [temporal change calculations](#temporal-change-calculation
 
 ==Annualized gross rate of change==
 
-See documentation of [temporal change calculations](#temporal-change-calculations) or
+See documentation for [temporal change calculations](#temporal-change-calculations) or
 `help(irispie.Series.temporal_change)`.
         
 
@@ -562,7 +562,7 @@ See documentation of [temporal change calculations](#temporal-change-calculation
 
 ==Cumulation of first differences==
 
-See documentation of [temporal cumulation calculations](#temporal-cumulation-calculations) or
+See documentation for [temporal cumulation calculations](#temporal-cumulation-calculations) or
 `help(irispie.Series.temporal_cumulation)`.
         
 
@@ -573,7 +573,7 @@ See documentation of [temporal cumulation calculations](#temporal-cumulation-cal
 
 ==Cumulation of first differences of logs==
 
-See documentation of [temporal cumulation calculations](#temporal-cumulation-calculations) or
+See documentation for [temporal cumulation calculations](#temporal-cumulation-calculations) or
 `help(irispie.Series.temporal_cumulation)`.
         
 
@@ -584,7 +584,7 @@ See documentation of [temporal cumulation calculations](#temporal-cumulation-cal
 
 ==Cumulation of percent changes==
 
-See documentation of [temporal cumulation calculations](#temporal-cumulation-calculations) or
+See documentation for [temporal cumulation calculations](#temporal-cumulation-calculations) or
 `help(irispie.Series.temporal_cumulation)`.
         
 
@@ -595,7 +595,7 @@ See documentation of [temporal cumulation calculations](#temporal-cumulation-cal
 
 ==Cumulation of gross rates of change==
 
-See documentation of [temporal cumulation calculations](#temporal-cumulation-calculations) or
+See documentation for [temporal cumulation calculations](#temporal-cumulation-calculations) or
 `help(irispie.Series.temporal_cumulation)`.
         
 
@@ -606,7 +606,7 @@ See documentation of [temporal cumulation calculations](#temporal-cumulation-cal
 
 ==First difference==
 
-See documentation of [temporal change calculations](#temporal-change-calculations) or
+See documentation for [temporal change calculations](#temporal-change-calculations) or
 `help(irispie.Series.temporal_change)`.
         
 
@@ -617,7 +617,7 @@ See documentation of [temporal change calculations](#temporal-change-calculation
 
 ==First difference of logs==
 
-See documentation of [temporal change calculations](#temporal-change-calculations) or
+See documentation for [temporal change calculations](#temporal-change-calculations) or
 `help(irispie.Series.temporal_change)`.
         
 
@@ -906,7 +906,7 @@ See documentation of [moving window calculations](#moving-window-calculations) o
 
 ==Percent change==
 
-See documentation of [temporal change calculations](#temporal-change-calculations) or
+See documentation for [temporal change calculations](#temporal-change-calculations) or
 `help(irispie.Series.temporal_change)`.
         
 
@@ -917,7 +917,7 @@ See documentation of [temporal change calculations](#temporal-change-calculation
 
 ==Gross rate of change==
 
-See documentation of [temporal change calculations](#temporal-change-calculations) or
+See documentation for [temporal change calculations](#temporal-change-calculations) or
 `help(irispie.Series.temporal_change)`.
         
 

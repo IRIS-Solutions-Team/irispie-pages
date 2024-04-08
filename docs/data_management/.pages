@@ -3,5 +3,6 @@ nav:
     - index.md
     - databoxes.md
     - time_series.md
-    - dates.md
+    - periods.md
+    - spans.md
 

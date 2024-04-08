@@ -5,8 +5,8 @@
 
 Iris Pie includes two types of structural models:
 
-* [`Simultaneous`](simultaneous_models) models
+* [`Simultaneous`](simultaneous.md) models
 
-* [`Sequential`](sequential_models) models
+* [`Sequential`](sequential.md) models
 
 

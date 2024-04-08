@@ -12,22 +12,22 @@ variants of the data, stored as mutliple columns.
 Categorical list of functions
 -------------------------------
 
-### New time series ###
+### Constructing new time series ###
 
 Function | Description
 ----------|------------
 [:octicons-file-24:&nbsp;Series](#series) | Create a new `Series` object
 
 
-### Time series frequency conversions ###
+### Converting time series frequency ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;aggregate](#aggregate) | Aggregate  time series to a lower frequency
-[:octicons-file-24:&nbsp;disaggregate](#disaggregate) | Disaggregate  time series to a higher frequency
+[:octicons-file-24:&nbsp;aggregate](#aggregate) | Aggregate time series to a lower frequency
+[:octicons-file-24:&nbsp;disaggregate](#disaggregate) | Disaggregate time series to a higher frequency
 
 
-### Univariate time series filters ###
+### Filtering time series ###
 
 Function | Description
 ----------|------------
@@ -35,7 +35,7 @@ Function | Description
 [:octicons-file-24:&nbsp;x13](#x13) | X13-ARIMA-TRAMO-SEATS seasonal adjustment procedure
 
 
-### Moving window ###
+### Applying moving window functions ###
 
 Function | Description
 ----------|------------
@@ -45,7 +45,7 @@ Function | Description
 [:octicons-file-24:&nbsp;mov_sum](#mov_sum) | Moving sum
 
 
-### Temporal change ###
+### Calculating temporal change ###
 
 Function | Description
 ----------|------------
@@ -59,7 +59,7 @@ Function | Description
 [:octicons-file-24:&nbsp;roc](#roc) | Gross rate of change
 
 
-### Temporal cumulation ###
+### Calculating temporal cumulation ###
 
 Function | Description
 ----------|------------
@@ -470,7 +470,7 @@ See documentation of [temporal change calculations](#temporal-change-calculation
 ☐ `aggregate`
 ---------------
 
-==Aggregate  time series to a lower frequency==
+==Aggregate time series to a lower frequency==
 
 
 ### Function form for creating new time `Series` objects ###
@@ -626,7 +626,7 @@ See documentation of [temporal change calculations](#temporal-change-calculation
 ☐ `disaggregate`
 ------------------
 
-==Disaggregate  time series to a higher frequency==
+==Disaggregate time series to a higher frequency==
 
 
 ### Function form for creating new time `Series` objects ###
@@ -687,44 +687,36 @@ See documentation of [temporal change calculations](#temporal-change-calculation
 
 ### Functional forms creating a new time `Series` object ###
 
-
-```
-trend, gap = irispie.hpf(
-    self,
-    /,
-    span=None,
-    smooth=None,
-    log=False,
-    level=None,
-    change=None,
-)
-```
+    trend, gap = irispie.hpf(
+        self,
+        /,
+        span=None,
+        smooth=None,
+        log=False,
+        level=None,
+        change=None,
+    )
 
 
 ### Class methods changing an existing time `Series` object in-place ###
 
+    self.hpf_trend(
+        /,
+        span=None,
+        smooth=None,
+        log=False,
+        level=None,
+        change=None,
+    )
 
-```
-self.hpf_trend(
-    /,
-    span=None,
-    smooth=None,
-    log=False,
-    level=None,
-    change=None,
-)
-```
-
-```
-self.hpf_gap(
-    /,
-    span=None,
-    smooth=None,
-    log=False,
-    level=None,
-    change=None,
-)
-```
+    self.hpf_gap(
+        /,
+        span=None,
+        smooth=None,
+        log=False,
+        level=None,
+        change=None,
+    )
 
 
 ### Input arguments ###
@@ -826,10 +818,13 @@ self.hpf_gap(
     $$
     \begin{gathered}
     \min\nolimits_{\{\overline{y}_t\}}
-        \lambda \, \sum_{t\in\Omega}
-        \left( y_t - \overline{y}_t \right)^2
-        + \sum_{t=3}^{T}
-        \left( \Delta \overline{y}_t - \Delta \overline{y}_{t-1} \right)^2 \\[10pt]
+        \left[
+            \lambda \sum_{t\in\Omega}
+            \left( y_t - \overline{y}_t \right)^2
+            + \sum_{t=3}^{T}
+            \left( \Delta \overline{y}_t - \Delta \overline{y}_{t-1} \right)^2
+        \right]
+        \\[10pt]
     \text{subject to} \\[10pt]
     \overline{y}_t = L_t \ \forall t \in \Omega_L \\[10pt]
     \Delta \overline{y}_t = C_t \ \forall t \in \Omega_C
@@ -844,9 +839,9 @@ self.hpf_gap(
     * $C_t$ is the change constraint data,
     * $\lambda$ is the smoothing parameter,
     * $1, \dots, T$ is the HP filter time span (see above),
-    * $\Omega$ is the time periods within the time span where the original data are available,
-    * $\Omega_L$ is the time periods within the time span where the level constraint data are specified,
-    * $\Omega_C$ is the time periods within the time span where the change constraint data are specified.
+    * $\Omega$ is the time periods within the filter time span where the original data are available,
+    * $\Omega_L$ is the time periods within the filter time span where the level constraint data are specified,
+    * $\Omega_C$ is the time periods within the filter time span where the change constraint data are specified.
 
     The gap component, $\widehat{y}_t$, is then calculated as the difference between the
     original data and the trend component,

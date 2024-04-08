@@ -1,6 +1,6 @@
 
-`Sequential` model objects
-============================
+`Sequential` models
+====================
     
 
 
@@ -33,9 +33,7 @@ Function | Description
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;get_databox_names](#get_databox_names) | Get list of names that are extracted from databox for simulation
 [:octicons-file-24:&nbsp;get_description](#get_description) | Get model description text
-[:octicons-file-24:&nbsp;get_min_max_shifts](#get_min_max_shifts) | Get minimum and maximum shifts
 [:octicons-file-24:&nbsp;set_description](#set_description) | Set model description text
 
 
@@ -63,8 +61,8 @@ Property | Description
 [:octicons-package-24:&nbsp;is_sequential](#is_sequential) | `True` if the model equations are ordered sequentially
 [:octicons-package-24:&nbsp;lhs_names](#lhs_names) | Names of LHS variables in order of their equations
 [:octicons-package-24:&nbsp;lhs_quantities](#lhs_quantities) | LHS quantities in order of appearance
-[:octicons-package-24:&nbsp;max_shift](#max_shift) | Maximum lead occurring on the RHS of equations
-[:octicons-package-24:&nbsp;min_shift](#min_shift) | Maximum lag occurring on the RHS of equations
+[:octicons-package-24:&nbsp;max_lag](#max_lag) | Maximum lag occurring on the RHS of equations
+[:octicons-package-24:&nbsp;max_lead](#max_lead) | Maximum lead occurring on the RHS of equations
 [:octicons-package-24:&nbsp;nonidentity_index](#nonidentity_index) | Indexes of nonidentity equations
 [:octicons-package-24:&nbsp;num_equations](#num_equations) | Number of equations
 [:octicons-package-24:&nbsp;parameter_names](#parameter_names) | Names of model parameters
@@ -227,34 +225,6 @@ other = self.copy()
 
 
 
-☐ `get_databox_names`
------------------------
-
-==Get list of names that are extracted from databox for simulation==
-
-```
-names = self.get_databox_names()
-```
-
-
-### Input arguments ###
-
-
-???+ input "self"
-
-    `Sequential` model object whose databox names will be returned.
-
-
-### Returns ###
-
-
-???+ returns "names"
-
-    List of names that are extracted from databox when the model is simulated.
-        
-
-
-
 ☐ `get_description`
 ---------------------
 
@@ -278,42 +248,6 @@ description = self.get_description()
 ???+ returns " "
 
     Description of `self`.
-        
-
-
-
-☐ `get_min_max_shifts`
-------------------------
-
-==Get minimum and maximum shifts==
-
-```
-min_shift, max_shift = self.get_min_max_shifts()
-```
-
-Get the minimum shift (i.e., the maximum lag) and the maximum shift (i.e.,
-the maximum lead) among all variables occuring in the model equations.
-
-
-### Input arguments ###
-
-
-???+ input "self"
-
-    `Sequential` model object whose minimum and maximum shifts will be
-    returned.
-
-
-### Returns ###
-
-
-???+ returns "min_shift"
-
-    Minimum shift (i.e., the maximum lag).
-
-???+ returns "max_shift"
-
-    Maximum shift (i.e., the maximum lead).
         
 
 

@@ -1,8 +1,8 @@
 
 nav:
     - index.md
-    - simultaneous_models
-    - sequential_models
+    - simultaneous.md
+    - sequential.md
     - simulation_plans.md
     - steady_plans.md
     - model_language.md

@@ -2,7 +2,7 @@
 # :octicons-graph-24: Time series models
 
 
-Iris Pie includes three types of reduced-form time series modeling tools:
+IrisPie includes three types of reduced-form time series modeling tools:
 
 * [`VectorAutoregression`](vector_autoregressions) models
 

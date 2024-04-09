@@ -1,8 +1,8 @@
 
-:octicons-home-24: Welcome to Iris Pie
+:octicons-home-24: Welcome to IrisPie
 =======================================
 
-Iris Pie is a Python package for macroeconomic modeling, integrating all
+IrisPie is a Python package for macroeconomic modeling, integrating all
 the necessary functionality to support a variety of model development and model
 operation workflows. Its collection of classes and functions covers the
 following four main areas:

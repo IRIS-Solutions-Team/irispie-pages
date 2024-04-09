@@ -1,4 +1,4 @@
-site_name: Iris Pie
+site_name: IrisPie
 
 theme:
     name: material
@@ -31,7 +31,7 @@ extra_css:
     - stylesheets/extra.css
 
 extra:
-    site_tagline: The Fine Pie of Macro Modeling
+    site_tagline: Reference Manual
 
 plugins:
     - toc

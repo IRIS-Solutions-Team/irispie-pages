@@ -1,8 +1,8 @@
 
-Installing Iris Pie
+Installing IrisPie
 ====================
 
-Iris Pie runs in [Python](https://www.python.org) 3.11 or later, and can be
+IrisPie runs in [Python](https://www.python.org) 3.11 or later, and can be
 installed from [`pypi`](https://pypi.org/project/irispie/).
 
 

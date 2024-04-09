@@ -681,3 +681,10 @@ or a callable function taking a source name and returning the new target name.
     * `names_exported`: Names of the series exported to the CSV file.
 
         
+
+
+
+☐ `validate`
+--------------
+
+        

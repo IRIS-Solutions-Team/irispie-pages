@@ -3,7 +3,7 @@
 ============================================
 
 
-Iris Pie includes two types of structural models:
+IrisPie supports two types of structural models:
 
 * [`Simultaneous`](simultaneous.md) models
 

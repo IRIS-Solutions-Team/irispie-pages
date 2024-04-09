@@ -27,7 +27,7 @@ Property | Description
 
 
 
-☐ `Rephrase`
+☐ `Rephrase`
 --------------
 
 ==Create a new `Rephrase` object==

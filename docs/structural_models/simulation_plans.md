@@ -55,7 +55,7 @@ Property | Description
 
 
 
-☐ `PlanSimulate`
+☐ `PlanSimulate`
 ------------------
 
 ==Create new simulation plan object==
@@ -89,7 +89,7 @@ Create a new simulation plan object for a
 
 
 
-☐ `endogenize`
+☐ `endogenize`
 ----------------
 
 ==Endogenize certain quantities at certain dates==
@@ -97,7 +97,7 @@ Create a new simulation plan object for a
 
 
 
-☐ `exogenize`
+☐ `exogenize`
 ---------------
 
 ==Exogenize certain quantities at certain dates==
@@ -138,7 +138,7 @@ self.exogenize(
 
 
 
-☐ `get_names_endogenized_in_period`
+☐ `get_names_endogenized_in_period`
 -------------------------------------
 
 ==Get names endogenized at a certain date==
@@ -146,7 +146,7 @@ self.exogenize(
 
 
 
-☐ `get_names_exogenized_in_period`
+☐ `get_names_exogenized_in_period`
 ------------------------------------
 
 ==Get names exogenized at a certain date==

@@ -41,7 +41,7 @@ Property | Description
 
 
 
-☐ `Chartpack`
+☐ `Chartpack`
 ---------------
 
 ==Create a new chartpack==
@@ -101,7 +101,7 @@ self = Chartpack(
 
 
 
-☐ `add_chart`
+☐ `add_chart`
 ---------------
 
 ==Add a new chart to an existing figure in the chartpack==
@@ -109,7 +109,7 @@ self = Chartpack(
 
 
 
-☐ `add_figure`
+☐ `add_figure`
 ----------------
 
 ==Add a new figure to the chartpack==
@@ -117,7 +117,7 @@ self = Chartpack(
 
 
 
-☐ `plot`
+☐ `plot`
 ----------
 
 ==Plot the chartpack==

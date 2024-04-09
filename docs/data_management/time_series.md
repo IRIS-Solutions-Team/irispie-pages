@@ -405,7 +405,7 @@ self.cum_roc(/, shift=-1, initial=None, span=None)
 
 
 
-☐ `Series`
+☐ `Series`
 ------------
 
 ==Create a new `Series` object==
@@ -445,7 +445,7 @@ self = Series(
 
 
 
-☐ `adiff`
+☐ `adiff`
 -----------
 
 ==Annualized first difference==
@@ -456,7 +456,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `adiff_log`
+☐ `adiff_log`
 ---------------
 
 ==Annualized first difference of logs==
@@ -467,7 +467,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `aggregate`
+☐ `aggregate`
 ---------------
 
 ==Aggregate time series to a lower frequency==
@@ -535,7 +535,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `apct`
+☐ `apct`
 ----------
 
 ==Annualized percent change==
@@ -546,7 +546,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `aroc`
+☐ `aroc`
 ----------
 
 ==Annualized gross rate of change==
@@ -557,7 +557,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `cum_diff`
+☐ `cum_diff`
 --------------
 
 ==Cumulation of first differences==
@@ -568,7 +568,7 @@ See documentation for [temporal cumulation calculations](#temporal-cumulation-ca
 
 
 
-☐ `cum_diff_log`
+☐ `cum_diff_log`
 ------------------
 
 ==Cumulation of first differences of logs==
@@ -579,7 +579,7 @@ See documentation for [temporal cumulation calculations](#temporal-cumulation-ca
 
 
 
-☐ `cum_pct`
+☐ `cum_pct`
 -------------
 
 ==Cumulation of percent changes==
@@ -590,7 +590,7 @@ See documentation for [temporal cumulation calculations](#temporal-cumulation-ca
 
 
 
-☐ `cum_roc`
+☐ `cum_roc`
 -------------
 
 ==Cumulation of gross rates of change==
@@ -601,7 +601,7 @@ See documentation for [temporal cumulation calculations](#temporal-cumulation-ca
 
 
 
-☐ `diff`
+☐ `diff`
 ----------
 
 ==First difference==
@@ -612,7 +612,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `diff_log`
+☐ `diff_log`
 --------------
 
 ==First difference of logs==
@@ -623,7 +623,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `disaggregate`
+☐ `disaggregate`
 ------------------
 
 ==Disaggregate time series to a higher frequency==
@@ -679,7 +679,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `hpf`
+☐ `hpf`
 ---------
 
 ==Constrained Hodrick-Prescott filter==
@@ -853,7 +853,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `mov_avg`
+☐ `mov_avg`
 -------------
 
 ==Moving average==
@@ -865,7 +865,7 @@ See documentation of [moving window calculations](#moving-window-calculations) o
 
 
 
-☐ `mov_mean`
+☐ `mov_mean`
 --------------
 
 ==Moving average==
@@ -877,7 +877,7 @@ See documentation of [moving window calculations](#moving-window-calculations) o
 
 
 
-☐ `mov_prod`
+☐ `mov_prod`
 --------------
 
 ==Moving product==
@@ -889,7 +889,7 @@ See documentation of [moving window calculations](#moving-window-calculations) o
 
 
 
-☐ `mov_sum`
+☐ `mov_sum`
 -------------
 
 ==Moving sum==
@@ -901,7 +901,7 @@ See documentation of [moving window calculations](#moving-window-calculations) o
 
 
 
-☐ `pct`
+☐ `pct`
 ---------
 
 ==Percent change==
@@ -912,7 +912,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `roc`
+☐ `roc`
 ---------
 
 ==Gross rate of change==
@@ -923,7 +923,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `x13`
+☐ `x13`
 ---------
 
 ==X13-ARIMA-TRAMO-SEATS seasonal adjustment procedure==

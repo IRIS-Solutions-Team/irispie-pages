@@ -18,6 +18,13 @@ Function | Description
 [:octicons-file-24:&nbsp;Span](#span) | Create a time span
 
 
+### Time span manipulation ###
+
+Function | Description
+----------|------------
+[:octicons-file-24:&nbsp;reverse](#reverse) | Reverse the time span
+
+
 
 
 
@@ -29,14 +36,47 @@ Property | Description
 
 
 
-☐ `Span`
+☐ `Span`
 ----------
 
 ==Create a time span==
 
 
-    span = Span(start_per, end_per, step=1)
-    span = start_per >> end_per
-    span = end_per << start_per
+### Using the `Span` constructor ###
 
+    span = Span(start_per, end_per, step=1)
+
+
+### Shorthand using the `>>` and `<<` operators ###
+
+    span = start_per >> end_per #[^1]
+    span = end_per << start_per #[^2]
+
+1. Equivalent to `Span(start_per, end_per, step=1)`
+2. Equivalent to `Span(end_per, start_per, step=-1)`
+        
+
+
+
+☐ `reverse`
+-------------
+
+==Reverse the time span==
+
+Reverses the direction of the time span, so that the start period becomes
+the end period and vice versa.
+
+
+    self.reverse()
+
+
+### Input arguments ###
+
+???+ input "self"
+    The time span to be reversed.
+
+
+### Returns ###
+
+The time span is reversed in place.
         

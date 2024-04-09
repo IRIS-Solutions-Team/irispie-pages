@@ -63,7 +63,7 @@ Property | Description
 
 
 
-☐ `Databox.empty`
+☐ `Databox.empty`
 -------------------
 
 ==Create an empty Databox==
@@ -88,7 +88,7 @@ No input arguments are required for this method.
 
 
 
-☐ `Databox.from_dict`
+☐ `Databox.from_dict`
 -----------------------
 
 ==Create a Databox from a numpy array==
@@ -145,7 +145,7 @@ time series created from the rows or columns of the numeric array.
 
 
 
-☐ `Databox.from_dict`
+☐ `Databox.from_dict`
 -----------------------
 
 ==Create a Databox from a Dictionary==
@@ -175,7 +175,7 @@ Databox, incorporating all its functionalities.
 
 
 
-☐ `apply`
+☐ `apply`
 -----------
 
 
@@ -231,7 +231,7 @@ the results.
 
 
 
-☐ `copy`
+☐ `copy`
 ----------
 
 ==Create a copy of the Databox==
@@ -274,7 +274,7 @@ during the duplication process.
 
 
 
-☐ `Databox.from_sheet`
+☐ `Databox.from_sheet`
 ------------------------
 
 
@@ -337,7 +337,7 @@ during the duplication process.
 
 
 
-☐ `filter`
+☐ `filter`
 ------------
 
 
@@ -373,7 +373,7 @@ Select Databox items based on custom name or value test functions.
 
 
 
-☐ `get_missing_names`
+☐ `get_missing_names`
 -----------------------
 
 ==Identify names not present in a Databox==
@@ -401,7 +401,7 @@ yet to be added to the Databox.
 
 
 
-☐ `get_names`
+☐ `get_names`
 ---------------
 
 ==Get all item names from a Databox==
@@ -425,7 +425,7 @@ No input arguments are required for this method.
 
 
 
-☐ `get_series_names_by_frequency`
+☐ `get_series_names_by_frequency`
 -----------------------------------
 
 ==Retrieve time series names by frequency==
@@ -455,7 +455,7 @@ Obtain a list of time series names that match a specified frequency.
 
 
 
-☐ `get_span_by_frequency`
+☐ `get_span_by_frequency`
 ---------------------------
 
 ==Retrieve the date span for time series by frequency==
@@ -486,7 +486,7 @@ Get the encompassing date span for all time series with a specified frequency.
 
 
 
-☐ `keep`
+☐ `keep`
 ----------
 
 ==Keep specified items in a Databox==
@@ -523,7 +523,7 @@ callable function determining which items to retain.
 
 
 
-☐ `remove`
+☐ `remove`
 ------------
 
 ==Remove specified items from a Databox==
@@ -561,7 +561,7 @@ single name, a callable that returns `True` for names to be removed, or `None`.
 
 
 
-☐ `rename`
+☐ `rename`
 ------------
 
 ==Rename items in a Databox==
@@ -605,7 +605,7 @@ or a callable function taking a source name and returning the new target name.
 
 
 
-☐ `to_sheet`
+☐ `to_sheet`
 --------------
 
 ==Write Databox time series to a CSV file==

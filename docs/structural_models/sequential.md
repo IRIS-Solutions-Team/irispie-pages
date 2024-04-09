@@ -71,7 +71,7 @@ Property | Description
 
 
 
-☐ `Sequential.from_file`
+☐ `Sequential.from_file`
 --------------------------
 
 ==Create new `Sequential` model object from source file or files==
@@ -115,7 +115,7 @@ model object.
 
 
 
-☐ `Sequential.from_string`
+☐ `Sequential.from_string`
 ----------------------------
 
 ==Create sequential model object from string==
@@ -152,7 +152,7 @@ See [`Sequential.from_file`](sequentialfrom_file) for return values.
 
 
 
-☐ `assign`
+☐ `assign`
 ------------
 
 ==Assign model parameters==
@@ -199,7 +199,7 @@ etc...
 
 
 
-☐ `copy`
+☐ `copy`
 ----------
 
 ==Create a deep copy==
@@ -225,7 +225,7 @@ other = self.copy()
 
 
 
-☐ `get_description`
+☐ `get_description`
 ---------------------
 
 ==Get model description text==
@@ -252,7 +252,7 @@ description = self.get_description()
 
 
 
-☐ `reorder_equations`
+☐ `reorder_equations`
 -----------------------
 
 ==Reorder model equations==
@@ -280,7 +280,7 @@ equation indexes.
 
 
 
-☐ `sequentialize`
+☐ `sequentialize`
 -------------------
 
 ==Reorder the model equations so that they can be solved sequentially==
@@ -312,7 +312,7 @@ sequentially. The reordered equation indexes are returned as a tuple.
 
 
 
-☐ `set_description`
+☐ `set_description`
 ---------------------
 
 ==Set model description text==
@@ -339,7 +339,7 @@ self.set_description(description, )
 
 
 
-☐ `simulate`
+☐ `simulate`
 --------------
 
 ==Simulate sequential model==

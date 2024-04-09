@@ -32,7 +32,7 @@ Property | Description
 
 
 
-☐ `highlight`
+☐ `highlight`
 ---------------
 
 ==Highlight a certain date span in charts==
@@ -40,7 +40,7 @@ Property | Description
 
 
 
-☐ `make_subplots`
+☐ `make_subplots`
 -------------------
 
 ==Create a figure with multiple subplots==

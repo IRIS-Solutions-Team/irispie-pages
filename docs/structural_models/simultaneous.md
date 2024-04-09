@@ -40,7 +40,7 @@ Property | Description
 
 
 
-☐ `Simultaneous.from_file`
+☐ `Simultaneous.from_file`
 ----------------------------
 
 ==Create `Simultaneous` model object from source file or files==
@@ -84,7 +84,7 @@ model object.
 
 
 
-☐ `Simultaneous.from_string`
+☐ `Simultaneous.from_string`
 ------------------------------
 
 ==Create `Simultaneous` model from string==
@@ -120,7 +120,7 @@ See [`Simultaneous.from_file`](simultaneousfrom_file) for return values.
 
 
 
-☐ `kalman_filter`
+☐ `kalman_filter`
 -------------------
 
 ==Run Kalman filter on a model using time series data==

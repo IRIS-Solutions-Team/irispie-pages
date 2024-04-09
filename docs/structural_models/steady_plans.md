@@ -38,7 +38,7 @@ Property | Description
 
 
 
-☐ `PlanSteady`
+☐ `PlanSteady`
 ----------------
 
 ==Create new steady plan object==
@@ -46,7 +46,7 @@ Property | Description
 
 
 
-☐ `endogenize`
+☐ `endogenize`
 ----------------
 
 ==Endogenize parameters==
@@ -54,7 +54,7 @@ Property | Description
 
 
 
-☐ `exogenize`
+☐ `exogenize`
 ---------------
 
 ==Exogenize steady levels of variables==
@@ -62,7 +62,7 @@ Property | Description
 
 
 
-☐ `fix_change`
+☐ `fix_change`
 ----------------
 
 ==Fix steady changes of variables==
@@ -70,7 +70,7 @@ Property | Description
 
 
 
-☐ `fix_level`
+☐ `fix_level`
 ---------------
 
 ==Fix steady levels of variables==

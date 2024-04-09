@@ -12,21 +12,32 @@ order, and the same type of section can be repeated multiple times.
 
 ## Declaring model quantities
 
-Keyword | Description | [`Simultaneous`](simultaneous_models) | [`Sequential`](sequential_models)
+Keyword | Description | [`Simultaneous`](simultaneous.md) | [`Sequential`](sequential.md)
 ---|---|:---:|:---:
-`!variables` | Declare endogenous/transition variables | &#10003; |
-`!unanticipated_shocks` | Declare unanticipated shocks | &#10003; |
-`!anticipated_shocks` | Declare anticipated shocks | &#10003; |
-`!measurement_variables` | Declare measurement variables | &#10003; |
-`!measurement_shocks` | Declare measurement shocks | &#10003; |
-`!exogenous_variables` | Declare exogenous variables | &#10003; |
-`!parameters` | Declare parameters | &#10003; | &#10003
+`!variables` | Declare endogenous/transition variables | :material-check: |
+`!unanticipated_shocks` | Declare unanticipated shocks | :material-check: |
+`!anticipated_shocks` | Declare anticipated shocks | :material-check: |
+`!measurement_variables` | Declare measurement variables | :material-check: |
+`!measurement_shocks` | Declare measurement shocks | :material-check: |
+`!exogenous_variables` | Declare exogenous variables | :material-check: |
+`!parameters` | Declare parameters | :material-check: | :material-check:
 
 
 ## Defining model equations
 
-Keyword | Description | [`Simultaneous`](simultaneous_models) | [`Sequential`](sequential_models)
+Keyword | Description | [`Simultaneous`](simultaneous.md) | [`Sequential`](sequential.md)
 ---|---|:---:|:---:
-`!equations` | Define equations | &#10003; | &#10003;
-`!measurement_equations` | Define measurement equations | &#10003; |
+`!equations` | Define equations | :material-check: | :material-check:
+`!measurement_equations` | Define measurement equations | :material-check: |
+
+
+
+## Special operators inside equations
+
+Keyword | Description | [`Simultaneous`](simultaneous.md) | [`Sequential`](sequential.md)
+---|---|:---:|:---:
+`{±k}` | Time shift (`-` for lags, `+` for lead)| :material-check: | :material-check:
+`!!` | Steady-state form of equation | :material-check: |
+`===` | Identity sign | | :material-check:
+
 

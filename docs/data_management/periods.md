@@ -19,7 +19,11 @@ Categorical list of functions
 
 Function | Description
 ----------|------------
+[:octicons-file-24:&nbsp;dd](#dd) | Create a daily-frequency time period or time span
 [:octicons-file-24:&nbsp;hh](#hh) | Create a half-yearly-frequency time period or time span
+[:octicons-file-24:&nbsp;ii](#ii) | Create an integer-frequency time period or time span
+[:octicons-file-24:&nbsp;mm](#mm) | Create a monthly-frequency time period or time span
+[:octicons-file-24:&nbsp;qq](#qq) | Create a quarterly-frequency time period or time span
 [:octicons-file-24:&nbsp;yy](#yy) | Create a yearly-frequency time period or time span
 
 
@@ -94,7 +98,18 @@ Overview of time period constructors:
 
 
 
-☐ `hh`
+☐ `dd`
+--------
+
+==Create a daily-frequency time period or time span==
+
+See documentation for the [`Period` constructors](#time-period-constructors)
+and the [`Span` constructors](spans.md).
+    
+
+
+
+☐ `hh`
 --------
 
 ==Create a half-yearly-frequency time period or time span==
@@ -105,7 +120,40 @@ and the [`Span` constructors](spans.md).
 
 
 
-☐ `yy`
+☐ `ii`
+--------
+
+==Create an integer-frequency time period or time span==
+
+See documentation for the [`Period` constructors](#time-period-constructors)
+and the [`Span` constructors](spans.md).
+
+
+
+
+☐ `mm`
+--------
+
+==Create a monthly-frequency time period or time span==
+
+See documentation for the [`Period` constructors](#time-period-constructors)
+and the [`Span` constructors](spans.md).
+
+
+
+
+☐ `qq`
+--------
+
+==Create a quarterly-frequency time period or time span==
+
+See documentation for the [`Period` constructors](#time-period-constructors)
+and the [`Span` constructors](spans.md).
+
+
+
+
+☐ `yy`
 --------
 
 ==Create a yearly-frequency time period or time span==

@@ -34,10 +34,9 @@ Keyword | Description | [`Simultaneous`](simultaneous.md) | [`Sequential`](seque
 
 ## Special operators inside equations
 
-Keyword | Description | [`Simultaneous`](simultaneous.md) | [`Sequential`](sequential.md)
+Operator | Description | [`Simultaneous`](simultaneous.md) | [`Sequential`](sequential.md)
 ---|---|:---:|:---:
 `{±k}` | Time shift (`-` for lags, `+` for lead)| :material-check: | :material-check:
 `!!` | Steady-state form of equation | :material-check: |
 `===` | Identity sign | | :material-check:
-
 

@@ -27,6 +27,7 @@ def main():
         ir.Series,
         ir.Period,
         ir.Span,
+        ir.Frequency,
         ir.PlotlyWrapper,
         ir.Chartpack,
         ir.Rephrase,
@@ -40,18 +41,19 @@ def _document_class(klass: type, ) -> None:
     """
     """
     klass_path = os.path.join(docs_root, *klass._pages_path, )
-    attributes = _collect_documented_attributes_from_class(klass, )
-    properties = _collect_documented_properties_from_class(klass, )
-    attribute_to_docstring = _create_attribute_to_docstring(attributes, )
-    property_to_docstring = _create_attribute_to_docstring(properties, )
-    attribute_to_docstring = dict(sorted(
-        attribute_to_docstring.items(),
-        key=lambda item: (-item[0]._pages_priority, item[0]._pages_call_name.lower(), ),
-    ))
     docstring = _remove_visual_divider(klass.__doc__, )
-    docstring += _create_categorical_list(klass, attribute_to_docstring, )
-    docstring += _create_property_list(klass, property_to_docstring, )
-    docstring += _add_attributes(attribute_to_docstring, )
+    if klass._pages_categories:
+        attributes = _collect_documented_attributes_from_class(klass, )
+        properties = _collect_documented_properties_from_class(klass, )
+        attribute_to_docstring = _create_attribute_to_docstring(attributes, )
+        property_to_docstring = _create_attribute_to_docstring(properties, )
+        attribute_to_docstring = dict(sorted(
+            attribute_to_docstring.items(),
+            key=lambda item: (-item[0]._pages_priority, item[0]._pages_call_name.lower(), ),
+        ))
+        docstring += _create_categorical_list(klass, attribute_to_docstring, )
+        docstring += _create_property_list(klass, property_to_docstring, )
+        docstring += _add_attributes(attribute_to_docstring, )
     with open(klass_path, "wt+") as f:
         f.write(docstring, )
 
@@ -93,7 +95,7 @@ def _create_categorical_list(klass: type, attribute_to_docstring: dict, ) -> str
         attribute_to_docstring_of_category = _collect_attribute_to_docstring_of_category(attribute_to_docstring, category, )
         for attribute in attribute_to_docstring_of_category.keys():
             icon = _ICONS.get(attribute._pages_category, _ICONS[None], )
-            docstring += f"[{icon}&nbsp;{attribute._pages_call_name}](#{_get_anchor(attribute._pages_call_name, )}) | {attribute._pages_tagline}\n"
+            docstring += f"[{attribute._pages_call_name}](#{_get_anchor(attribute._pages_call_name, )}) | {attribute._pages_tagline}\n"
         docstring += "\n\n"
     return docstring
 
@@ -109,7 +111,7 @@ def _create_property_list(klass: type, property_to_docstring: dict, ) -> str:
     property_to_docstring_of_category = _collect_attribute_to_docstring_of_category(property_to_docstring, category, )
     for property in property_to_docstring_of_category.keys():
         icon = _ICONS.get(property._pages_category, _ICONS[None], )
-        docstring += f"[{icon}&nbsp;{property._pages_call_name}](#{_get_anchor(property._pages_call_name)}) | {property._pages_tagline}\n"
+        docstring += f"[{property._pages_call_name}](#{_get_anchor(property._pages_call_name)}) | {property._pages_tagline}\n"
     docstring += "\n\n"
     return docstring
 
@@ -143,7 +145,7 @@ def _collect_documented_properties_from_class(klass: type, ) -> list:
 
 def _create_attribute_to_docstring(references: list, ) -> dict:
     return {
-        attribute: _DOCSTRING_EXTRACTOR[type(attribute)](attribute, )
+        attribute: _DOCSTRING_EXTRACTOR.get(type(attribute), _op.attrgetter("__doc__"))(attribute, )
         for attribute in references
     }
 
@@ -166,7 +168,6 @@ def _get_anchor(call_name: str) -> str:
 
 
 _DOCSTRING_EXTRACTOR = {
-    FunctionType: _op.attrgetter("__doc__", ),
     MethodType: _op.attrgetter("__func__.__doc__", ),
 }
 

@@ -5,4 +5,5 @@ nav:
     - time_series.md
     - periods.md
     - spans.md
+    - frequencies.md
 

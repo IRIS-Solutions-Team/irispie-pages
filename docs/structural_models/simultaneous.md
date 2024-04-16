@@ -11,15 +11,15 @@ Categorical list of functions
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;Simultaneous.from_file](#simultaneousfrom_file) | Create `Simultaneous` model object from source file or files
-[:octicons-file-24:&nbsp;Simultaneous.from_string](#simultaneousfrom_string) | Create `Simultaneous` model from string
+[Simultaneous.from_file](#simultaneousfrom_file) | Create `Simultaneous` model object from source file or files
+[Simultaneous.from_string](#simultaneousfrom_string) | Create `Simultaneous` model from string
 
 
 ### Applying structural filters on models ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;kalman_filter](#kalman_filter) | Run Kalman filter on a model using time series data
+[kalman_filter](#kalman_filter) | Run Kalman filter on a model using time series data
 
 
 
@@ -30,13 +30,13 @@ Directly accessible properties
 
 Property | Description
 ----------|------------
-[:octicons-package-24:&nbsp;is_deterministic](#is_deterministic) | True for models declared as deterministic
-[:octicons-package-24:&nbsp;is_flat](#is_flat) | True for models declared as flat
-[:octicons-package-24:&nbsp;is_linear](#is_linear) | True for models declared as linear
-[:octicons-package-24:&nbsp;max_lag](#max_lag) | Maximul lag in the model (negative or zero)
-[:octicons-package-24:&nbsp;max_lead](#max_lead) | Maximul lead in the model (positive or zero)
-[:octicons-package-24:&nbsp;num_measurement_equations](#num_measurement_equations) | Number of measurement equations
-[:octicons-package-24:&nbsp;num_transition_equations](#num_transition_equations) | Number of transition equations
+[is_deterministic](#is_deterministic) | True for models declared as deterministic
+[is_flat](#is_flat) | True for models declared as flat
+[is_linear](#is_linear) | True for models declared as linear
+[max_lag](#max_lag) | Maximul lag in the model (negative or zero)
+[max_lead](#max_lead) | Maximul lead in the model (positive or zero)
+[num_measurement_equations](#num_measurement_equations) | Number of measurement equations
+[num_transition_equations](#num_transition_equations) | Number of transition equations
 
 
 

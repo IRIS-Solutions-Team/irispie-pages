@@ -7,11 +7,15 @@ streamline data management in modeling tasks:
 
 * [`Databox`](databoxes.md) objects for unstructured data storage,
 
-* [`Series`](time_series.md) objects for time series manipulation,
+* Time [`Series`](time_series.md) objects for time series manipulation,
 
-* [`Period`](periods.md) objects for time periods,
+* Time [`Period`](periods.md) objects for time period manipulation and
+  arithmetic,
 
-* [`Span`](spans.md) objects for time spans.
+* Time [`Span`](spans.md) objects for spans of multiple time periods,
+
+* Time [`Frequency`](frequencies.md) enumeration for user convenience of
+  referring to time frequencies.
 
 
 While similar functionality is available in other third-party packages or

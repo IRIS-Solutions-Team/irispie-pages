@@ -2,9 +2,9 @@
 Time series
 ============
 
-The `Series` objects represent numerical time series, organized as rows of
-observations stored in NumPy arrays and [date](dates.md)
-stamped. A `Series` object can hold multiple
+Time `Series` objects represent numerical time series, organized as rows of
+observations stored in [`numpy`](https://numpy.org) arrays and time stamped
+using [time `Periods`](periods.md). A `Series` object can hold multiple
 variants of the data, stored as mutliple columns.
     
 
@@ -16,57 +16,57 @@ Categorical list of functions
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;Series](#series) | Create a new `Series` object
+[Series](#series) | Create a new `Series` object
 
 
 ### Converting time series frequency ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;aggregate](#aggregate) | Aggregate time series to a lower frequency
-[:octicons-file-24:&nbsp;disaggregate](#disaggregate) | Disaggregate time series to a higher frequency
+[aggregate](#aggregate) | Aggregate time series to a lower frequency
+[disaggregate](#disaggregate) | Disaggregate time series to a higher frequency
 
 
 ### Filtering time series ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;hpf](#hpf) | Constrained Hodrick-Prescott filter
-[:octicons-file-24:&nbsp;x13](#x13) | X13-ARIMA-TRAMO-SEATS seasonal adjustment procedure
+[hpf](#hpf) | Constrained Hodrick-Prescott filter
+[x13](#x13) | X13-ARIMA-TRAMO-SEATS seasonal adjustment procedure
 
 
 ### Applying moving window functions ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;mov_avg](#mov_avg) | Moving average
-[:octicons-file-24:&nbsp;mov_mean](#mov_mean) | Moving average
-[:octicons-file-24:&nbsp;mov_prod](#mov_prod) | Moving product
-[:octicons-file-24:&nbsp;mov_sum](#mov_sum) | Moving sum
+[mov_avg](#mov_avg) | Moving average
+[mov_mean](#mov_mean) | Moving average
+[mov_prod](#mov_prod) | Moving product
+[mov_sum](#mov_sum) | Moving sum
 
 
 ### Calculating temporal change ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;adiff](#adiff) | Annualized first difference
-[:octicons-file-24:&nbsp;adiff_log](#adiff_log) | Annualized first difference of logs
-[:octicons-file-24:&nbsp;apct](#apct) | Annualized percent change
-[:octicons-file-24:&nbsp;aroc](#aroc) | Annualized gross rate of change
-[:octicons-file-24:&nbsp;diff](#diff) | First difference
-[:octicons-file-24:&nbsp;diff_log](#diff_log) | First difference of logs
-[:octicons-file-24:&nbsp;pct](#pct) | Percent change
-[:octicons-file-24:&nbsp;roc](#roc) | Gross rate of change
+[adiff](#adiff) | Annualized first difference
+[adiff_log](#adiff_log) | Annualized first difference of logs
+[apct](#apct) | Annualized percent change
+[aroc](#aroc) | Annualized gross rate of change
+[diff](#diff) | First difference
+[diff_log](#diff_log) | First difference of logs
+[pct](#pct) | Percent change
+[roc](#roc) | Gross rate of change
 
 
 ### Calculating temporal cumulation ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;cum_diff](#cum_diff) | Cumulation of first differences
-[:octicons-file-24:&nbsp;cum_diff_log](#cum_diff_log) | Cumulation of first differences of logs
-[:octicons-file-24:&nbsp;cum_pct](#cum_pct) | Cumulation of percent changes
-[:octicons-file-24:&nbsp;cum_roc](#cum_roc) | Cumulation of gross rates of change
+[cum_diff](#cum_diff) | Cumulation of first differences
+[cum_diff_log](#cum_diff_log) | Cumulation of first differences of logs
+[cum_pct](#cum_pct) | Cumulation of percent changes
+[cum_roc](#cum_roc) | Cumulation of gross rates of change
 
 
 
@@ -77,15 +77,16 @@ Directly accessible properties
 
 Property | Description
 ----------|------------
-[:octicons-package-24:&nbsp;start_date](#start_date) | Start date of the time series
-[:octicons-package-24:&nbsp;dates](#dates) | N-tuple with the dates from the start date to the end date of the time series
-[:octicons-package-24:&nbsp;end_date](#end_date) | End date of the time series
-[:octicons-package-24:&nbsp;frequency](#frequency) | Date frequency of the time series
-[:octicons-package-24:&nbsp;from_to](#from_to) | Two-tuple with the start date and end date of the time series
-[:octicons-package-24:&nbsp;num_periods](#num_periods) | Number of periods from the first to the last observation
-[:octicons-package-24:&nbsp;num_variants](#num_variants) | Number of variants (columns) within the `Series` object
-[:octicons-package-24:&nbsp;span](#span) | Time span of the time series
-[:octicons-package-24:&nbsp;shape](#shape) | Shape of time series data
+[start_date](#start_date) | Start date of the time series
+[periods](#periods) | N-tuple with the periods from the start period to the end period of the time series
+[end](#end) | End period of the time series
+[frequency](#frequency) | Date frequency of the time series
+[from_to](#from_to) | Two-tuple with the start date and end date of the time series
+[num_periods](#num_periods) | Number of periods from the first to the last observation
+[num_variants](#num_variants) | Number of variants (columns) within the `Series` object
+[span](#span) | Time span of the time series
+[shape](#shape) | Shape of time series data
+[start](#start) | Start period of the time series
 
 
 
@@ -412,7 +413,7 @@ self.cum_roc(/, shift=-1, initial=None, span=None)
 
 ```
 self = Series(
-    start_date=start_date,
+    start=start,
     values=values,
 )
 ```
@@ -427,9 +428,9 @@ self = Series(
 ### Input arguments ###
 
 
-???+ input "start_date"
+???+ input "start"
 
-    The date of the first value in the `values`.
+    The time period of the first value in the `values`.
 
 ???+ input "values"
 

@@ -11,14 +11,14 @@ Categorical list of functions
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;make_subplots](#make_subplots) | Create a figure with multiple subplots
+[make_subplots](#make_subplots) | Create a figure with multiple subplots
 
 
 ### Customizing charts ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;highlight](#highlight) | Highlight a certain date span in charts
+[highlight](#highlight) | Highlight a certain date span in charts
 
 
 

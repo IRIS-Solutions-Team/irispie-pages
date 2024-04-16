@@ -1,9 +1,11 @@
 
-Steady plans
-=============
+Steady-state plans
+===================
 
-`PlanSteady` objects are used to define assumptions about the steady state
-values of certain model variables.
+`SteadyPlan` objects define assumptions about the steady state values of
+certain model quantities (variables and parameters), either for reverse
+engineered calculations or for narrowing down the underdetermined
+steady-state systems.
     
 
 
@@ -14,17 +16,17 @@ Categorical list of functions
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;PlanSteady](#plansteady) | Create new steady plan object
+[SteadyPlan](#steadyplan) | Create new steady plan object
 
 
-### Defining exogenized, endogenized and fixed quantities ###
+### Defining Exogenized, endogenized and fixed quantities ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;endogenize](#endogenize) | Endogenize parameters
-[:octicons-file-24:&nbsp;exogenize](#exogenize) | Exogenize steady levels of variables
-[:octicons-file-24:&nbsp;fix_change](#fix_change) | Fix steady changes of variables
-[:octicons-file-24:&nbsp;fix_level](#fix_level) | Fix steady levels of variables
+[endogenize](#endogenize) | Endogenize parameters
+[exogenize](#exogenize) | Exogenize steady levels of variables
+[fix_change](#fix_change) | Fix steady changes of variables
+[fix_level](#fix_level) | Fix steady levels of variables
 
 
 
@@ -38,7 +40,7 @@ Property | Description
 
 
 
-☐ `PlanSteady`
+☐ `SteadyPlan`
 ----------------
 
 ==Create new steady plan object==

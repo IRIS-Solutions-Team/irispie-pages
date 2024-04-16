@@ -1,6 +1,11 @@
 
 `Sequential` models
 ====================
+
+`Sequential` models are models where the equations are simulated sequentially,
+one data point at a time. The order of execution in simulations is either
+period-by-period and equation-by-equation, or vice versa, equation-by-equation
+and period-by-period.
     
 
 
@@ -11,39 +16,39 @@ Categorical list of functions
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;Sequential.from_file](#sequentialfrom_file) | Create new `Sequential` model object from source file or files
-[:octicons-file-24:&nbsp;Sequential.from_string](#sequentialfrom_string) | Create sequential model object from string
+[Sequential.from_file](#sequentialfrom_file) | Create new `Sequential` model object from source file or files
+[Sequential.from_string](#sequentialfrom_string) | Create sequential model object from string
 
 
 ### Simulating `Sequential` models ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;simulate](#simulate) | Simulate sequential model
+[simulate](#simulate) | Simulate sequential model
 
 
 ### Manipulating `Sequential` model parameters ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;assign](#assign) | Assign model parameters
+[assign](#assign) | Assign model parameters
 
 
 ### Information about `Sequential` models ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;get_description](#get_description) | Get model description text
-[:octicons-file-24:&nbsp;set_description](#set_description) | Set model description text
+[get_description](#get_description) | Get model description text
+[set_description](#set_description) | Set model description text
 
 
 ### Manipulating `Sequential` models ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;copy](#copy) | Create a deep copy
-[:octicons-file-24:&nbsp;reorder_equations](#reorder_equations) | Reorder model equations
-[:octicons-file-24:&nbsp;sequentialize](#sequentialize) | Reorder the model equations so that they can be solved sequentially
+[copy](#copy) | Create a deep copy
+[reorder_equations](#reorder_equations) | Reorder model equations
+[sequentialize](#sequentialize) | Reorder the model equations so that they can be solved sequentially
 
 
 
@@ -54,20 +59,20 @@ Directly accessible properties
 
 Property | Description
 ----------|------------
-[:octicons-package-24:&nbsp;all_names](#all_names) | Names of all variables occurring in the model in order of appearance
-[:octicons-package-24:&nbsp;equation_strings](#equation_strings) | Equation strings in order of appearance
-[:octicons-package-24:&nbsp;identity_index](#identity_index) | Indexes of identity equations
-[:octicons-package-24:&nbsp;incidence_matrix](#incidence_matrix) | Incidence matrix with equations in rows and LHS quantities in columns
-[:octicons-package-24:&nbsp;is_sequential](#is_sequential) | `True` if the model equations are ordered sequentially
-[:octicons-package-24:&nbsp;lhs_names](#lhs_names) | Names of LHS variables in order of their equations
-[:octicons-package-24:&nbsp;lhs_quantities](#lhs_quantities) | LHS quantities in order of appearance
-[:octicons-package-24:&nbsp;max_lag](#max_lag) | Maximum lag occurring on the RHS of equations
-[:octicons-package-24:&nbsp;max_lead](#max_lead) | Maximum lead occurring on the RHS of equations
-[:octicons-package-24:&nbsp;nonidentity_index](#nonidentity_index) | Indexes of nonidentity equations
-[:octicons-package-24:&nbsp;num_equations](#num_equations) | Number of equations
-[:octicons-package-24:&nbsp;parameter_names](#parameter_names) | Names of model parameters
-[:octicons-package-24:&nbsp;residual_names](#residual_names) | Names of residuals in order of their equations
-[:octicons-package-24:&nbsp;rhs_only_names](#rhs_only_names) | Names of variables appearing only on the RHS of equations
+[all_names](#all_names) | Names of all variables occurring in the model in order of appearance
+[equation_strings](#equation_strings) | Equation strings in order of appearance
+[identity_index](#identity_index) | Indexes of identity equations
+[incidence_matrix](#incidence_matrix) | Incidence matrix with equations in rows and LHS quantities in columns
+[is_sequential](#is_sequential) | `True` if the model equations are ordered sequentially
+[lhs_names](#lhs_names) | Names of LHS variables in order of their equations
+[lhs_quantities](#lhs_quantities) | LHS quantities in order of appearance
+[max_lag](#max_lag) | Maximum lag occurring on the RHS of equations
+[max_lead](#max_lead) | Maximum lead occurring on the RHS of equations
+[nonidentity_index](#nonidentity_index) | Indexes of nonidentity equations
+[num_equations](#num_equations) | Number of equations
+[parameter_names](#parameter_names) | Names of model parameters
+[residual_names](#residual_names) | Names of residuals in order of their equations
+[rhs_only_names](#rhs_only_names) | Names of variables appearing only on the RHS of equations
 
 
 
@@ -99,7 +104,7 @@ model object.
     specified, they will all combined together in the given order.
 
 ???+ input "context"
-    Dictionary supplying the values used in preparsing commands, and the
+    Dictionary supplying the values used in [preparsing](preparser.md) commands, and the
     definition of non-standard functions used in the equations.
 
 ???+ input "description"
@@ -157,6 +162,12 @@ See [`Sequential.from_file`](sequentialfrom_file) for return values.
 
 ==Assign model parameters==
 
+Assigns parameters to a `Sequential` model. The method can assign parameters
+from individual arguments, from a `Databox`, or from a `dict`.
+
+
+### Assigning individual parameters ###
+
 ```
 self.assign(
     name_one=value_one,
@@ -165,36 +176,38 @@ self.assign(
 )
 ```
 
+
+### Assigning parameters from a `Databox` or a `dict` ###
+
 ```
 self.assign(databox, )
 ```
-
-...
 
 
 ### Input arguments ###
 
 
 ???+ input "self"
-
     `Sequential` model whose parameters will be assigned.
 
 
-???+ input "name_one"
+???+ input "name_one, name_two, ..."
+    Names of the parameters to assign.
 
-    Name of a parameter to assign.
 
+???+ input "value_one, value_two, ..."
+    Values to assign to `name_one`, `name_two`, etc.
 
-???+ input "value_one"
-
-    Value to assign to `name_one`.
-
-etc...
 
 ???+ input "databox"
-
     `Databox` or `dict` from which the parameters will be extracted and
-    assigned.
+    assigned. Any names in the `Databox` or `dict` that are not model
+    parameters will be ignored.
+
+
+### Returns ###
+
+Returns no value; the method modifies the model in place.
         
 
 

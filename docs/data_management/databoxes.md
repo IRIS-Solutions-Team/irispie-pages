@@ -2,10 +2,14 @@
 Databoxes
 ==========
 
-The `Databox` objects can be used to store and manipulate unstructured data
-organized as key-value pairs, in a dictionary style; the `Databox` objects
-are, indeed, subclassed from the standard `dict`. The values stored within
-a databox can be of any type.
+`Databoxes` extend the standard `dict` class (technically, they are a
+subclass), serving as a universal tool for storing and manipulating
+unstructured data organized as key-value pairs. The values stored within
+`Databoxes` can be of any type.
+
+`Databoxes` can use any methods implemented for the standard `dict`
+objects, and have additional functionalities for data item manipulation,
+batch processing, importing and exporting data, and more.
     
 
 
@@ -16,39 +20,39 @@ Categorical list of functions
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;Databox.empty](#databoxempty) | Create an empty Databox
-[:octicons-file-24:&nbsp;Databox.from_dict](#databoxfrom_dict) | Create a Databox from a numpy array
-[:octicons-file-24:&nbsp;Databox.from_dict](#databoxfrom_dict) | Create a Databox from a Dictionary
+[Databox.empty](#databoxempty) | Create an empty Databox
+[Databox.from_array](#databoxfrom_array) | Create a new `Databox` from a numpy array
+[Databox.from_dict](#databoxfrom_dict) | Create a new `Databox` from a `dict`
 
 
 ### Getting information about databoxes ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;filter](#filter) | Filter items in a Databox
-[:octicons-file-24:&nbsp;get_missing_names](#get_missing_names) | Identify names not present in a Databox
-[:octicons-file-24:&nbsp;get_names](#get_names) | Get all item names from a Databox
-[:octicons-file-24:&nbsp;get_series_names_by_frequency](#get_series_names_by_frequency) | Retrieve time series names by frequency
-[:octicons-file-24:&nbsp;get_span_by_frequency](#get_span_by_frequency) | Retrieve the date span for time series by frequency
+[filter](#filter) | Filter items in a Databox
+[get_missing_names](#get_missing_names) | Identify names not present in a Databox
+[get_names](#get_names) | Get all item names from a Databox
+[get_series_names_by_frequency](#get_series_names_by_frequency) | Retrieve time series names by frequency
+[get_span_by_frequency](#get_span_by_frequency) | Retrieve the date span for time series by frequency
 
 
 ### Manipulating databoxes ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;apply](#apply) | Apply a function to items in a Databox
-[:octicons-file-24:&nbsp;copy](#copy) | Create a copy of the Databox
-[:octicons-file-24:&nbsp;keep](#keep) | Keep specified items in a Databox
-[:octicons-file-24:&nbsp;remove](#remove) | Remove specified items from a Databox
-[:octicons-file-24:&nbsp;rename](#rename) | Rename items in a Databox
+[apply](#apply) | Apply a function to items in a Databox
+[copy](#copy) | Create a copy of the Databox
+[keep](#keep) | Keep specified items in a Databox
+[remove](#remove) | Remove specified items from a Databox
+[rename](#rename) | Rename items in a Databox
 
 
 ### Importing and exporting databoxes ###
 
 Function | Description
 ----------|------------
-[:octicons-file-24:&nbsp;Databox.from_sheet](#databoxfrom_sheet) | Create a new Databox by reading time series from a CSV file
-[:octicons-file-24:&nbsp;to_sheet](#to_sheet) | Write Databox time series to a CSV file
+[Databox.from_sheet](#databoxfrom_sheet) | Create a new Databox by reading time series from a CSV file
+[to_sheet](#to_sheet) | Write Databox time series to a CSV file
 
 
 
@@ -59,7 +63,7 @@ Directly accessible properties
 
 Property | Description
 ----------|------------
-[:octicons-package-24:&nbsp;num_items](#num_items) | Number of items in the databox
+[num_items](#num_items) | Number of items in the databox
 
 
 
@@ -88,20 +92,22 @@ No input arguments are required for this method.
 
 
 
-☐ `Databox.from_dict`
------------------------
+☐ `Databox.from_array`
+------------------------
 
-==Create a Databox from a numpy array==
+==Create a new `Databox` from a numpy array==
 
-Convert a multidimensional array data into a Databox, with the individual
-time series created from the rows or columns of the numeric array.
+Convert a two-dimensional [numpy](https://numpy.org) array data into a
+Databox, with the individual time series created from the rows or columns
+of the numeric array.
 
-    Databox.from_array(
+    self = Databox.from_array(
         array,
         names,
+        *,
         descriptions=None,
-        dates=None,
-        start_date=None,
+        periods=None,
+        start=None,
         target_databox=None,
         orientation="vertical",
     )
@@ -119,12 +125,12 @@ time series created from the rows or columns of the numeric array.
 ???+ input "descriptions"
     Descriptions for each series in the array.
 
-???+ input "dates"
-    An iterable of dates corresponding to the rows of the array. Used if the data
+???+ input "periods"
+    An iterable of time periods corresponding to the rows of the array. Used if the data
     represents time series.
 
-???+ input "start_date"
-    The starting date for the time series data. Used if 'dates' is not provided.
+???+ input "start"
+    The start period for the time series data. Used if 'periods' is not provided.
 
 ???+ input "target_databox"
     An existing Databox to which the array data will be added. If `None`, a new 
@@ -132,15 +138,17 @@ time series created from the rows or columns of the numeric array.
 
 ???+ input "orientation"
     The orientation of the array, indicating how time series are arranged: 
-    'horizontal' means each row is a time series, 'vertical' means each column 
-    is a time series.
+
+    * `"horizontal"` means each row is a time series;
+
+    * `"vertical"` means each column is a time series.
 
 
 ### Returns ###
 
 
-???+ returns "Databox"
-    Returns a Databox instance populated with the data from the numpy array.
+???+ returns "self"
+    Returns a new Databox populated with the data from the numpy array.
         
 
 
@@ -148,28 +156,28 @@ time series created from the rows or columns of the numeric array.
 ☐ `Databox.from_dict`
 -----------------------
 
-==Create a Databox from a Dictionary==
+==Create a new `Databox` from a `dict`==
 
 Create a new Databox instance populated with data from a provided dictionary. 
 This class method can be used to convert a standard Python dictionary into a 
 Databox, incorporating all its functionalities.
 
-    Databox.from_dict(_dict)
+    self = Databox.from_dict(_dict)
 
 
 ### Input arguments ###
 
 
 ???+ input "_dict"
-    A dictionary containing the data to populate the new Databox. Each key-value 
-    pair in the dictionary will be an item in the Databox.
+    A dictionary containing the data to populate the new Databox. Each
+    key-value pair in the dictionary will be an item in the Databox.
 
 
 ### Returns ###
 
 
-???+ returns "Databox"
-    Returns a new Databox instance populated with the contents of the provided 
+???+ returns "self"
+    Returns a new Databox populated with the contents of the provided
     dictionary.
         
 
@@ -306,7 +314,7 @@ during the duplication process.
 
 ???+ input "start_date_only"
     If `True`, only the start date of each time series is parsed from the CSV;
-    subsequent dates are inferred based on frequency.
+    subsequent periods are inferred based on frequency.
 
 ???+ input "description_row"
     Indicates if the CSV contains a row for descriptions of the time series.

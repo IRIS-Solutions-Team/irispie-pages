@@ -32,6 +32,8 @@ Function | Description
 Function | Description
 ----------|------------
 [assign](#assign) | Assign model parameters
+[check_missing_parameters](#check_missing_parameters) | Check for missing parameters
+[get_parameters](#get_parameters) | Get model parameters
 
 
 ### Information about `Sequential` models ###
@@ -212,6 +214,32 @@ Returns no value; the method modifies the model in place.
 
 
 
+☐ `check_missing_parameters`
+------------------------------
+
+==Check for missing parameters==
+
+Raises an error if any of the model parameters are missing values.
+
+    self.check_missing_parameters()
+
+
+### Input arguments ###
+
+
+???+ input "self"
+    `Sequential` model to check for missing parameters.
+
+
+### Returns ###
+
+
+Returns no value; raises an error if any parameters are missing, and prints the
+list of missing parameter names.
+        
+
+
+
 ☐ `copy`
 ----------
 
@@ -261,6 +289,37 @@ description = self.get_description()
 ???+ returns " "
 
     Description of `self`.
+        
+
+
+
+☐ `get_parameters`
+--------------------
+
+==Get model parameters==
+
+Returns a `Databox` with the parameter values currently assigned within a
+`Sequential` model.
+
+    parameters = self.get_parameters(*, unpack_singleton=True, )
+
+
+### Input arguments ###
+
+
+???+ input "self"
+    `Sequential` model whose parameters will be retrieved.
+
+???+ input "unpack_singleton"
+    If `True`, the method will unpack the parameters values for models with a
+    single parameter variant.
+
+
+### Returns ###
+
+
+???+ return "parameters"
+    `Databox` with the model parameters.
         
 
 

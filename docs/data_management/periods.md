@@ -6,8 +6,9 @@ A time `Period` represents one single calendar period of time of a certain
 frequency (and hence also a certain duration); the time period
 [`Frequencies`](frequencies.md) are identified by an integer value.
 
-Time `Periods` are used to timestamp data observations in time [`Series`](series.md)
-objects, for basic date and time arithmetics, and for creating time [`Spans`](spans.md).
+Time `Periods` are used to timestamp data observations in time
+[`Series`](series.md) objects, for basic calenadar time arithmetics, and for
+creating time [`Spans`](spans.md).
     
 
 
@@ -45,7 +46,7 @@ Function | Description
 
 Function | Description
 ----------|------------
-[convert_to_new_frequency](#convert_to_new_frequency) | Convert time period to a new frequency
+[refrequent](#refrequent) | Convert time period to a new frequency
 [to_ymd](#to_ymd) | Get year, month, and day of time period
 
 
@@ -65,6 +66,7 @@ Directly accessible properties
 
 Property | Description
 ----------|------------
+[frequency](#frequency) | Time frequency of the time period
 [period](#period) | Period number within the calendar year
 [year](#year) | Calendar year of the time period
 
@@ -396,8 +398,8 @@ See documentation for [time period comparison](#time-period-comparison).
 
 
 
-☐ `convert_to_new_frequency`
-------------------------------
+☐ `refrequent`
+----------------
 
 ==Convert time period to a new frequency==
 
@@ -406,7 +408,7 @@ frequency and, optionally, the position of the new time period within the
 original time period. The conversion is frequency specific and may require
 additional arguments.
 
-    new_period = self.convert_to_new_frequency(
+    new_period = self.refrequent(
         new_freq,
         *,
         position="start",
@@ -423,9 +425,10 @@ additional arguments.
     New time frequency to which the time period is converted.
 
 ???+ input "position"
-    Position of the new time period within the original time period. This
-    option is effective when the conversion is ambiguous, i.e. from a lower
-    frequency period to a higher frequency period. See the position options in [`to_ymd`](#to_ymd).
+    Position of the new time period within the original time period. This option
+    is effective when the conversion is ambiguous, i.e. from a lower frequency
+    period to a higher frequency period. See the position options in
+    [`to_ymd`](#to_ymd).
 
 
 ### Returns ###

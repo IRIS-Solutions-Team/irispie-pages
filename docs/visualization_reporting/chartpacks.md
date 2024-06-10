@@ -60,39 +60,35 @@ self = Chartpack(
 
 ### Input arguments ###
 
-???+ input "title"
 
+???+ input "title"
     The title of the chartpack, used as a basis for creating a caption
     shown at the top of each figure.
 
 ???+ input "span"
-
     The date span on which the time series will be plotted.
 
 ???+ input "tiles"
-
     The number of rows and columns of the figure grid. If input "None", the number of
     rows and columns will be determined automatically.
 
 ???+ input "transforms"
-
     A dictionary of functions that will be applied to the input data before
     plotting.
 
 ???+ input "highlight"
-
     A date span that will be highlighted in the charts.
 
 ???+ input "legend"
-
-    A list of strings that will be used as the legend of the charts.
+    A list of strings that will be used as the legend for the charts.
 
 ???+ input "reverse_plot_order"
-
     If `True`, the order of plotting the individual time series within each
     chart will be reversed.
 
+
 ### Returns
+
 
 ???+ returns "self"
 

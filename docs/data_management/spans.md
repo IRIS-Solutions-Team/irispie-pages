@@ -2,7 +2,7 @@
 Time spans
 ============
 
-Time spans represent a range of time periods of the same date frequency,
+Time spans represent a range of time periods of the same time frequency,
 from a start period to an end period (possibly with a step size other than
 1), going either forward or backward.
     
@@ -32,7 +32,7 @@ Function | Description
 ----------|------------
 [reverse](#reverse) | Reverse the time span
 [shift](#shift) | Shift the entire time span
-[shift_end](#shift_end) | Shift the end date of the time span
+[shift_end](#shift_end) | Shift the end of the time span
 [shift_start](#shift_start) | Shift the start period of the time span
 
 
@@ -87,7 +87,7 @@ Property | Description
 
 ==Add an offset to the time span==
 
-Shifts both the start and end dates of the time span by a specified number of periods.
+Shifts both the start and end of the time span by a specified number of periods.
 This method is used to adjust the entire span forward or backward in time. It can be 
 used either by adding the offset to the span (`span + offset`) or the offset to the 
 span (`offset + span`), effectively creating a new time span that begins and ends
@@ -137,7 +137,7 @@ distance between each period in the span and a given `Period`.
 
 ???+ input "other"
     If an integer, the number of periods by which to shift the time span backward.
-    If a `Period`, a specific date used to calculate the difference in periods 
+    If a `Period`, a specific period used to calculate the difference in periods 
     between this `Period` and each period within the time span.
 
 
@@ -184,10 +184,10 @@ The time span is reversed in place.
 
 ==Shift the entire time span==
 
-Shifts the entire time span forward or backward by a specified number of periods.
-This method adjusts both the start and end dates of the span simultaneously, 
-keeping the length of the span unchanged but moving it entirely to a new position 
-in the timeline.
+Shifts the entire time span forward or backward by a specified number of
+periods. This method adjusts both the start and end of the span simultaneously,
+keeping the length of the span unchanged but moving it entirely to a new
+position in the timeline.
 
     self.shift(by)
 
@@ -202,7 +202,9 @@ in the timeline.
 
 ### Returns ###
 
-This method modifies the object in place and does not return a value.
+???+ returns "None"
+    This method modifies `self` in-place and does not return a value.
+
         
 
 
@@ -210,11 +212,11 @@ This method modifies the object in place and does not return a value.
 ☐ `shift_end`
 ---------------
 
-==Shift the end date of the time span==
+==Shift the end of the time span==
 
-Shifts the end date of the time span by a specified number of periods. This
+Shifts the end of the time span by a specified number of periods. This
 operation modifies the end boundary of the time span, effectively changing its
-length. Adjusting the end date allows for extension or reduction of the span
+length. Adjusting the end allows for extension or reduction of the span
 depending on the direction and magnitude of the shift.
 
     self.shift_end(by)
@@ -222,16 +224,17 @@ depending on the direction and magnitude of the shift.
 ### Input arguments ###
 
 ???+ input "self"
-    The time span within which the end date will be shifted.
+    The time span within which the end will be shifted.
 
-???+ input "k"
-    The number of periods by which the end date will be shifted. This can be
-    positive (to extend the span by moving the end date forward) or negative
-    (to reduce the span by moving the end date backward).
+???+ input "by"
+    The number of periods by which the end will be shifted. This can be
+    positive (to extend the span by moving the end forward) or negative
+    (to reduce the span by moving the end backward).
 
 ### Returns ###
 
-This method modifies the object in place and does not return a value.
+???+ returns "None"
+    This method modifies `self` in-place and does not return a value.
         
 
 

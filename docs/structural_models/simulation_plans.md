@@ -1,16 +1,19 @@
 
-Simulation plans
-=================
+Simulation meta plans
+======================
 
-`SimulationPlan` objects are used to set up conditioning assumptions
-for simulating [`Simultaneous`](simultaneous_modelsd) or
-[`Sequential`](sequential_models) models. The simulation plans specify
+`SimulationPlan` objects are used to set up meta information about
+conditioning assumptions for simulations of
+[`Simultaneous`](simultaneous_modelsd) or [`Sequential`](sequential_models)
+models. The simulation plans specify
 
 * what variables to exogenize in what periods
 * what shocks to endogenized in what periods (`Simultaneous` models only)
+* what anticipation status to assign (`Simultaneous` models only)
 
 The plans only contain meta information, not the actual data points for the
-exogenized variables. The actual data points are included in the input databox.
+exogenized variables. The actual data points are expected to be included in
+the input databox when the simulation is run.
     
 
 
@@ -73,10 +76,10 @@ Directly accessible properties
 
 Property | Description
 ----------|------------
-[end_date](#end_date) | End date of the simulation span
+[end](#end) | End date of the simulation span
 [frequency](#frequency) | Date frequency of the simulation span
 [num_periods](#num_periods) | Number of periods in the simulation span
-[start_date](#start_date) | Start date of the simulation span
+[start](#start) | Start date of the simulation span
 
 
 
@@ -189,9 +192,13 @@ values.
     Specifies whether the exogenization should only occur if a valid 
     value exists in the input data.
 
+
 ### Returns ###
 
-This method modifies the object in place and does not return a value.
+
+???+ returns "None"
+    This method modifies `self` in-place and does not return a value.
+
         
 
 

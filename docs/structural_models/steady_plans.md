@@ -1,11 +1,4 @@
 
-Steady-state plans
-===================
-
-`SteadyPlan` objects define assumptions about the steady state values of
-certain model quantities (variables and parameters), either for reverse
-engineered calculations or for narrowing down the underdetermined
-steady-state systems.
     
 
 
@@ -19,14 +12,25 @@ Function | Description
 [SteadyPlan](#steadyplan) | Create new steady plan object
 
 
-### Defining Exogenized, endogenized and fixed quantities ###
+### Exogenizing and endogenizing steady-state values ###
 
 Function | Description
 ----------|------------
-[endogenize](#endogenize) | Endogenize parameters
-[exogenize](#exogenize) | Exogenize steady levels of variables
-[fix_change](#fix_change) | Fix steady changes of variables
-[fix_level](#fix_level) | Fix steady levels of variables
+
+
+### Fixing steady-state values ###
+
+Function | Description
+----------|------------
+[fix](#fix) | Fix steady-state values
+[unfix](#unfix) | Unfix steady-state values
+
+
+### Getting information about steady plans ###
+
+Function | Description
+----------|------------
+[print_table](#print_table) | Print the `SimulationPlan` as a table
 
 
 
@@ -48,32 +52,38 @@ Property | Description
 
 
 
-☐ `endogenize`
-----------------
+☐ `fix`
+---------
 
-==Endogenize parameters==
+==Fix steady-state values==
         
 
 
 
-☐ `exogenize`
----------------
+☐ `print_table`
+-----------------
 
-==Exogenize steady levels of variables==
+==Print the `SimulationPlan` as a table==
+
+    self.print_table()
+
+
+### Input arguments ###
+
+???+ input "self"
+    `SimulationPlan` to be printed on the screen, with one row showing
+    exogenized or endogenized data points grouped by the name and dates.
+
+
+### Returns ###
+
+Returns no value; the table is printed on the screen.
         
 
 
 
-☐ `fix_change`
-----------------
+☐ `unfix`
+-----------
 
-==Fix steady changes of variables==
-        
-
-
-
-☐ `fix_level`
----------------
-
-==Fix steady levels of variables==
+==Unfix steady-state values==
         

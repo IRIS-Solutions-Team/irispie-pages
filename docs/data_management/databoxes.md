@@ -51,8 +51,8 @@ Function | Description
 
 Function | Description
 ----------|------------
-[Databox.from_sheet](#databoxfrom_sheet) | Create a new Databox by reading time series from a CSV file
-[to_sheet](#to_sheet) | Write Databox time series to a CSV file
+[Databox.from_csv](#databoxfrom_csv) | Create a new Databox by reading time series from a CSV file
+[to_csv](#to_csv) | Write Databox time series to a CSV file
 
 
 
@@ -108,7 +108,7 @@ of the numeric array.
         descriptions=None,
         periods=None,
         start=None,
-        target_databox=None,
+        target_db=None,
         orientation="vertical",
     )
 
@@ -132,7 +132,7 @@ of the numeric array.
 ???+ input "start"
     The start period for the time series data. Used if 'periods' is not provided.
 
-???+ input "target_databox"
+???+ input "target_db"
     An existing Databox to which the array data will be added. If `None`, a new 
     Databox is created.
 
@@ -282,14 +282,14 @@ during the duplication process.
 
 
 
-☐ `Databox.from_sheet`
-------------------------
+☐ `Databox.from_csv`
+----------------------
 
 
 ==Create a new Databox by reading time series from a CSV file==
 
 
-    self = Databox.from_sheet(
+    self = Databox.from_csv(
         file_name,
         *,
         date_creator=None,
@@ -562,9 +562,8 @@ single name, a callable that returns `True` for names to be removed, or `None`.
 
 ### Returns ###
 
+Returns `None`; `self` is modified in place.
 
-???+ returns "None"
-    This method does not return any value but modifies the Databox in-place.
         
 
 
@@ -606,20 +605,19 @@ or a callable function taking a source name and returning the new target name.
 
 ### Returns ###
 
+Returns `None`; `self` is modified in place.
 
-???+ returns "None"
-    Alters the Databox in-place without returning a value.
         
 
 
 
-☐ `to_sheet`
---------------
+☐ `to_csv`
+------------
 
 ==Write Databox time series to a CSV file==
 
 
-    self.to_sheet(
+    self.to_csv(
         file_name,
         *,
         frequency_span=None,

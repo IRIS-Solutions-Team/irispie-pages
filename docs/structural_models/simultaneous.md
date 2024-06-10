@@ -22,6 +22,19 @@ Function | Description
 [kalman_filter](#kalman_filter) | Run Kalman filter on a model using time series data
 
 
+### Getting information about models ###
+
+Function | Description
+----------|------------
+
+
+### Manipulating model parameters ###
+
+Function | Description
+----------|------------
+[rescale_stds](#rescale_stds) | Rescale the standard deviations of model shocks
+
+
 
 
 
@@ -125,25 +138,35 @@ See [`Simultaneous.from_file`](simultaneousfrom_file) for return values.
 
 ==Run Kalman filter on a model using time series data==
 
-Executes a Kalman filter on a model, compliant with `KalmanFilterableProtocol`, 
-using time series observations from the input Databox. This method enables state 
-estimation and uncertainty quantification in line with the model's dynamics and 
+Executes a Kalman filter on a model, compliant with `KalmanFilterableProtocol`,
+using time series observations from the input Databox. This method enables state
+estimation and uncertainty quantification in line with the model's dynamics and
 the time series data.
 
-    kalman_output, output_info = self.kalman_filter(
-        input_db, 
-        span, 
-        diffuse_factor=None, 
-        return_=("predict", "update", "smooth"),
-        return_predict=True, 
-        return_update=True, 
-        return_smooth=True, 
+    kalman_output = self.kalman_filter(
+        input_db,
+        span,
+        diffuse_scale=None,
+        return_=("predict", "update", "smooth", "predict_err", "predict_mse_obs", ),
+        return_predict=True,
+        return_update=True,
+        return_smooth=True,
+        return_predict_err=True,
+        predict_mse_obs=True,
         rescale_variance=False,
-        shocks_from_data=False, 
-        stds_from_data=False, 
+        shocks_from_data=False,
+        stds_from_data=False,
         prepend_initial=False,
-        append_terminal=False, 
-        unpack_singleton=True
+        append_terminal=False,
+        deviation=False,
+        check_singularity=False,
+        unpack_singleton=True,
+        return_info=False,
+    )
+
+    kalman_output, info = self.kalman_filter(
+        ...
+        return_info=True,
     )
 
 
@@ -151,7 +174,7 @@ the time series data.
 
 
 ???+ input "self"
-    The model, compliant with `KalmanFilterableProtocol`, performing the 
+    The model, compliant with `KalmanFilterableProtocol`, performing the
     Kalman filtering.
 
 ???+ input "input_db"
@@ -161,12 +184,12 @@ the time series data.
     A date span over which the filtering process is executed based on the
     measurement time series.
 
-???+ input "diffuse_factor"
+???+ input "diffuse_scale"
     A real number or `None`, specifying the scale factor for the diffuse
     initialization. If `None`, the default value is used.
 
 ???+ input "return_"
-    An iterable of strings indicating which steps' results to return: 
+    An iterable of strings indicating which steps' results to return:
     "predict", "update", "smooth".
 
 ???+ input "return_predict"
@@ -204,35 +227,90 @@ the time series data.
     observations are used in these terminal time periods (even if some are
     available in the input data).
 
+???+ input "deviation"
+    If `True`, the constant vectors in transition and measurement equations are
+    set to zeros, effectively running the Kalman filter as deviations from
+    steady state (a balanced-growth path)
+
+???+ input "check_singularity"
+    If `True`, check the one-step ahead MSE matrix for the measurement variables
+    for singularity, and throw a `SingularMatrixError` exception if the matrix
+    is singular.
+
 ???+ input "unpack_singleton"
-    If `True`, unpack `output_info` into a plain dictionary for models with a
+    If `True`, unpack `out_info` into a plain dictionary for models with a
     single variant.
+
+???+ input "return_info"
+    If `True`, return additional information about the Kalman filtering process.
 
 
 ### Returns ###
 
 
 ???+ returns "kalman_output"
-    An object containing the following attributes, each being a Databox:
+    A Databox containing some of the following items (depending on the user requests):
 
-    | Attribute                  | Description
-    |----------------------------|---------------------------------------------------
-    | `predict_med`              | Medians from the prediction step.
-    | `predict_std`              | Standard deviations from the prediction step.
-    | `predict_mse_measurement`  | Mean squared error matrices from the prediction step.
-    | `update_med`               | Medians from the update step.
-    | `update_std`               | Standard deviations from the update step.
-    | `predict_err`              | Prediction errors.
-    | `smooth_med`               | Medians from the smoothing step.
-    | `smooth_std`               | Standard deviations from the smoothing step.
+    | Attribute         | Type       | Description
+    |-------------------|---------------------------------------------------
+    | `predict_med`     | `Databox`  | Medians from the prediction step
+    | `predict_std`     | `Databox`  | Standard deviations from the prediction step
+    | `predict_mse_obs` | `list`     | Mean squared error matrices for the prediction step of the available observations of measurement variables
+    | `update_med`      | `Databox`  | Medians from the update step
+    | `update_std`      | `Databox`  | Standard deviations from the update step
+    | `predict_err`     | `Databox`  | Prediction errors
+    | `smooth_med`      | `Databox`  | Medians from the smoothing step
+    | `smooth_std`      | `Databox`  | Standard deviations from the smoothing step
 
-    Some of these attributes may be `None` if the corresponding step was not
-    requested in `return_`.
 
-???+ returns "output_info"
+???+ returns "out_info"
     A dictionary containing additional information about the filtering process,
     such as log likelihood and variance scale. For models with multiple
-    variants, `output_info` is a list of such dictionaries. If
-    `unpack_singleton=False`, also `output_info` is a one-element list
+    variants, `out_info` is a list of such dictionaries. If
+    `unpack_singleton=False`, also `out_info` is a one-element list
     containing the dictionary for singleton models, too.
+        
+
+
+
+☐ `rescale_stds`
+------------------
+
+==Rescale the standard deviations of model shocks==
+
+Adjust the standard deviations of the model shocks by a specified factor. 
+This method allows scaling the standard deviations for the shocks in the 
+model based on the provided factor.
+
+    self.rescale_stds(
+        factor,
+        kind=None,
+    )
+
+
+### Input arguments ###
+
+
+???+ input "factor"
+    A real non-negative number by which to scale the standard deviations of the
+    model shocks. This value is used to multiply the existing standard
+    deviations.
+
+???+ input "kind"
+    An optional parameter to narrow down the types of shocks to rescale. It 
+    can be one or a combination of the following:
+    
+    * `ir.UNANTICIPATED_STD`
+    * `ir.ANTICIPATED_STD`
+    * `ir.MEASUREMENT_STD`
+    
+    If `None`, the standard deviations of all shocks will be rescaled.
+
+
+### Returns ###
+
+
+???+ returns "None"
+    This method does not return any value but modifies the standard deviations 
+    of model shocks in-place, rescaling them.
         

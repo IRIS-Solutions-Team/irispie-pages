@@ -21,8 +21,8 @@ def main():
     klasses = [
         ir.Sequential,
         ir.Simultaneous,
-        ir.PlanSimulate,
-        ir.PlanSteady,
+        ir.SimulationPlan,
+        ir.SteadyPlan,
         ir.Databox,
         ir.Series,
         ir.Period,

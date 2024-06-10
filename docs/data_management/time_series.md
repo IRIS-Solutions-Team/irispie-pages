@@ -27,6 +27,14 @@ Function | Description
 [disaggregate](#disaggregate) | Disaggregate time series to a higher frequency
 
 
+### Homogenizing time series ###
+
+Function | Description
+----------|------------
+[clip](#clip) | Clip time series to a new start and end period
+[fill_missing](#fill_missing) | Fill missing observations
+
+
 ### Filtering time series ###
 
 Function | Description
@@ -77,7 +85,7 @@ Directly accessible properties
 
 Property | Description
 ----------|------------
-[start_date](#start_date) | Start date of the time series
+[start](#start) | Start date of the time series
 [periods](#periods) | N-tuple with the periods from the start period to the end period of the time series
 [end](#end) | End period of the time series
 [frequency](#frequency) | Date frequency of the time series
@@ -86,7 +94,6 @@ Property | Description
 [num_variants](#num_variants) | Number of variants (columns) within the `Series` object
 [span](#span) | Time span of the time series
 [shape](#shape) | Shape of time series data
-[start](#start) | Start period of the time series
 
 
 
@@ -420,28 +427,37 @@ self = Series(
 
 ```
 self = Series(
-    dates=dates,
+    periods=periods,
     values=values,
 )
 ```
+
 
 ### Input arguments ###
 
 
 ???+ input "start"
 
-    The time period of the first value in the `values`.
+    The time [`Period`](periods.md) of the first value in the `values`.
+
+???+ input "periods"
+
+    An iterable of time [`Periods`](periods.md) that will be used to time stamp
+    the `values`. The iterable can be e.g. a tuple, a list, a time
+    [`Span`](spans.md), or a single time [`Period`](periods.md).
 
 ???+ input "values"
 
-    Time series observations, supplied either as a tuple of values, or a
-    NumPy array.
+    Time series values, supplied either as a single values, a tuple of values,
+    or a NumPy array.
+
 
 ### Returns ###
 
-???+ returns "self"
 
-    The newly created `Series` object.
+???+ returns "None"
+    This method modifies `self` in-place and does not return a value.
+
         
 
 
@@ -558,6 +574,36 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
+☐ `clip`
+----------
+
+==Clip time series to a new start and end period==
+
+    self.clip(new_start, new_end)
+
+
+### Input arguments ###
+
+
+???+ input "new_start"
+    The new start period for the `self` time series; if `None`, the current
+    start period is kept.
+
+???+ input "new_end"
+    The new end period for the `self` time series; if `None`, the current
+    end period is kept.
+
+
+### Returns ###
+
+
+???+ returns "None"
+    This method modifies `self` in-place and does not return a value.
+
+        
+
+
+
 ☐ `cum_diff`
 --------------
 
@@ -665,17 +711,126 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
     | "flat"    | Repeat the high-frequency values
     | "first"   | Place the low-frequency value in the first high-frequency period
     | "last"    | Place the low-frequency value in the last high-frequency period
-    | "arip"    | Use an autoregressive interpolation method
+    | "arip"    | Interpolate using a smooth autoregressive process
+
+
+### Returns ###
+
+
+???+ returns "new"
+    A new time `Series` object with the disaggregated data.
+
+
+
+### Details ###
+
+???+ details "ARIP algorithm"
+
+    The `method="arip" setting invokes an interpolation method that assumes the
+    underlying high-frequency process to be an autoregression. The method can be
+    described in its state-space recursive form, although the numerical
+    implementation is stacked-time.
+
+    The `"rate"` model:
+
+    $$
+    \begin{gathered}
+    x_t = \rho \, x_{t-1} + \epsilon_t \\[10pt]
+    y_t = Z \, x_t \\[10pt]
+    \epsilon_t \sim N(0, \sigma_t^2)
+    \end{gathered}
+    $$
+
+    The `"diff"` model:
+
+    $$
+    \begin{gathered}
+    x_t = x_{t-1} + c + \epsilon_t \\[10pt]
+    y_t = Z \, x_t \\[10pt]
+    \epsilon_t \sim N(0, 1)
+    \end{gathered}
+    $$
+
+    where
+
+    * $x_t$ is the underlying high-frequency process;
+
+    * $y_t$ is the observed low-frequency time series;
+
+    * $Z$ is an aggregation vector depending on the `aggregation` specification,
+
+    | Aggregation | $Z$ vector
+    |-------------|-----------
+    | "sum"       | $(1, 1, \ldots, 1)$
+    | "mean"      | $\tfrac{1}{n}\,(1, 1, \ldots, 1)$
+    | "first"     | $(1, 0, \ldots, 0)$
+    | "last"      | $(0, 0, \ldots, 1)$
+
+    * $\rho$ is a gross rate of change estimated as the average rate of change
+    in the observed series, $y_t$, and converted to high frequency;
+
+    * $c$ is a constant estimated as the average difference in the observed
+    series, $y_t$, and converted to high frequency;
+
+    * $\sigma_t$ is a time-varying standard deviation of the high-frequency process, set to $\sigma_0 = 1$, and $\sigma_t = \rho \, \sigma_{t-1}$.
+        
+
+
+
+☐ `fill_missing`
+------------------
+
+==Fill missing observations==
+
+
+### Function form for creating new time `Series` objects ###
+
+    new = irispie.fill_missing(
+        self,
+        method,
+        span=None,
+        *args,
+    )
+
+
+### Class method form for changing existing time `Series` objects in-place ###
+
+    self.fill_missing(
+        method,
+        span=None,
+        *args,
+    )
+
+
+### Input arguments ###
+
+
+???+ input "self"
+    The time `Series` object to be filled.
+
+???+ input "method"
+    The method to be used for filling missing observations. The following methods are available:
+
+    | Method        | Description
+    |---------------|-------------
+    | "next"        | Next available observation
+    | "previous"    | Previous available observation
+    | "nearest"     | Nearest available observation
+    | "linear"      | Linear interpolation or extrapolation
+    | "log_linear"  | Log-linear interpolation or extrapolation
+
+???+ input "span"
+    The time span to be filled. If `None`, the time span of the input time `Series` is filled.
 
 
 ### Returns ###
 
 
 ???+ returns "self"
-    The original time `Series` object with the disaggregated data.
+    The time `Series` object with missing observations filled.
 
 ???+ returns "new"
-    A new time `Series` object with the disaggregated data.
+    A new time `Series` object with missing observations filled.
         
 
 
@@ -808,7 +963,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
     `span` argument if necessary.
 
 
-???+ abstract "Math description"
+???+ abstract "Algorighm"
 
     The constrained Hodrick-Prescott filter is a method for decomposing a
     time series into a lower-frequency (trend) component and a
@@ -934,13 +1089,16 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 ```
-new, info = irispie.x13(
+new, out_info = irispie.x13(
     self,
     /,
     span=None,
     output="sa",
-    mode="mult",
+    mode=None,
     when_error="warning",
+    clean_up=True,
+    unpack_singleton=True,
+    return_info=False,
 )
 ```
 
@@ -949,11 +1107,14 @@ new, info = irispie.x13(
 
 
 ```
-info = self.x13(
+out_info = self.x13(
     span=None,
     output="sa",
-    mode="mult",
+    mode=None,
     when_error="warning",
+    clean_up=True,
+    unpack_singleton=True,
+    return_info=False,
 )
 ```
 
@@ -966,8 +1127,9 @@ info = self.x13(
     X13-ARIMA-TRAMO-SEATS procedure.
 
 ???+ input "span"
-    A time span specified as a `Ranger` object. If `span=None` or `span=...`,
-    the entire time series is used.
+    A time span be specified as a `Span` object. If `span=None` or `span=...`,
+    the time span goes from the first observed period to the last observed
+    period in the input time series.
 
 ???+ input "output"
     The type of output to be returned by X13. The following options are
@@ -980,6 +1142,39 @@ info = self.x13(
     | `"tc"`    | Trend-cycle
     | `"irr"`   | Irregular component
 
+???+ input "mode"
+    The mode to be used for the X13 run. The following options are available (see the
+    [X13 documentation](https://www.census.gov/srd/www/x13as/)):
+
+    | Mode          | Description
+    |---------------|-------------
+    | `None`        | Automatically selected
+    | `"mult"`      | Multiplicative
+    | `"add"`       | Additive
+    | `"pseudoadd"` | Pseudo-additive
+    | `"logadd"`    | Log-additive
+
+    If `mode=None`, the mode is automatically selected based on the data. If the data is
+    strictly positive or strictly negative, the multiplicative mode is used, otherwise
+    the additive mode is used.
+
+???+ input "when_error"
+    The action to be taken when an error occurs. The following options are
+    available:
+
+    | Action      | Description
+    |-------------|-------------
+    | `"warning"` | Issue a warning
+    | `"error"`   | Raise an error
+
+???+ input "unpack_singleton"
+    If `True`, unpack `out_info` into a plain dictionary for models with a
+    single variant.
+
+???+ input "return_info"
+    If `True`, return a dictionary with information about the X13 run as the
+    second output argument.
+
 
 ### Returns ###
 
@@ -990,16 +1185,17 @@ info = self.x13(
 ???+ returns "new"
     A new `Series` object with the output data.
 
-???+ returns "info"
+???+ returns "out_info"
     A dictionary with information about the X13 run. The dictionary
     contains the following keys:
 
     | Key | Description
     |-----|-------------
-    | `log` | The log file from the X13 run.
-    | `out` | The output file from the X13 run.
-    | `err` | The error file from the X13 run.
-    | `success` | A boolean indicating whether the X13 run was successful.
+    | `mode` | The mode used for the X13 run
+    | `log` | The log file from the X13 run
+    | `out` | The output file from the X13 run
+    | `err` | The error file from the X13 run
+    | `success` | A boolean indicating whether the X13 run was successful
 
 
 ### Details ###

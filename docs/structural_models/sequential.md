@@ -66,14 +66,17 @@ Property | Description
 [identity_index](#identity_index) | Indexes of identity equations
 [incidence_matrix](#incidence_matrix) | Incidence matrix with equations in rows and LHS quantities in columns
 [is_sequential](#is_sequential) | `True` if the model equations are ordered sequentially
-[lhs_names](#lhs_names) | Names of LHS variables in order of their equations
+[lhs_names](#lhs_names) | Unique names of LHS variables in order of their first appearance in equations
+[lhs_names_in_equations](#lhs_names_in_equations) | Names of LHS variables in order of their appearance in equations
 [lhs_quantities](#lhs_quantities) | LHS quantities in order of appearance
 [max_lag](#max_lag) | Maximum lag occurring on the RHS of equations
 [max_lead](#max_lead) | Maximum lead occurring on the RHS of equations
 [nonidentity_index](#nonidentity_index) | Indexes of nonidentity equations
 [num_equations](#num_equations) | Number of equations
+[num_lhs_names](#num_lhs_names) | Number of unique LHS names
 [parameter_names](#parameter_names) | Names of model parameters
-[residual_names](#residual_names) | Names of residuals in order of their equations
+[residual_names](#residual_names) | Unique names of residuals in order of their first appearance in  equations
+[residual_names_in_equations](#residual_names_in_equations) | Names of residuals in order of their appearance in  equations
 [rhs_only_names](#rhs_only_names) | Names of variables appearing only on the RHS of equations
 
 
@@ -209,7 +212,10 @@ self.assign(databox, )
 
 ### Returns ###
 
-Returns no value; the method modifies the model in place.
+
+???+ returns "None"
+    This method modifies `self` in-place and does not return a value.
+
         
 
 
@@ -417,15 +423,15 @@ self.set_description(description, )
 ==Simulate sequential model==
 
 ```
-output_db, info = self.simulate(
+out_db, info = self.simulate(
     input_db,
     simulation_span,
     *,
     plan=None,
     execution_order="dates_equations",
     prepend_input=True,
-    target_databox=None,
-    when_nonfinite="warning",
+    target_db=None,
+    when_simulates_nan="warning",
     num_variants=None,
     remove_initial=True,
     remove_terminal=True,
@@ -465,11 +471,11 @@ simulating the model.
 ???+ input "prepend_input"
     If `True`, the input time series observations are prepended to the results.
 
-???+ input "target_databox"
+???+ input "target_db"
     Custom databox to which the simulated time series will be added. If
     `None`, a new databox is created.
 
-???+ input "when_nonfinite"
+???+ input "when_simulates_nan"
     Action to take when a simulated data point is non-finite (`nan` or `inf` or `-inf`). The options are
 
     * `"error"`: raise an error,
@@ -498,7 +504,7 @@ simulating the model.
 ### Returns ###
 
 
-???+ returns "output_db"
+???+ returns "out_db"
 
     Output databox with the simulated time series for the LHS variables.
 

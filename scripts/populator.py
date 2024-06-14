@@ -28,9 +28,10 @@ def main():
         ir.Period,
         ir.Span,
         ir.Frequency,
-        ir.PlotlyWrapper,
         ir.Chartpack,
         ir.Rephrase,
+        #
+        ir.plotly,
     ]
     for klass in klasses:
         logger.info(f"Documenting {klass.__name__}...")

@@ -292,8 +292,8 @@ during the duplication process.
     self = Databox.from_csv(
         file_name,
         *,
-        date_creator=None,
-        start_date_only=False,
+        period_from_string=None,
+        start_period_only=False,
         description_row=False,
         delimiter=",",
         csv_reader_settings={},
@@ -308,11 +308,11 @@ during the duplication process.
 ???+ input "file_name"
     Path to the CSV file to be read.
 
-???+ input "date_creator"
+???+ input "period_from_string"
     A callable for creating date objects from string representations. If `None`,
     a default method based on the SDMX string format is used.
 
-???+ input "start_date_only"
+???+ input "start_period_only"
     If `True`, only the start date of each time series is parsed from the CSV;
     subsequent periods are inferred based on frequency.
 

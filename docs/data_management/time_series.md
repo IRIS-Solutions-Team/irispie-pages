@@ -27,11 +27,19 @@ Function | Description
 [disaggregate](#disaggregate) | Disaggregate time series to a higher frequency
 
 
-### Homogenizing time series ###
+### Manipulating time series values ###
+
+Function | Description
+----------|------------
+[replace_where](#replace_where) | Replace time series values that pass a test
+
+
+### Homogenizing and extrapolating time series ###
 
 Function | Description
 ----------|------------
 [clip](#clip) | Clip time series to a new start and end period
+[extrapolate](#extrapolate) | Extrapolate time series using autoregressive process
 [fill_missing](#fill_missing) | Fill missing observations
 
 
@@ -89,7 +97,9 @@ Property | Description
 [periods](#periods) | N-tuple with the periods from the start period to the end period of the time series
 [end](#end) | End period of the time series
 [frequency](#frequency) | Date frequency of the time series
-[from_to](#from_to) | Two-tuple with the start date and end date of the time series
+[from_until](#from_until) | Two-tuple with the start date and end date of the time series
+[has_missing](#has_missing) | True if the time series is non-empty and contains in-sample missing values
+[is_empty](#is_empty) | True if the time series is empty
 [num_periods](#num_periods) | Number of periods from the first to the last observation
 [num_variants](#num_variants) | Number of variants (columns) within the `Series` object
 [span](#span) | Time span of the time series
@@ -527,6 +537,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
     |-----------|-------------
     | "mean"    | Arithmetic average of high-frequency values
     | "sum"     | Sum of high-frequency values
+    | "prod"    | Product of high-frequency values
     | "first"   | Value in the first high-frequency period
     | "last"    | Value in the last high-frequency period
     | "min"     | Minimum of high-frequency values
@@ -777,6 +788,92 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
+☐ `extrapolate`
+-----------------
+
+==Extrapolate time series using autoregressive process==
+
+
+### Functional forms creating a new time `Series` object ###
+
+
+    new = extrapolate(
+        self,
+        ar_coeffs,
+        span,
+        *,
+        intercept=0,
+        log=False,
+    )
+
+
+### Class methods changing an existing time `Series` object in-place ###
+
+
+    self.extrapolate(
+        ar_coeffs,
+        span,
+        *,
+        intercept=0,
+        log=False,
+    )
+
+
+### Input arguments ###
+
+
+???+ input "self"
+    The time `Series` object to be extrapolated by an autoregressive process.
+
+???+ input "ar_coeffs"
+    The autoregressive coefficients to be used in the extrapolation, entered as
+    a tuple of AR_1, AR_2, ..., AR_p coefficients as if on the RHS of the AR
+    process definition; see Details below.
+
+???+ input "span"
+    The time span on which the time series will be extrapolated.
+
+???+ input "intercept"
+    The intercept in the autorergressive process.
+
+???+ input "log"
+    If `log=True`, the time series will be logarithmized before the
+    extrapolation and then delogarithmized back.
+
+
+### Returns ###
+
+
+???+ returns "self"
+    The existing time `Series` object with its values replaced in-place.
+
+???+ returns "new"
+    A new time `Series` object.
+
+
+### Details ###
+
+
+The new extrapolated observations are created using this $p$-th order
+autoregressive process defined recursively as:
+
+$$
+x_t = \rho_1 \, x_{t-1} + \cdots + \rho_p \, x_{t-p} + c, \qquad t = 1, \dots, T
+$$
+
+where
+
+* the initial condion $x_{0},\ x_{-1}, \, \dots,\ x_{-p+1}$ are taken from
+the existing observations in the input series `self`;
+
+* the autoregressive coefficents
+$\rho_1,\ \rho_2,\ \dots,\ \rho_p$ given by the input argument `ar_coeff`
+
+* $c$ is the `intercept`.
+        
+
+
+
 ☐ `fill_missing`
 ------------------
 
@@ -788,8 +885,8 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
     new = irispie.fill_missing(
         self,
         method,
-        span=None,
         *args,
+        span=None,
     )
 
 
@@ -797,8 +894,8 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
     self.fill_missing(
         method,
-        span=None,
         *args,
+        span=None,
     )
 
 
@@ -813,11 +910,22 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
     | Method        | Description
     |---------------|-------------
+    | "constant"    | Fill with a constant value
     | "next"        | Next available observation
     | "previous"    | Previous available observation
     | "nearest"     | Nearest available observation
     | "linear"      | Linear interpolation or extrapolation
     | "log_linear"  | Log-linear interpolation or extrapolation
+    | "series"      | Fill with values from another time series object
+
+???+ input "*args"
+    Additional arguments to be passed to the filling method. The following methods require additional arguments:
+
+    | Method     | Additional argument(s)
+    |------------|-----------------------
+    | "constant" | A single constant value
+    | "series"   | A time `Series` object
+
 
 ???+ input "span"
     The time span to be filled. If `None`, the time span of the input time `Series` is filled.
@@ -843,6 +951,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 ### Functional forms creating a new time `Series` object ###
 
+
     trend, gap = irispie.hpf(
         self,
         /,
@@ -855,6 +964,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 ### Class methods changing an existing time `Series` object in-place ###
+
 
     self.hpf_trend(
         /,
@@ -963,7 +1073,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
     `span` argument if necessary.
 
 
-???+ abstract "Algorighm"
+???+ abstract "Algorithm"
 
     The constrained Hodrick-Prescott filter is a method for decomposing a
     time series into a lower-frequency (trend) component and a
@@ -1068,6 +1178,44 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
+☐ `replace_where`
+-------------------
+
+==Replace time series values that pass a test==
+
+```
+self.replace_where(
+    test,
+    new_value,
+)
+```
+
+
+### Input arguments ###
+
+
+???+ input "self"
+    Time series whose observations will be tested and those passing the test
+    replaced.
+
+???+ input "test"
+    A function (or a Callable) that takes a numpy array and returns `True` or
+    `False` for each individual value.
+
+???+ input "new_value"
+    The value to replace the observations that pass the test.
+
+
+### Returns ###
+
+
+???+ returns "None"
+    This method modifies `self` in-place and does not return a value.
+
+        
+
+
+
 ☐ `roc`
 ---------
 
@@ -1089,16 +1237,30 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 ```
-new, out_info = irispie.x13(
+new = irispie.x13(
     self,
-    /,
+
     span=None,
-    output="sa",
+    output="seasonally_adjusted",
     mode=None,
     when_error="warning",
     clean_up=True,
+
+    specs_template=None,
+    add_to_specs=None,
+    allow_missing=False,
+    mode=None,
+
     unpack_singleton=True,
     return_info=False,
+)
+```
+
+```
+new, info = irispie.x13(
+    ...,
+    return_info=True,
+    ...,
 )
 ```
 
@@ -1107,14 +1269,30 @@ new, out_info = irispie.x13(
 
 
 ```
-out_info = self.x13(
+self.x13(
+    self,
+
     span=None,
-    output="sa",
+    output="seasonally_adjusted",
     mode=None,
     when_error="warning",
     clean_up=True,
+
+    specs_template=None,
+    add_to_specs=None,
+    allow_missing=False,
+    mode=None,
+
     unpack_singleton=True,
     return_info=False,
+)
+```
+
+```
+info = self.x13(
+    ...,
+    return_info=True,
+    ...,
 )
 ```
 
@@ -1133,14 +1311,21 @@ out_info = self.x13(
 
 ???+ input "output"
     The type of output to be returned by X13. The following options are
-    available:
+    available at the moment:
 
-    | Output    | Description
-    |-----------|-------------
-    | `"sf"`    | Seasonal factors
-    | `"sa"`    | Seasonally adjusted series
-    | `"tc"`    | Trend-cycle
-    | `"irr"`   | Irregular component
+    | Output                  | X13 table | Description
+    |-------------------------|-----------|-------------
+    | `"seasonal"`            | `d10`     | Seasonal factors
+    | `"seasonally_adjusted"` | `d11`     | Seasonally adjusted series
+    | `"trend_cycle"`         | `d12`     | Trend-cycle component
+    | `"irregular"`           | `d13`     | Irregular component
+    | `"irregular"`           | `d13`     | Irregular component
+    | `"seasonal_and_td"`     | `d16`     | Combined seasonal and trading day factors
+    | `"holiday_and_td"`      | `d18`     | Combined holiday and trading day factors
+
+???+ input "specs_template"
+    A dictionary with a specs template for the X13 run; if `None`, a default
+    specs template is used (see below for the structure of the default template).
 
 ???+ input "mode"
     The mode to be used for the X13 run. The following options are available (see the
@@ -1158,6 +1343,14 @@ out_info = self.x13(
     strictly positive or strictly negative, the multiplicative mode is used, otherwise
     the additive mode is used.
 
+???+ input "allow_missing"
+    If `True`, allow missing values in the input time series and automatically
+    add an empty `automdl` spec if no ARIMA model is specified.
+
+???+ input "add_to_specs"
+    A dictionary with additional settings to be added to the `specs_template` (or
+    the default templated).
+
 ???+ input "when_error"
     The action to be taken when an error occurs. The following options are
     available:
@@ -1168,12 +1361,12 @@ out_info = self.x13(
     | `"error"`   | Raise an error
 
 ???+ input "unpack_singleton"
-    If `True`, unpack `out_info` into a plain dictionary for models with a
+    If `True`, unpack `info` into a plain dictionary for models with a
     single variant.
 
 ???+ input "return_info"
-    If `True`, return a dictionary with information about the X13 run as the
-    second output argument.
+    If `True`, return a dictionary with information about the X13 run as another
+    output argument.
 
 
 ### Returns ###
@@ -1185,19 +1378,50 @@ out_info = self.x13(
 ???+ returns "new"
     A new `Series` object with the output data.
 
-???+ returns "out_info"
-    A dictionary with information about the X13 run. The dictionary
-    contains the following keys:
+???+ returns "info"
+    (Only returned if `return_info=True` which is not the default behavior)
+    Dictionary with information about the X13 run; `info` contains the
+    following items:
 
     | Key | Description
     |-----|-------------
+    | `success` | True if the X13 run was successful
+    | `specs_template` | The specs template used for the X13 run
     | `mode` | The mode used for the X13 run
+    | `spc` | The spc file from the X13 run
     | `log` | The log file from the X13 run
     | `out` | The output file from the X13 run
     | `err` | The error file from the X13 run
-    | `success` | A boolean indicating whether the X13 run was successful
+    | `*` | Any other output file written by X13
 
 
 ### Details ###
 
+
+???+ abstract "Default SPC template structure"
+
+    The default specs template is a dictionary equivalent to the following SPC
+    file:
+
+    ```
+    series{
+        start=$(series_start)
+        data=(
+    $(series_data)
+        )
+        period=$(series_period)
+        decimals=5
+        precision=5
+    }
+
+    transform{
+        function=$(transform_function)
+    }
+
+    x11{
+        mode=$(x11_mode)
+        save=$(x11_save)
+    }
+
+    ```
         

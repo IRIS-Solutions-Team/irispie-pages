@@ -5,6 +5,10 @@ The preparser provides a variety of convenience commands that simplify the
 process of writing model source code.
 
 
+List of preparser commands
+---------------------------
+
+
 ## For loops
 
 A for loop can be used to parameterize and repeat certain parts of the model

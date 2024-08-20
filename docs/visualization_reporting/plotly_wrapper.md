@@ -36,6 +36,11 @@ Property | Description
 ---------------
 
 ==Highlight a certain date span in charts==
+
+Highlight a certain time span in a figure. The span can be specified either as a
+time `Span`, or a tuple of two `Periods`.
+
+    irispie.plotly.highlight(span)
     
 
 

@@ -23,7 +23,6 @@ jobs:
           pip install \
             mkdocs-material \
             mkdocs-awesome-pages-plugin \
-            mkdocs-toc-plugin \
 
       - name: Install irispie, loguru, rich
         run: |

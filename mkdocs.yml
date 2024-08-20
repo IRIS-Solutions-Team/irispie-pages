@@ -34,7 +34,6 @@ extra:
     site_tagline: Reference Manual
 
 plugins:
-    - toc
     - search
     - awesome-pages
 

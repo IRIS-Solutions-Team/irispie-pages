@@ -1,13 +1,14 @@
 
 import irispie as ir
+
 import sys
 import os
 import re
 import yaml
 import operator as _op
 import wlogging
-from types import (FunctionType, MethodType, )
-from typing import (Callable, )
+from types import FunctionType, MethodType
+from typing import Callable
 
 
 # with open("mkdocs.yml", "rt", ) as f:
@@ -41,16 +42,16 @@ def main():
 def _document_class(klass: type, ) -> None:
     """
     """
-    klass_path = os.path.join(docs_root, *klass._pages_path, )
+    klass_path = os.path.join(docs_root, *klass._documark_path, )
     docstring = _remove_visual_divider(klass.__doc__, )
-    if klass._pages_categories:
+    if klass._documark_categories:
         attributes = _collect_documented_attributes_from_class(klass, )
         properties = _collect_documented_properties_from_class(klass, )
         attribute_to_docstring = _create_attribute_to_docstring(attributes, )
         property_to_docstring = _create_attribute_to_docstring(properties, )
         attribute_to_docstring = dict(sorted(
             attribute_to_docstring.items(),
-            key=lambda item: (-item[0]._pages_priority, item[0]._pages_call_name.lower(), ),
+            key=lambda item: (-item[0]._documark_priority, item[0]._documark_call_name.lower(), ),
         ))
         docstring += _create_categorical_list(klass, attribute_to_docstring, )
         docstring += _create_property_list(klass, property_to_docstring, )
@@ -63,7 +64,7 @@ _ICONS = {
     None: ":octicons-file-24:",
     "property": ":octicons-package-24:",
 }
-_PAGES_REFERENCE = "_pages_reference"
+_PAGES_REFERENCE = "_documark_reference"
 _CATEGORY_TABLE_HEADING = (
     "Function | Description\n"
     "----------|------------\n"
@@ -88,15 +89,15 @@ def _create_categorical_list(klass: type, attribute_to_docstring: dict, ) -> str
         "Categorical list of functions\n"
         "-------------------------------\n\n"
     )
-    for category, category_description in klass._pages_categories.items():
+    for category, category_description in klass._documark_categories.items():
         if category == "property":
             continue
         docstring += f"### {category_description} ###\n\n"
         docstring += _CATEGORY_TABLE_HEADING
         attribute_to_docstring_of_category = _collect_attribute_to_docstring_of_category(attribute_to_docstring, category, )
         for attribute in attribute_to_docstring_of_category.keys():
-            icon = _ICONS.get(attribute._pages_category, _ICONS[None], )
-            docstring += f"[{attribute._pages_call_name}](#{_get_anchor(attribute._pages_call_name, )}) | {attribute._pages_tagline}\n"
+            icon = _ICONS.get(attribute._documark_category, _ICONS[None], )
+            docstring += f"[{attribute._documark_call_name}](#{_get_anchor(attribute._documark_call_name, )}) | {attribute._documark_tagline}\n"
         docstring += "\n\n"
     return docstring
 
@@ -111,8 +112,8 @@ def _create_property_list(klass: type, property_to_docstring: dict, ) -> str:
     docstring += _PROPERTY_TABLE_HEADING
     property_to_docstring_of_category = _collect_attribute_to_docstring_of_category(property_to_docstring, category, )
     for property in property_to_docstring_of_category.keys():
-        icon = _ICONS.get(property._pages_category, _ICONS[None], )
-        docstring += f"[{property._pages_call_name}](#{_get_anchor(property._pages_call_name)}) | {property._pages_tagline}\n"
+        icon = _ICONS.get(property._documark_category, _ICONS[None], )
+        docstring += f"[{property._documark_call_name}](#{_get_anchor(property._documark_call_name)}) | {property._documark_tagline}\n"
     docstring += "\n\n"
     return docstring
 
@@ -121,7 +122,7 @@ def _add_attributes(attribute_to_docstring: dict, ) -> None:
         return "\n\n\n".join(
             _finalize_attribute_docstring(a, d, )
             for a, d in attribute_to_docstring.items()
-            if a._pages_category != "property"
+            if a._documark_category != "property"
         )
 
 
@@ -155,7 +156,7 @@ def _collect_attribute_to_docstring_of_category(attribute_to_docstring: dict, ca
     return {
         attribute: attribute_docstring
         for attribute, attribute_docstring in attribute_to_docstring.items()
-        if attribute._pages_category == category
+        if attribute._documark_category == category
     }
 
 

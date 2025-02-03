@@ -4,19 +4,13 @@ import irispie as ir
 import sys
 import os
 import re
-import yaml
 import operator as _op
-import wlogging
+from loguru import logger
 from types import FunctionType, MethodType
 from typing import Callable
 
 
-# with open("mkdocs.yml", "rt", ) as f:
-    # mkdocs = yaml.load(f, Loader=yaml.SafeLoader, )
-# docs_root = mkdocs["docs_dir"]
-
 docs_root = "docs"
-logger = wlogging.get_colored_logger(__name__, level=wlogging.INFO, )
 
 def main():
     klasses = [
@@ -97,7 +91,7 @@ def _create_categorical_list(klass: type, attribute_to_docstring: dict, ) -> str
         attribute_to_docstring_of_category = _collect_attribute_to_docstring_of_category(attribute_to_docstring, category, )
         for attribute in attribute_to_docstring_of_category.keys():
             icon = _ICONS.get(attribute._documark_category, _ICONS[None], )
-            docstring += f"[{attribute._documark_call_name}](#{_get_anchor(attribute._documark_call_name, )}) | {attribute._documark_tagline}\n"
+            docstring += f"[`{attribute._documark_call_name}`](#{_get_anchor(attribute._documark_call_name, )}) | {attribute._documark_tagline}\n"
         docstring += "\n\n"
     return docstring
 
@@ -113,7 +107,7 @@ def _create_property_list(klass: type, property_to_docstring: dict, ) -> str:
     property_to_docstring_of_category = _collect_attribute_to_docstring_of_category(property_to_docstring, category, )
     for property in property_to_docstring_of_category.keys():
         icon = _ICONS.get(property._documark_category, _ICONS[None], )
-        docstring += f"[{property._documark_call_name}](#{_get_anchor(property._documark_call_name)}) | {property._documark_tagline}\n"
+        docstring += f"`{property._documark_call_name}` | {property._documark_tagline}\n"
     docstring += "\n\n"
     return docstring
 

@@ -16,7 +16,7 @@ jobs:
       - name: Get Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.12.2"
+          python-version: "3.13"
 
       - name: Install mkdocs-material
         run: |
@@ -41,7 +41,7 @@ jobs:
           mkdocs build
 
       - name: Upload site as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: ./site
           name: site
@@ -64,13 +64,13 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Download site artifact from previous job
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: site
           path: ./site
 
       - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./site
 

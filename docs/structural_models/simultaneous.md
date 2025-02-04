@@ -7,32 +7,33 @@
 Categorical list of functions
 -------------------------------
 
-### Creating new simultaneous models ###
+### Creating new Simultaneous models ###
 
 Function | Description
 ----------|------------
-[Simultaneous.from_file](#simultaneousfrom_file) | Create `Simultaneous` model object from source file or files
-[Simultaneous.from_string](#simultaneousfrom_string) | Create `Simultaneous` model from string
+[`Simultaneous.from_file`](#simultaneousfrom_file) | Create `Simultaneous` model object from source file or files
+[`Simultaneous.from_string`](#simultaneousfrom_string) | Create `Simultaneous` model from string
 
 
-### Applying structural filters on models ###
-
-Function | Description
-----------|------------
-[kalman_filter](#kalman_filter) | Run Kalman filter on a model using time series data
-
-
-### Getting information about models ###
+### Getting information about Simultaneous models ###
 
 Function | Description
 ----------|------------
 
 
-### Manipulating model parameters ###
+### Applying structural filters on Simultaneous models ###
 
 Function | Description
 ----------|------------
-[rescale_stds](#rescale_stds) | Rescale the standard deviations of model shocks
+[`kalman_filter`](#kalman_filter) | Run Kalman filter on a model using time series data
+[`neg_log_likelihood`](#neg_log_likelihood) | 
+
+
+### Manipulating Simultaneous model parameters ###
+
+Function | Description
+----------|------------
+[`rescale_stds`](#rescale_stds) | Rescale the standard deviations of model shocks
 
 
 
@@ -43,18 +44,18 @@ Directly accessible properties
 
 Property | Description
 ----------|------------
-[is_deterministic](#is_deterministic) | True for models declared as deterministic
-[is_flat](#is_flat) | True for models declared as flat
-[is_linear](#is_linear) | True for models declared as linear
-[max_lag](#max_lag) | Maximul lag in the model (negative or zero)
-[max_lead](#max_lead) | Maximul lead in the model (positive or zero)
-[num_measurement_equations](#num_measurement_equations) | Number of measurement equations
-[num_transition_equations](#num_transition_equations) | Number of transition equations
+`is_deterministic` | True for models declared as deterministic
+`is_flat` | True for models declared as flat
+`is_linear` | True for models declared as linear
+`max_lag` | Maximul lag in the model (negative or zero)
+`max_lead` | Maximul lead in the model (positive or zero)
+`num_measurement_equations` | Number of measurement equations
+`num_transition_equations` | Number of transition equations
 
 
 
-☐ `Simultaneous.from_file`
-----------------------------
+&#9744;&#160;`Simultaneous.from_file`
+---------------------------------------
 
 ==Create `Simultaneous` model object from source file or files==
 
@@ -97,8 +98,8 @@ model object.
 
 
 
-☐ `Simultaneous.from_string`
-------------------------------
+&#9744;&#160;`Simultaneous.from_string`
+-----------------------------------------
 
 ==Create `Simultaneous` model from string==
 
@@ -133,8 +134,8 @@ See [`Simultaneous.from_file`](simultaneousfrom_file) for return values.
 
 
 
-☐ `kalman_filter`
--------------------
+&#9744;&#160;`kalman_filter`
+------------------------------
 
 ==Run Kalman filter on a model using time series data==
 
@@ -152,8 +153,9 @@ the time series data.
         return_update=True,
         return_smooth=True,
         return_predict_err=True,
-        predict_mse_obs=True,
+        return_predict_mse_obs=True,
         rescale_variance=False,
+        likelihood_contributions=True,
         shocks_from_data=False,
         stds_from_data=False,
         prepend_initial=False,
@@ -204,6 +206,10 @@ the time series data.
 ???+ input "rescale_variance"
     If `True`, rescale all variances by the optimal variance scale factor
     estimated using maximum likelihood after the filtering process.
+
+???+ input "likelihood_contributions"
+    If `True`, return the contributions of individual periods to the overall
+    (negative) log likelihood.
 
 ???+ input "shocks_from_data"
     If `True`, use possibly time-varying shock values from the data; these
@@ -273,8 +279,15 @@ the time series data.
 
 
 
-☐ `rescale_stds`
-------------------
+&#9744;&#160;`neg_log_likelihood`
+-----------------------------------
+
+        
+
+
+
+&#9744;&#160;`rescale_stds`
+-----------------------------
 
 ==Rescale the standard deviations of model shocks==
 
@@ -297,13 +310,13 @@ model based on the provided factor.
     deviations.
 
 ???+ input "kind"
-    An optional parameter to narrow down the types of shocks to rescale. It 
-    can be one or a combination of the following:
-    
+    An optional parameter to narrow down the types of shocks to rescale. It
+    can be one, or a combination, of the following:
+
     * `ir.UNANTICIPATED_STD`
     * `ir.ANTICIPATED_STD`
     * `ir.MEASUREMENT_STD`
-    
+
     If `None`, the standard deviations of all shocks will be rescaled.
 
 

@@ -9,7 +9,7 @@ Categorical list of functions
 
 Function | Description
 ----------|------------
-[SteadyPlan](#steadyplan) | Create new steady plan object
+[`SteadyPlan`](#steadyplan) | Create new steady plan object
 
 
 ### Exogenizing and endogenizing steady-state values ###
@@ -22,15 +22,15 @@ Function | Description
 
 Function | Description
 ----------|------------
-[fix](#fix) | Fix steady-state values
-[unfix](#unfix) | Unfix steady-state values
+[`fix`](#fix) | Fix steady-state values
+[`unfix`](#unfix) | Unfix steady-state values
 
 
 ### Getting information about steady plans ###
 
 Function | Description
 ----------|------------
-[print_table](#print_table) | Print the `SimulationPlan` as a table
+[`print_table`](#print_table) | Print the `SimulationPlan` as a table
 
 
 
@@ -44,24 +44,24 @@ Property | Description
 
 
 
-☐ `SteadyPlan`
-----------------
+&#9744;&#160;`SteadyPlan`
+---------------------------
 
 ==Create new steady plan object==
         
 
 
 
-☐ `fix`
----------
+&#9744;&#160;`fix`
+--------------------
 
 ==Fix steady-state values==
         
 
 
 
-☐ `print_table`
------------------
+&#9744;&#160;`print_table`
+----------------------------
 
 ==Print the `SimulationPlan` as a table==
 
@@ -82,8 +82,8 @@ Returns no value; the table is printed on the screen.
 
 
 
-☐ `unfix`
------------
+&#9744;&#160;`unfix`
+----------------------
 
 ==Unfix steady-state values==
         

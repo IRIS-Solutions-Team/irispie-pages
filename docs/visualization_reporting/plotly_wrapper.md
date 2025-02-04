@@ -11,14 +11,14 @@ Categorical list of functions
 
 Function | Description
 ----------|------------
-[make_subplots](#make_subplots) | Create a figure with multiple subplots
+[`make_subplots`](#make_subplots) | Create a figure with multiple subplots
 
 
 ### Customizing charts ###
 
 Function | Description
 ----------|------------
-[highlight](#highlight) | Highlight a certain date span in charts
+[`highlight`](#highlight) | Highlight a certain date span in charts
 
 
 
@@ -32,8 +32,8 @@ Property | Description
 
 
 
-☐ `highlight`
----------------
+&#9744;&#160;`highlight`
+--------------------------
 
 ==Highlight a certain date span in charts==
 
@@ -45,8 +45,8 @@ time `Span`, or a tuple of two `Periods`.
 
 
 
-☐ `make_subplots`
--------------------
+&#9744;&#160;`make_subplots`
+------------------------------
 
 ==Create a figure with multiple subplots==
     

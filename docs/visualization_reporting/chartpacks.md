@@ -11,22 +11,30 @@ Categorical list of functions
 
 Function | Description
 ----------|------------
-[Chartpack](#chartpack) | Create a new chartpack
+[`Chartpack`](#chartpack) | Create a new chartpack
+
+
+### Getting information about chartpacks ###
+
+Function | Description
+----------|------------
+[`get_description`](#get_description) | Get the description attached an Iris Pie object
+[`set_description`](#set_description) | Set the description for an Iris Pie object
 
 
 ### Plotting chartpacks ###
 
 Function | Description
 ----------|------------
-[plot](#plot) | Plot the chartpack
+[`plot`](#plot) | Plot the chartpack
 
 
 ### Adding figures and charts to chartpacks ###
 
 Function | Description
 ----------|------------
-[add_chart](#add_chart) | Add a new chart to an existing figure in the chartpack
-[add_figure](#add_figure) | Add a new figure to the chartpack
+[`add_chart`](#add_chart) | Add a new chart to an existing figure in the chartpack
+[`add_figure`](#add_figure) | Add a new figure to the chartpack
 
 
 
@@ -37,12 +45,12 @@ Directly accessible properties
 
 Property | Description
 ----------|------------
-[num_figures](#num_figures) | Total number of figures in the chartpack
+`num_figures` | Total number of figures in the chartpack
 
 
 
-☐ `Chartpack`
----------------
+&#9744;&#160;`Chartpack`
+--------------------------
 
 ==Create a new chartpack==
 
@@ -97,24 +105,76 @@ self = Chartpack(
 
 
 
-☐ `add_chart`
----------------
+&#9744;&#160;`add_chart`
+--------------------------
 
 ==Add a new chart to an existing figure in the chartpack==
         
 
 
 
-☐ `add_figure`
-----------------
+&#9744;&#160;`add_figure`
+---------------------------
 
 ==Add a new figure to the chartpack==
         
 
 
 
-☐ `plot`
-----------
+&#9744;&#160;`get_description`
+--------------------------------
+
+
+==Get the description attached an Iris Pie object==
+
+    description = self.get_description()
+
+### Input arguments ###
+
+???+ input "self"
+    An Iris Pie object from which to get the description.
+
+
+### Returns ###
+
+???+ returns "description"
+    The description attached to the Iris Pie object.
+
+        
+
+
+
+&#9744;&#160;`plot`
+---------------------
 
 ==Plot the chartpack==
+        
+
+
+
+&#9744;&#160;`set_description`
+--------------------------------
+
+
+==Set the description for an Iris Pie object==
+
+    self.set_description(
+        description,
+    )
+
+
+### Input arguments ###
+
+???+ input "self"
+    An Iris Pie object to which to attach the description.
+
+
+???+ input "description"
+    The description to attach to the Iris Pie object.
+
+
+### Returns ###
+
+This method modifies the Iris Pie object in place and returns `None`.
+
         

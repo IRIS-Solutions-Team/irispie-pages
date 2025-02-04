@@ -24,48 +24,48 @@ Categorical list of functions
 
 Function | Description
 ----------|------------
-[SimulationPlan](#simulationplan) | Create new simulation plan object
+[`SimulationPlan`](#simulationplan) | Create new simulation plan object
 
 
 ### Defining exogenized and endogenized data points in [`Simultaneous` simulations](simultaneous.md#simulate) ###
 
 Function | Description
 ----------|------------
-[endogenize_anticipated](#endogenize_anticipated) | Endogenize certain quantities at certain dates
-[endogenize_unanticipated](#endogenize_unanticipated) | Endogenize certain quantities at certain dates
-[exogenize_anticipated](#exogenize_anticipated) | Exogenize certain quantities at certain dates
-[exogenize_unanticipated](#exogenize_unanticipated) | Exogenize certain quantities at certain dates as unanticipated
+[`endogenize_anticipated`](#endogenize_anticipated) | Endogenize certain quantities at certain dates
+[`endogenize_unanticipated`](#endogenize_unanticipated) | Endogenize certain quantities at certain dates
+[`exogenize_anticipated`](#exogenize_anticipated) | Exogenize certain quantities at certain dates
+[`exogenize_unanticipated`](#exogenize_unanticipated) | Exogenize certain quantities at certain dates as unanticipated
 
 
 ### Defining exogenized and endogenized data points in [`Sequential` simulations](sequential.md#simulate) ###
 
 Function | Description
 ----------|------------
-[exogenize](#exogenize) | Exogenize certain LHS quantities at certain dates
+[`exogenize`](#exogenize) | Exogenize certain LHS quantities at certain dates
 
 
 ### Getting information about simulation plans ###
 
 Function | Description
 ----------|------------
-[print_table](#print_table) | Print the `SimulationPlan` as a table
+[`print_table`](#print_table) | Print the `SimulationPlan` as a table
 
 
 ### Getting information about simulation plans for [`Simultaneous` models](simultaneous.md) ###
 
 Function | Description
 ----------|------------
-[get_endogenized_anticipated_in_period](#get_endogenized_anticipated_in_period) | Get names endogenized as anticipated in a certain period
-[get_endogenized_unanticipated_in_period](#get_endogenized_unanticipated_in_period) | Get names endogenized as unanticipated in a certain period
-[get_exogenized_anticipated_in_period](#get_exogenized_anticipated_in_period) | Get names exogenized as anticipated in a certain period
-[get_exogenized_unanticipated_in_period](#get_exogenized_unanticipated_in_period) | Get names exogenized as unanticipated in a certain period
+[`get_endogenized_anticipated_in_period`](#get_endogenized_anticipated_in_period) | Get names endogenized as anticipated in a certain period
+[`get_endogenized_unanticipated_in_period`](#get_endogenized_unanticipated_in_period) | Get names endogenized as unanticipated in a certain period
+[`get_exogenized_anticipated_in_period`](#get_exogenized_anticipated_in_period) | Get names exogenized as anticipated in a certain period
+[`get_exogenized_unanticipated_in_period`](#get_exogenized_unanticipated_in_period) | Get names exogenized as unanticipated in a certain period
 
 
 ### Getting information about simulation plans for [`Sequential` models](sequential.md) ###
 
 Function | Description
 ----------|------------
-[get_exogenized_in_period](#get_exogenized_in_period) | Get names exogenized in a certain period
+[`get_exogenized_in_period`](#get_exogenized_in_period) | Get names exogenized in a certain period
 
 
 
@@ -76,15 +76,15 @@ Directly accessible properties
 
 Property | Description
 ----------|------------
-[end](#end) | End date of the simulation span
-[frequency](#frequency) | Date frequency of the simulation span
-[num_periods](#num_periods) | Number of periods in the simulation span
-[start](#start) | Start date of the simulation span
+`end` | End date of the simulation span
+`frequency` | Date frequency of the simulation span
+`num_periods` | Number of periods in the simulation span
+`start` | Start date of the simulation span
 
 
 
-☐ `SimulationPlan`
---------------------
+&#9744;&#160;`SimulationPlan`
+-------------------------------
 
 ==Create new simulation plan object==
 
@@ -117,24 +117,24 @@ Create a new simulation plan object for a
 
 
 
-☐ `endogenize_anticipated`
-----------------------------
+&#9744;&#160;`endogenize_anticipated`
+---------------------------------------
 
 ==Endogenize certain quantities at certain dates==
         
 
 
 
-☐ `endogenize_unanticipated`
-------------------------------
+&#9744;&#160;`endogenize_unanticipated`
+-----------------------------------------
 
 ==Endogenize certain quantities at certain dates==
         
 
 
 
-☐ `exogenize`
----------------
+&#9744;&#160;`exogenize`
+--------------------------
 
 ==Exogenize certain LHS quantities at certain dates==
 
@@ -203,8 +203,8 @@ values.
 
 
 
-☐ `exogenize_anticipated`
----------------------------
+&#9744;&#160;`exogenize_anticipated`
+--------------------------------------
 
 ==Exogenize certain quantities at certain dates==
 
@@ -229,8 +229,8 @@ self.exogenize_anticipated(
 
 
 
-☐ `exogenize_unanticipated`
------------------------------
+&#9744;&#160;`exogenize_unanticipated`
+----------------------------------------
 
 ==Exogenize certain quantities at certain dates as unanticipated==
 
@@ -270,48 +270,48 @@ self.exogenize_unanticipated(
 
 
 
-☐ `get_endogenized_anticipated_in_period`
--------------------------------------------
+&#9744;&#160;`get_endogenized_anticipated_in_period`
+------------------------------------------------------
 
 ==Get names endogenized as anticipated in a certain period==
         
 
 
 
-☐ `get_endogenized_unanticipated_in_period`
----------------------------------------------
+&#9744;&#160;`get_endogenized_unanticipated_in_period`
+--------------------------------------------------------
 
 ==Get names endogenized as unanticipated in a certain period==
         
 
 
 
-☐ `get_exogenized_anticipated_in_period`
-------------------------------------------
+&#9744;&#160;`get_exogenized_anticipated_in_period`
+-----------------------------------------------------
 
 ==Get names exogenized as anticipated in a certain period==
         
 
 
 
-☐ `get_exogenized_in_period`
-------------------------------
+&#9744;&#160;`get_exogenized_in_period`
+-----------------------------------------
 
 ==Get names exogenized in a certain period==
         
 
 
 
-☐ `get_exogenized_unanticipated_in_period`
---------------------------------------------
+&#9744;&#160;`get_exogenized_unanticipated_in_period`
+-------------------------------------------------------
 
 ==Get names exogenized as unanticipated in a certain period==
         
 
 
 
-☐ `print_table`
------------------
+&#9744;&#160;`print_table`
+----------------------------
 
 ==Print the `SimulationPlan` as a table==
 

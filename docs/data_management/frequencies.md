@@ -29,6 +29,6 @@ and irregularities.
 
 
 The most often direct use of `Frequencies` in frequency conversion methods, such
-as `aggregate` and `disaggregate` for time [`Series`](series.md) and whenever a
+as `aggregate` and `disaggregate` for time [`Series`](time_series.md) and whenever a
 custom check of time period or time series properties is needed.
     

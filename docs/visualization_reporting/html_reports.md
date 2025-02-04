@@ -13,7 +13,7 @@ Categorical list of functions
 
 Function | Description
 ----------|------------
-[Rephrase](#rephrase) | Create a new `Rephrase` object
+[`Rephrase`](#rephrase) | Create a new `Rephrase` object
 
 
 
@@ -27,8 +27,8 @@ Property | Description
 
 
 
-☐ `Rephrase`
---------------
+&#9744;&#160;`Rephrase`
+-------------------------
 
 ==Create a new `Rephrase` object==
         

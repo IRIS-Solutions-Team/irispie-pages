@@ -7,7 +7,7 @@ frequency (and hence also a certain duration); the time period
 [`Frequencies`](frequencies.md) are identified by an integer value.
 
 Time `Periods` are used to timestamp data observations in time
-[`Series`](series.md) objects, for basic calenadar time arithmetics, and for
+[`Series`](time_series.md) objects, for basic calenadar time arithmetics, and for
 creating time [`Spans`](spans.md).
     
 
@@ -19,43 +19,47 @@ Categorical list of functions
 
 Function | Description
 ----------|------------
-[irispie.dd](#irispiedd) | Create a daily-frequency time period or time span
-[irispie.hh](#irispiehh) | Create a half-yearly-frequency time period or time span
-[irispie.ii](#irispieii) | Create an integer-frequency time period or time span
-[irispie.mm](#irispiemm) | Create a monthly-frequency time period or time span
-[irispie.qq](#irispieqq) | Create a quarterly-frequency time period or time span
-[irispie.yy](#irispieyy) | Create a yearly-frequency time period or time span
+[`irispie.dd`](#irispiedd) | Create a daily-frequency time period or time span
+[`irispie.hh`](#irispiehh) | Create a half-yearly-frequency time period or time span
+[`irispie.ii`](#irispieii) | Create an integer-frequency time period or time span
+[`irispie.mm`](#irispiemm) | Create a monthly-frequency time period or time span
+[`irispie.qq`](#irispieqq) | Create a quarterly-frequency time period or time span
+[`irispie.yy`](#irispieyy) | Create a yearly-frequency time period or time span
+[`Period.from_iso_string`](#periodfrom_iso_string) | Create time period from ISO-8601 string
+[`Period.from_sdmx_string`](#periodfrom_sdmx_string) | Create time period from SDMX string
+[`Period.from_year_segment`](#periodfrom_year_segment) | Create time period from year and segment
+[`Period.from_ymd`](#periodfrom_ymd) | Create time period from year, month, and day
+[`Period.today`](#periodtoday) | Create time period for today
 
 
 ### Adding, subtracting, and comparing time periods ###
 
 Function | Description
 ----------|------------
-[!=](#!=) | True if time period is not equal to another time period
-[+](#+) | Add integer to time period
-[-](#-) | Subtract time period or integer from time period
-[<](#<) | True if time period is earlier than another time period
-[<=](#<=) | True if time period is earlier than or equal to another time period
-[==](#==) | True if time period is equal to another time period
-[>](#>) | True if time period is later than another time period
-[>=](#>=) | True if time period is later than or equal to another time period
-[shift](#shift) | Shift time period by a number of periods
+[`shift`](#shift) | Shift time period by a number of periods
 
 
 ### Converting time periods to different frequencies ###
 
 Function | Description
 ----------|------------
-[refrequent](#refrequent) | Convert time period to a new frequency
-[to_ymd](#to_ymd) | Get year, month, and day of time period
+[`refrequent`](#refrequent) | Convert time period to a new frequency
+
+
+### Converting time periods to different representations ###
+
+Function | Description
+----------|------------
+[`to_python_date`](#to_python_date) | Convert time period to Python date object
+[`to_ymd`](#to_ymd) | Get year, month, and day of time period
 
 
 ### Converting time periods to strings ###
 
 Function | Description
 ----------|------------
-[to_iso_string](#to_iso_string) | ISO-8601 representation of time period
-[to_sdmx_string](#to_sdmx_string) | SDMX representation of time period
+[`to_iso_string`](#to_iso_string) | ISO-8601 representation of time period
+[`to_sdmx_string`](#to_sdmx_string) | SDMX representation of time period
 
 
 
@@ -66,9 +70,9 @@ Directly accessible properties
 
 Property | Description
 ----------|------------
-[frequency](#frequency) | Time frequency of the time period
-[period](#period) | Period number within the calendar year
-[year](#year) | Calendar year of the time period
+`frequency` | Time frequency of the time period
+`segment` | Segment within the calendar year
+`year` | Calendar year of the time period
 
 
 
@@ -184,8 +188,8 @@ Overview of time period constructors:
 
 
 
-☐ `irispie.dd`
-----------------
+&#9744;&#160;`irispie.dd`
+---------------------------
 
 ==Create a daily-frequency time period or time span==
 
@@ -195,8 +199,8 @@ and the [`Span` constructors](spans.md).
 
 
 
-☐ `irispie.hh`
-----------------
+&#9744;&#160;`irispie.hh`
+---------------------------
 
 ==Create a half-yearly-frequency time period or time span==
 
@@ -206,8 +210,8 @@ and the [`Span` constructors](spans.md).
 
 
 
-☐ `irispie.ii`
-----------------
+&#9744;&#160;`irispie.ii`
+---------------------------
 
 ==Create an integer-frequency time period or time span==
 
@@ -217,8 +221,8 @@ and the [`Span` constructors](spans.md).
 
 
 
-☐ `irispie.mm`
-----------------
+&#9744;&#160;`irispie.mm`
+---------------------------
 
 ==Create a monthly-frequency time period or time span==
 
@@ -228,8 +232,8 @@ and the [`Span` constructors](spans.md).
 
 
 
-☐ `irispie.qq`
-----------------
+&#9744;&#160;`irispie.qq`
+---------------------------
 
 ==Create a quarterly-frequency time period or time span==
 
@@ -239,8 +243,8 @@ and the [`Span` constructors](spans.md).
 
 
 
-☐ `irispie.yy`
-----------------
+&#9744;&#160;`irispie.yy`
+---------------------------
 
 ==Create a yearly-frequency time period or time span==
 
@@ -250,156 +254,190 @@ and the [`Span` constructors](spans.md).
 
 
 
-☐ `!=`
---------
+&#9744;&#160;`Period.from_iso_string`
+---------------------------------------
 
-==True if time period is not equal to another time period==
+==Create time period from ISO-8601 string==
 
-See documentation for [time period comparison](#time-period-comparison).
-        
+Create a time period from an ISO-8601 string representation. The ISO-8601
+string format is `yyyy-mm-dd` where `yyyy` is the calendar year, `mm` is
+the month of the year, and `dd` is the day of the month, all represented as
+integers.
 
-
-
-☐ `+`
--------
-
-==Add integer to time period==
-
-Add an integer value to a time period, moving it forward by the number of
-periods (if positive) or backward (if negative).
-
-    new_period = period + k
-    new_period = k + period
+    period = Period.from_iso_string(
+        iso_string,
+        *,
+        frequency=Frequency.DAILY,
+    )
 
 
 ### Input arguments ###
 
 
-???+ input "period"
-    Time period to which the integer is added.
+???+ input "iso_string"
+    ISO-8601 string representation of the time period.
 
-???+ input "k"
-    Integer value to add to the time period. Positive values move the
-    period forward, while negative values move it backward. The addition is
-    frequency specific.
+???+ input "frequency"
+    Time frequency of the time period.
 
 
 ### Returns ###
 
 
-???+ returns "new_period"
-    New time period resulting from the addition of the integer value.
-
-
-### See also ###
-
-* [Time period arithmetics](#time-period-arithmetics)
+???+ returns "period"
+    Time period object created from the ISO-8601 string.
         
 
 
 
-☐ `-`
--------
+&#9744;&#160;`Period.from_sdmx_string`
+----------------------------------------
 
-==Subtract time period or integer from time period==
+==Create time period from SDMX string==
 
-Subtraction operations can be performed between two time periods or between a 
-time period and an integer. These operations are crucial for calculating the 
-distance between periods or adjusting a period's position in time.
+Create a time period from an SDMX string representation. The SDMX string
+format is frequency specific and represents the time period as a string
+literal.
 
-* **Subtracting a time period**: Calculate the number of periods between
-two time periods. Both periods must be of the same frequency.
-
-* **Subtracting an integer**: Move a time period backward or forward by the
-specified number of periods. The integer specifies how many periods of the
-respective frequency to move backward or forward.
-
-
-    result = self - other
-    new_period = self - k
-
+    period = Period.from_sdmx_string(
+        sdmx_string,
+        frequency=Frequency.DAILY,
+    )
 
 ### Input arguments ###
 
+???+ input "sdmx_string"
+    SDMX string representation of the time period.
 
-???+ input "self"
-    The reference time period from which `other` or `k` is subtracted.
-
-???+ input "other"
-    The time period to subtract from `self`. The `result` is the number of
-    periods between `self` and `other`. The subtraction is frequency specific.
-
-???+ input "k"
-    Integer value to subtract from `self`. Positive values move the period
-    backward, while negative values move it forward. The subtraction is
-    frequency specific.
-
+???+ input "frequency"
+    Time frequency of the time period. If `None`, the frequency is inferred
+    from the SDMX string itself; supplying the frequency is more efficient
+    if it is known in advance.
 
 ### Returns ###
 
-
-???+ returns "result"
-    The number of periods between two time periods if `other` is a `Period`.
-
-???+ returns "new_period"
-    A new `Period` object representing the time period shifted backward by the 
-    specified number of periods if `other` is an integer.
-    
-
-
-
-☐ `<`
--------
-
-==True if time period is earlier than another time period==
-
-See documentation for [time period comparison](#time-period-comparison).
+???+ returns "period"
+    Time period object created from the SDMX string.
         
 
 
 
-☐ `<=`
---------
+&#9744;&#160;`Period.from_year_segment`
+-----------------------------------------
 
-==True if time period is earlier than or equal to another time period==
+==Create time period from year and segment==
 
-See documentation for [time period comparison](#time-period-comparison).
+Create a time period from the calendar year and a segment of the year. The
+interpretation of the segment as well as the type of the time period created
+depends on the time frequency specified.
+
+    period = Period.from_year_segment(
+        freq,
+        year,
+        segment,
+    )
+
+### Input arguments ###
+
+???+ input "freq"
+    Time frequency of the time period.
+
+???+ input "year"
+    Calendar year as integer.
+
+???+ input "segment"
+    Segment of the year as integer; the segment can be a half-year, quarter,
+    month, or day, depending on the time frequency, `freq`.
+
+### Returns ###
+
+???+ returns "period"
+    Time period object created from the year and segment.
         
 
 
 
-☐ `==`
---------
+&#9744;&#160;`Period.from_ymd`
+--------------------------------
 
-==True if time period is equal to another time period==
+==Create time period from year, month, and day==
 
-See documentation for [time period comparison](#time-period-comparison).
+Create a time period from the calendar year, month, and day. The time period
+is created based on the time frequency specified.
+
+    period = Period.from_ymd(
+        freq,
+        year,
+        month=1,
+        day=1,
+    )
+
+### Input arguments ###
+
+???+ input "freq"
+    Time frequency of the time period.
+
+???+ input "year"
+    Calendar year as integer.
+
+???+ input "month"
+    Month of the year as integer.
+
+???+ input "day"
+    Day of the month as integer.
+
+### Returns ###
+
+???+ returns "period"
+    Time period object created from the year, month, and day.
         
 
 
 
-☐ `>`
--------
+&#9744;&#160;`Period.today`
+-----------------------------
 
-==True if time period is later than another time period==
+==Create time period for today==
 
-See documentation for [time period comparison](#time-period-comparison).
+Create a time period for the current date. The time period is created based
+on the time frequency specified.
+
+    period = Period.today(freq)
+
+### Input arguments ###
+
+???+ input "freq"
+    Time frequency of the time period.
+
+### Returns ###
+
+???+ returns "period"
+    Time period object for the current date.
         
 
 
 
-☐ `>=`
---------
+&#9744;&#160;`get_distance_from_origin`
+-----------------------------------------
 
-==True if time period is later than or equal to another time period==
+==Get distance from origin time period==
 
-See documentation for [time period comparison](#time-period-comparison).
+Get the distance of the time period from the origin time period. The origin time
+period is currently set to the beginning of year 2020 for all calendar periods,
+and to 0 for integer periods.
+
+    distance = self.get_distance_from_origin()
+
+### Returns ###
+
+???+ returns "distance"
+    Distance of the `self` time period from the origin time period.
         
 
 
 
-☐ `refrequent`
-----------------
+&#9744;&#160;`refrequent`
+---------------------------
 
 ==Convert time period to a new frequency==
 
@@ -440,8 +478,8 @@ additional arguments.
 
 
 
-☐ `shift`
------------
+&#9744;&#160;`shift`
+----------------------
 
 ==Shift time period by a number of periods==
 
@@ -470,8 +508,8 @@ Returns no value; the time period is modified in place.
 
 
 
-☐ `to_iso_string`
--------------------
+&#9744;&#160;`to_iso_string`
+------------------------------
 
 ==ISO-8601 representation of time period==
 
@@ -504,8 +542,55 @@ integers.
 
 
 
-☐ `to_sdmx_string`
---------------------
+&#9744;&#160;`to_python_date`
+-------------------------------
+
+
+==Convert time period to Python date object==
+
+
+Convert a time period to a Python date object. The date object is created based
+on the year, month, and day of the time period.
+
+
+    date = self.to_python_date(
+        position="middle",
+    )
+
+
+### Input arguments ###
+
+
+???+ input "self"
+    Time period to convert to a Python date object.
+
+???+ input "position"
+    Position that determines the day of the month and the month of the year
+    of time periods with time frequency lower than daily. The position can
+    be one of the following:
+
+    * `"start"`: Start of the time period (placed on the 1st day of the
+    first month within the original period).
+
+    * `"middle"`: Middle of the time period (placed on the 15th day of the
+    middle month within the original period).
+
+    * `"end"`: End of the time period (placed on the last day of the last
+    month within the original period).
+
+
+### Returns ###
+
+
+???+ returns "date"
+    Python date object representing the time period.
+
+        
+
+
+
+&#9744;&#160;`to_sdmx_string`
+-------------------------------
 
 ==SDMX representation of time period==
 
@@ -546,8 +631,8 @@ where lowercase letters represent the respective time period components
 
 
 
-☐ `to_ymd`
-------------
+&#9744;&#160;`to_ymd`
+-----------------------
 
 ==Get year, month, and day of time period==
 

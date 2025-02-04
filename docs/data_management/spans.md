@@ -15,33 +15,33 @@ Categorical list of functions
 
 Function | Description
 ----------|------------
-[Span](#span) | Create a new time span
+[`Span`](#span) | Create a new time span
 
 
 ### Arithmetic operations on time spans ###
 
 Function | Description
 ----------|------------
-[+](#+) | Add an offset to the time span
-[-](#-) | Subtract an offset or a Period from the time span
+[`+`](#+) | Add an offset to the time span
+[`-`](#-) | Subtract an offset or a Period from the time span
 
 
 ### Manipulating time spans ###
 
 Function | Description
 ----------|------------
-[reverse](#reverse) | Reverse the time span
-[shift](#shift) | Shift the entire time span
-[shift_end](#shift_end) | Shift the end of the time span
-[shift_start](#shift_start) | Shift the start period of the time span
+[`reverse`](#reverse) | Reverse the time span
+[`shift`](#shift) | Shift the entire time span
+[`shift_end`](#shift_end) | Shift the end of the time span
+[`shift_start`](#shift_start) | Shift the start period of the time span
 
 
 ### Converting time spans to strings ###
 
 Function | Description
 ----------|------------
-[to_iso_strings](#to_iso_strings) | Convert time span periods to ISO-8601 representations
-[to_sdmx_strings](#to_sdmx_strings) | Convert time span periods to SDMX representations
+[`to_iso_strings`](#to_iso_strings) | Convert time span periods to ISO-8601 representations
+[`to_sdmx_strings`](#to_sdmx_strings) | Convert time span periods to SDMX representations
 
 
 
@@ -52,16 +52,16 @@ Directly accessible properties
 
 Property | Description
 ----------|------------
-[direction](#direction) | Direction of the time span
-[end](#end) | End period of the time span
-[frequency](#frequency) | Frequency of the time span
-[start](#start) | Start period of the time span
-[step](#step) | Step size of the time span
+`direction` | Direction of the time span
+`end` | End period of the time span
+`frequency` | Frequency of the time span
+`start` | Start period of the time span
+`step` | Step size of the time span
 
 
 
-☐ `Span`
-----------
+&#9744;&#160;`Span`
+---------------------
 
 ==Create a new time span==
 
@@ -82,8 +82,8 @@ Property | Description
 
 
 
-☐ `+`
--------
+&#9744;&#160;`+`
+------------------
 
 ==Add an offset to the time span==
 
@@ -115,8 +115,8 @@ earlier or later than the original.
 
 
 
-☐ `-`
--------
+&#9744;&#160;`-`
+------------------
 
 ==Subtract an offset or a Period from the time span==
 
@@ -155,8 +155,8 @@ distance between each period in the span and a given `Period`.
 
 
 
-☐ `reverse`
--------------
+&#9744;&#160;`reverse`
+------------------------
 
 ==Reverse the time span==
 
@@ -179,8 +179,8 @@ The time span is reversed in place.
 
 
 
-☐ `shift`
------------
+&#9744;&#160;`shift`
+----------------------
 
 ==Shift the entire time span==
 
@@ -209,8 +209,8 @@ position in the timeline.
 
 
 
-☐ `shift_end`
----------------
+&#9744;&#160;`shift_end`
+--------------------------
 
 ==Shift the end of the time span==
 
@@ -239,8 +239,8 @@ depending on the direction and magnitude of the shift.
 
 
 
-☐ `shift_start`
------------------
+&#9744;&#160;`shift_start`
+----------------------------
 
 ==Shift the start period of the time span==
 
@@ -267,8 +267,8 @@ This method modifies the object in place and does not return a value.
 
 
 
-☐ `to_iso_strings`
---------------------
+&#9744;&#160;`to_iso_strings`
+-------------------------------
 
 ==Convert time span periods to ISO-8601 representations==
 
@@ -299,8 +299,8 @@ Converts each period within the time span to an ISO-8601 string format.
 
 
 
-☐ `to_sdmx_strings`
----------------------
+&#9744;&#160;`to_sdmx_strings`
+--------------------------------
 
 ==Convert time span periods to SDMX representations==
 

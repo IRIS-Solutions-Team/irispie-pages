@@ -16,73 +16,107 @@ Categorical list of functions
 
 Function | Description
 ----------|------------
-[Series](#series) | Create a new `Series` object
+[`Series`](#series) | Create a new `Series` object
 
 
 ### Converting time series frequency ###
 
 Function | Description
 ----------|------------
-[aggregate](#aggregate) | Aggregate time series to a lower frequency
-[disaggregate](#disaggregate) | Disaggregate time series to a higher frequency
+[`aggregate`](#aggregate) | Aggregate time series to a lower frequency
+[`disaggregate`](#disaggregate) | Disaggregate time series to a higher frequency
+
+
+### Getting information about time series ###
+
+Function | Description
+----------|------------
+[`get_description`](#get_description) | Get the description attached an Iris Pie object
+[`set_description`](#set_description) | Set the description for an Iris Pie object
 
 
 ### Manipulating time series values ###
 
 Function | Description
 ----------|------------
-[replace_where](#replace_where) | Replace time series values that pass a test
+[`replace_where`](#replace_where) | Replace time series values that pass a test
+[`trim`](#trim) | Trim time series data
+
+
+### Combining multiple time series ###
+
+Function | Description
+----------|------------
+[`overlay`](#overlay) | Overlay another time series values onto the current time series
+[`underlay`](#underlay) | Underlay another time series values beneath the current time series
 
 
 ### Homogenizing and extrapolating time series ###
 
 Function | Description
 ----------|------------
-[clip](#clip) | Clip time series to a new start and end period
-[extrapolate](#extrapolate) | Extrapolate time series using autoregressive process
-[fill_missing](#fill_missing) | Fill missing observations
+[`clip`](#clip) | Clip time series to a new start and end period
+[`extrapolate`](#extrapolate) | Extrapolate time series using autoregressive process
+[`fill_missing`](#fill_missing) | Fill missing observations
 
 
 ### Filtering time series ###
 
 Function | Description
 ----------|------------
-[hpf](#hpf) | Constrained Hodrick-Prescott filter
-[x13](#x13) | X13-ARIMA-TRAMO-SEATS seasonal adjustment procedure
+[`hpf`](#hpf) | Constrained Hodrick-Prescott filter
+[`x13`](#x13) | X13-ARIMA-TRAMO-SEATS seasonal adjustment procedure
 
 
 ### Applying moving window functions ###
 
 Function | Description
 ----------|------------
-[mov_avg](#mov_avg) | Moving average
-[mov_mean](#mov_mean) | Moving average
-[mov_prod](#mov_prod) | Moving product
-[mov_sum](#mov_sum) | Moving sum
+[`mov_avg`](#mov_avg) | Moving average
+[`mov_mean`](#mov_mean) | Moving average
+[`mov_prod`](#mov_prod) | Moving product
+[`mov_sum`](#mov_sum) | Moving sum
 
 
 ### Calculating temporal change ###
 
 Function | Description
 ----------|------------
-[adiff](#adiff) | Annualized first difference
-[adiff_log](#adiff_log) | Annualized first difference of logs
-[apct](#apct) | Annualized percent change
-[aroc](#aroc) | Annualized gross rate of change
-[diff](#diff) | First difference
-[diff_log](#diff_log) | First difference of logs
-[pct](#pct) | Percent change
-[roc](#roc) | Gross rate of change
+[`adiff`](#adiff) | Annualized first difference
+[`adiff_log`](#adiff_log) | Annualized first difference of logs
+[`apct`](#apct) | Annualized percent change
+[`aroc`](#aroc) | Annualized gross rate of change
+[`diff`](#diff) | First difference
+[`diff_log`](#diff_log) | First difference of logs
+[`pct`](#pct) | Percent change
+[`roc`](#roc) | Gross rate of change
+
+
+### Converting measures of temporal change ###
+
+Function | Description
+----------|------------
+[`pct_from_apct`](#pct_from_apct) | Percent change from annualized percent change
+[`pct_from_roc`](#pct_from_roc) | Percent change from gross rate of change
+[`roc_from_apct`](#roc_from_apct) | Gross rate of change from annualized percent change
+[`roc_from_aroc`](#roc_from_aroc) | Gross rate of change from annualized gross rate of change
+[`roc_from_pct`](#roc_from_pct) | Gross rate of change from percent change
 
 
 ### Calculating temporal cumulation ###
 
 Function | Description
 ----------|------------
-[cum_diff](#cum_diff) | Cumulation of first differences
-[cum_diff_log](#cum_diff_log) | Cumulation of first differences of logs
-[cum_pct](#cum_pct) | Cumulation of percent changes
-[cum_roc](#cum_roc) | Cumulation of gross rates of change
+[`cum_diff`](#cum_diff) | Cumulation of first differences
+[`cum_diff_log`](#cum_diff_log) | Cumulation of first differences of logs
+[`cum_pct`](#cum_pct) | Cumulation of percent changes
+[`cum_roc`](#cum_roc) | Cumulation of gross rates of change
+
+
+### Indexing time series ###
+
+Function | Description
+----------|------------
 
 
 
@@ -93,21 +127,21 @@ Directly accessible properties
 
 Property | Description
 ----------|------------
-[start](#start) | Start date of the time series
-[periods](#periods) | N-tuple with the periods from the start period to the end period of the time series
-[end](#end) | End period of the time series
-[frequency](#frequency) | Date frequency of the time series
-[from_until](#from_until) | Two-tuple with the start date and end date of the time series
-[has_missing](#has_missing) | True if the time series is non-empty and contains in-sample missing values
-[is_empty](#is_empty) | True if the time series is empty
-[num_periods](#num_periods) | Number of periods from the first to the last observation
-[num_variants](#num_variants) | Number of variants (columns) within the `Series` object
-[span](#span) | Time span of the time series
-[shape](#shape) | Shape of time series data
+`start` | Start date of the time series
+`periods` | N-tuple with the periods from the start period to the end period of the time series
+`end` | End period of the time series
+`frequency` | Date frequency of the time series
+`from_until` | Two-tuple with the start date and end date of the time series
+`has_missing` | True if the time series is non-empty and contains in-sample missing values
+`is_empty` | True if the time series is empty
+`num_periods` | Number of periods from the first to the last observation
+`num_variants` | Number of variants (columns) within the `Series` object
+`span` | Time span of the time series
+`shape` | Shape of time series data
 
 
 
-Time series indexing
+Indexing time series
 ----------------------
 
 Time `Series` objects can be indexed in four ways (note the square versus round
@@ -171,6 +205,202 @@ and `variants` is an integer or a tuple of integers or a `slice` object
 specifying the variants. The time `Series` recreation syntax returns a new
 time `Series` object based on the data selected by the `dates` and
 `variants`.
+        
+
+
+
+Calculating temporal change
+-----------------------------
+
+Overview of temporal change functions with flexible time shifts:
+
+
+| Function      | Description
+|---------------|-------------
+| `diff`        | First difference, $y_t = x_t - x_s$ 
+| `diff_log`    | First difference of logs, $y_t = \log x_t - \log x_s$ 
+| `pct`         | Percent change, $y_t = 100 \cdot (x_t/x_s - 1)$ 
+| `roc`         | Gross rate of change, $y_t = x_t/x_s$ 
+
+
+Overview of temporal change functions with fixed time shifts:
+
+| Function      | Description
+|---------------|-------------
+| `adiff`       | Annualized first difference, $y_t = a \cdot (x_t - x_{t-1})$ 
+| `adiff_log`   | Annualized first difference of logs, $y_t = a \cdot (\log x_t - \log x_{t-1})$ 
+| `apct`        | Annualized percent change, $y_t = 100 \cdot \left[ (x_t/x_{t-1})^a - 1 \right]$ 
+| `aroc`        | Annualized gross rate of change, $y_t = (x_t/x_{t-1})^a$ 
+
+where
+
+* $x_t$ is the value of the time series at $t$;
+
+* $x_s$ is the reference value of the time series in some preceding period $s$;
+the value of $s$ depends on the (optional) input argument `shift` (whose default
+value is `shift=-1`); see the explanation below;
+
+* $a$ is an annualization factor, determined by the frequency of the time
+series (i.e. the number of segments of a give frequency within a year: 1 for
+yearly frequency, 2 for semi-annual frequency, 4 for quarterly frequency, 12 for
+monthly frequency, 365 for daily frequency).
+
+The `shift` input argument can be either a negative integer or a string to cover
+some specific temporal change calculations:
+
+* If `shift` is a negative integer, the reference period is $s := t-k$ where $k$ is
+the negative value of `shift`; positive values (leads) of `shift` are not allowed.
+
+* `shift="yoy"` means a year-on-year change, whereby the time shift is set to
+the negative of the frequency of the time series, $s := t-a$ with $a$ being
+defined above (the annualization factor).
+
+* `shift="soy"` means a change over the start of the current year; in this case,
+the reference period $s$ is set to the first segment of the current year (i.e.
+the 1st half-year, the 1st quarter, the 1st month, etc.)
+
+* `shift="eopy"` means a change over the end of the previous year; in this case,
+the reference period $s$ is set to the last segment of the previous year (i.e.
+the 2nd half-year, the 4th quarter, the 12th month, etc.).
+
+* `shift="tty"` means a change throughout the year; this is equivalent to
+`shift=-1` except for any start-of-year periods; in start-of-year periods, the
+value of the resulting series is unchanged; for instance, `diff` applied to a
+quarterly series with `shift="tty"` will return a series in which the Q1 value
+will be unchanged, the Q2 value will be the difference between Q2 and Q1, the Q3
+value will be the difference between Q3 and Q2, and the Q4 value will be the
+difference between Q4 and Q3.
+
+
+### Functional forms creating a new Series object ###
+
+```
+new = irispie.diff(self, shift=-1)
+new = irispie.diff_log(self, shift=-1)
+new = irispie.pct(self, shift=-1)
+new = irispie.roc(self, shift=-1)
+new = irispie.adiff(self)
+new = irispie.adiff_log(self)
+new = irispie.apct(self)
+new = irispie.aroc(self)
+```
+
+
+### Class methods changing an existing Series object in-place ###
+
+```
+self.diff(shift=-1)
+self.difflog(shift=-1)
+self.pct(shift=-1)
+self.roc(shift=-1)
+self.adiff()
+self.adifflog()
+self.apct()
+self.aroc()
+```
+
+
+
+### Input arguments ###
+
+???+ input "self"
+    Time series on whose data a temporal change function is calculated (see
+    the overview table above).
+
+???+ input "shift"
+    A negative integer or a string determining a time lag at which the temporal change
+    function is calculated. If `shift=None` (or not specified), `shift` is
+    set to `-1`. If `shift` is a string, it must be one of the following:
+
+    * `"yoy"`: year-on-year change
+    * `"soy"`: change over the start of the current year
+    * `"eopy"`: change over the end of the previous year
+    * `"tty"`: change throughout the year
+
+
+### Returns ###
+
+???+ returns "new"
+    New time series with data calculated as a temporal change function of
+    the original data.
+
+???+ returns "self"
+    Time series with data replaced by a temporal change function of the
+    original data.
+        
+
+
+
+Calculating temporal cumulation
+---------------------------------
+
+Overview of temporal cumulation calculations:
+
+| Function      | Description
+|---------------|-------------
+| `cum_diff`    | Cumulative difference, $y_t = \sum_{i=0}^{t} (x_i - x_{i-k})$
+| `cum_diff_log`| Cumulative difference of logs, $y_t = \sum_{i=0}^{t} (\log x_i - \log x_{i-k})$
+| `cum_pct`     | Cumulative percent change, $y_t = 100 \sum_{i=0}^{t} (x_i/x_{i-k} - 1)$
+| `cum_roc`     | Cumulative gross rate of change, $y_t = \prod_{i=0}^{t} (x_i/x_{i-k})$
+
+where
+
+* $k$ is the time shift (time lag) with which the temporal change is
+calculated, determined by the negative value of the `shift` input argument.
+
+* $t$ is the end date of the time series.
+
+
+### Functional forms creating new Series objects ###
+
+```
+new = irispie.cum_diff(self, /, shift=-1, initial=None, span=None)
+new = irispie.cum_diff_log(self, /, shift=-1, initial=None, span=None)
+new = irispie.cum_pct(self, /, shift=-1, initial=None, span=None)
+new = irispie.cum_roc(self, /, shift=-1, initial=None, span=None)
+```
+
+
+### Class methods changing existing Series objects in-place ###
+
+```
+self.cum_diff(/, shift=-1, initial=None, span=None)
+self.cum_diff_log(/, shift=-1, initial=None, span=None)
+self.cum_pct(/, shift=-1, initial=None, span=None)
+self.cum_roc(/, shift=-1, initial=None, span=None)
+```
+
+### Input arguments ###
+
+???+ input "self"
+    Time series on whose data a temporal cumulation is calculated (see the
+    overview table above).
+
+???+ input "shift"
+    A negative integer determining a time lag at which the temporal
+    cumulation is calculated. If `shift=None` (or not specified), `shift`
+    is set to `-1`.
+
+???+ input "initial"
+    Initial value of the cumulative series. If `initial=None` (or not specified),
+    the initial value is set to `0` for `diff` and `diff_log`, and to
+    `1` for `pct` and `roc`.
+
+???+ input "span"
+    Time span on which the values from the original series are cumulated.
+    If `span=None` (or not specified), the time span is set to the entire
+    time series.
+
+
+### Returns ###
+
+???+ returns "new"
+    New time series with data calculated as temporal cumulation of the
+    original data.
+
+???+ returns "self"
+    Time series with data replaced by temporal cumulation of the original
+    data.
         
 
 
@@ -259,172 +489,44 @@ self.mov_prod(window=None, )
 
 
 
-Temporal change calculations
-------------------------------
+Converting measures of temporal change
+----------------------------------------
 
+Overview of temporal change conversions:
 
-Overview of temporal change functions:
+| Function          | Description
+|-------------------|-------------
+| `roc_from_pct`    | Convert percent change to gross rate of change
+| `pct_from_roc`    | Convert gross rate of change to percent change
+| `pct_from_apct`   | Convert annualized percent change to percent change
+| `roc_from_apct`   | Convert annualized percent change to gross rate of change
+| `roc_from_aroc`   | Convert annualized gross rate of change to gross rate of change
 
-| Function      | Description
-|---------------|-------------
-| `diff`        | First difference, $y_t = x_t - x_{t-k}$ 
-| `diff_log`    | First difference of logs, $y_t = \log x_t - \log x_{t-k}$ 
-| `pct`         | Percent change, $y_t = 100 (x_t/x_{t-k} - 1)$ 
-| `roc`         | Gross rate of change, $y_t = x_t/x_{t-k}$ 
-| `adiff`       | Annualized first difference, $y_t = a \cdot (x_t - x_{t-1})$ 
-| `adiff_log`   | Annualized first difference of logs, $y_t = a \cdot (\log x_t - \log x_{t-1})$ 
-| `apct`        | Annualized percent change, $y_t = 100 [(x_t/x_{t-1})^a - 1]$ 
-| `aroc`        | Annualized gross rate of change, $y_t = (x_t/x_{t-1})^a$ 
-
-where
-
-* $k$ is the time shift (time lag) with which the temporal change is
-calculated, determined by the negative value of the `shift` input argument;
-
-* $a$ is the annualization factor, determined by the frequency of the time
-series (i.e. the number of calendar periods within a year).
-
-
-### Functional forms creating a new Series object ###
-
+### Functional forms changing an existing Series object in-place ###
 
 ```
-new = irispie.diff(self, /, shift=-1)
-new = irispie.diff_log(self, /, shift=-1)
-new = irispie.pct(self, /, shift=-1)
-new = irispie.roc(self, /, shift=-1)
-new = irispie.adiff(self)
-new = irispie.adiff_log(self)
-new = irispie.apct(self)
-new = irispie.aroc(self)
+new = irispie.roc_from_pct(self)
+new = irispie.pct_from_roc(self)
+new = irispie.pct_from_apct(self)
+new = irispie.roc_from_apct(self)
+new = irispie.roc_from_aroc(self)
 ```
-
 
 ### Class methods changing an existing Series object in-place ###
 
-
 ```
-self.diff(shift=-1)
-self.difflog(shift=-1)
-self.pct(shift=-1)
-self.roc(shift=-1)
-self.adiff()
-self.adifflog()
-self.apct()
-self.aroc()
+self.roc_from_pct()
+self.pct_from_roc()
+self.pct_from_apct()
+self.roc_from_apct()
+self.roc_from_aroc()
 ```
-
-
-
-### Input arguments ###
-
-
-???+ input "self"
-    Time series on whose data a temporal change function is calculated (see
-    the overview table above).
-
-???+ input "shift"
-    A negative integer determining a time lag at which the temporal change
-    function is calculated. If `shift=None` (or not specified), `shift` is
-    set to `-1`.
-
-
-### Returns ###
-
-
-???+ returns "new"
-    New time series with data calculated as a temporal change function of
-    the original data.
-
-???+ returns "self"
-    Time series with data replaced by a temporal change function of the
-    original data.
         
 
 
 
-Temporal cumulation calculations
-----------------------------------
-
-Overview of temporal cumulation calculations:
-
-| Function      | Description
-|---------------|-------------
-| `cum_diff`    | Cumulative difference, $y_t = \sum_{i=0}^{t} (x_i - x_{i-k})$
-| `cum_diff_log`| Cumulative difference of logs, $y_t = \sum_{i=0}^{t} (\log x_i - \log x_{i-k})$
-| `cum_pct`     | Cumulative percent change, $y_t = 100 \sum_{i=0}^{t} (x_i/x_{i-k} - 1)$
-| `cum_roc`     | Cumulative gross rate of change, $y_t = \prod_{i=0}^{t} (x_i/x_{i-k})$
-
-where
-
-* $k$ is the time shift (time lag) with which the temporal change is
-calculated, determined by the negative value of the `shift` input argument.
-
-* $t$ is the end date of the time series.
-
-
-### Functional forms creating new Series objects ###
-
-
-```
-new = irispie.cum_diff(self, /, shift=-1, initial=None, span=None)
-new = irispie.cum_diff_log(self, /, shift=-1, initial=None, span=None)
-new = irispie.cum_pct(self, /, shift=-1, initial=None, span=None)
-new = irispie.cum_roc(self, /, shift=-1, initial=None, span=None)
-```
-
-
-### Class methods changing existing Series objects in-place ###
-
-
-```
-self.cum_diff(/, shift=-1, initial=None, span=None)
-self.cum_diff_log(/, shift=-1, initial=None, span=None)
-self.cum_pct(/, shift=-1, initial=None, span=None)
-self.cum_roc(/, shift=-1, initial=None, span=None)
-```
-
-
-### Input arguments ###
-
-
-???+ input "self"
-    Time series on whose data a temporal cumulation is calculated (see the
-    overview table above).
-
-???+ input "shift"
-    A negative integer determining a time lag at which the temporal
-    cumulation is calculated. If `shift=None` (or not specified), `shift`
-    is set to `-1`.
-
-???+ input "initial"
-    Initial value of the cumulative series. If `initial=None` (or not specified),
-    the initial value is set to `0` for `diff` and `diff_log`, and to
-    `1` for `pct` and `roc`.
-
-???+ input "span"
-    Time span on which the values from the original series are cumulated.
-    If `span=None` (or not specified), the time span is set to the entire
-    time series.
-
-
-### Returns ###
-
-
-???+ returns "new"
-    New time series with data calculated as temporal cumulation of the
-    original data.
-
-???+ returns "self"
-    Time series with data replaced by temporal cumulation of the original
-    data.
-
-        
-
-
-
-☐ `Series`
-------------
+&#9744;&#160;`Series`
+-----------------------
 
 ==Create a new `Series` object==
 
@@ -442,28 +544,36 @@ self = Series(
 )
 ```
 
+```
+self = Series(
+    periods=periods,
+    func=func,
+)
+```
+
 
 ### Input arguments ###
 
-
 ???+ input "start"
-
     The time [`Period`](periods.md) of the first value in the `values`.
 
 ???+ input "periods"
-
     An iterable of time [`Periods`](periods.md) that will be used to time stamp
     the `values`. The iterable can be e.g. a tuple, a list, a time
     [`Span`](spans.md), or a single time [`Period`](periods.md).
 
 ???+ input "values"
-
     Time series values, supplied either as a single values, a tuple of values,
     or a NumPy array.
 
+???+ input "func"
+    A function that will be used to populate the time series; the function
+    should not take any input arguments, and should return a single (scalar)
+    numerical value; the function will called once for each period and each
+    variant.
+
 
 ### Returns ###
-
 
 ???+ returns "None"
     This method modifies `self` in-place and does not return a value.
@@ -472,8 +582,8 @@ self = Series(
 
 
 
-☐ `adiff`
------------
+&#9744;&#160;`adiff`
+----------------------
 
 ==Annualized first difference==
 
@@ -483,8 +593,8 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `adiff_log`
----------------
+&#9744;&#160;`adiff_log`
+--------------------------
 
 ==Annualized first difference of logs==
 
@@ -494,8 +604,8 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `aggregate`
----------------
+&#9744;&#160;`aggregate`
+--------------------------
 
 ==Aggregate time series to a lower frequency==
 
@@ -507,7 +617,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
         target_freq,
         /,
         method="mean",
-        remove_missing=False,
+        discard_missing=False,
         select=None,
     )
 
@@ -518,7 +628,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
         target_freq,
         /,
         method="mean",
-        remove_missing=False,
+        discard_missing=False,
         select=None,
     )
 
@@ -543,7 +653,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
     | "min"     | Minimum of high-frequency values
     | "max"     | Maximum of high-frequency values
 
-???+ input "remove_missing"
+???+ input "discard_missing"
     Remove missing values from the high-frequency data before
     applying the aggregation `method`.
 
@@ -563,8 +673,8 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `apct`
-----------
+&#9744;&#160;`apct`
+---------------------
 
 ==Annualized percent change==
 
@@ -574,8 +684,8 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `aroc`
-----------
+&#9744;&#160;`aroc`
+---------------------
 
 ==Annualized gross rate of change==
 
@@ -585,8 +695,8 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `clip`
-----------
+&#9744;&#160;`clip`
+---------------------
 
 ==Clip time series to a new start and end period==
 
@@ -615,8 +725,8 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `cum_diff`
---------------
+&#9744;&#160;`cum_diff`
+-------------------------
 
 ==Cumulation of first differences==
 
@@ -626,8 +736,8 @@ See documentation for [temporal cumulation calculations](#temporal-cumulation-ca
 
 
 
-☐ `cum_diff_log`
-------------------
+&#9744;&#160;`cum_diff_log`
+-----------------------------
 
 ==Cumulation of first differences of logs==
 
@@ -637,8 +747,8 @@ See documentation for [temporal cumulation calculations](#temporal-cumulation-ca
 
 
 
-☐ `cum_pct`
--------------
+&#9744;&#160;`cum_pct`
+------------------------
 
 ==Cumulation of percent changes==
 
@@ -648,8 +758,8 @@ See documentation for [temporal cumulation calculations](#temporal-cumulation-ca
 
 
 
-☐ `cum_roc`
--------------
+&#9744;&#160;`cum_roc`
+------------------------
 
 ==Cumulation of gross rates of change==
 
@@ -659,8 +769,8 @@ See documentation for [temporal cumulation calculations](#temporal-cumulation-ca
 
 
 
-☐ `diff`
-----------
+&#9744;&#160;`diff`
+---------------------
 
 ==First difference==
 
@@ -670,8 +780,8 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `diff_log`
---------------
+&#9744;&#160;`diff_log`
+-------------------------
 
 ==First difference of logs==
 
@@ -681,8 +791,8 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `disaggregate`
-------------------
+&#9744;&#160;`disaggregate`
+-----------------------------
 
 ==Disaggregate time series to a higher frequency==
 
@@ -788,8 +898,8 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `extrapolate`
------------------
+&#9744;&#160;`extrapolate`
+----------------------------
 
 ==Extrapolate time series using autoregressive process==
 
@@ -874,8 +984,8 @@ $\rho_1,\ \rho_2,\ \dots,\ \rho_p$ given by the input argument `ar_coeff`
 
 
 
-☐ `fill_missing`
-------------------
+&#9744;&#160;`fill_missing`
+-----------------------------
 
 ==Fill missing observations==
 
@@ -943,8 +1053,31 @@ $\rho_1,\ \rho_2,\ \dots,\ \rho_p$ given by the input argument `ar_coeff`
 
 
 
-☐ `hpf`
----------
+&#9744;&#160;`get_description`
+--------------------------------
+
+
+==Get the description attached an Iris Pie object==
+
+    description = self.get_description()
+
+### Input arguments ###
+
+???+ input "self"
+    An Iris Pie object from which to get the description.
+
+
+### Returns ###
+
+???+ returns "description"
+    The description attached to the Iris Pie object.
+
+        
+
+
+
+&#9744;&#160;`hpf`
+--------------------
 
 ==Constrained Hodrick-Prescott filter==
 
@@ -1119,8 +1252,8 @@ $\rho_1,\ \rho_2,\ \dots,\ \rho_p$ given by the input argument `ar_coeff`
 
 
 
-☐ `mov_avg`
--------------
+&#9744;&#160;`mov_avg`
+------------------------
 
 ==Moving average==
 
@@ -1131,8 +1264,8 @@ See documentation of [moving window calculations](#moving-window-calculations) o
 
 
 
-☐ `mov_mean`
---------------
+&#9744;&#160;`mov_mean`
+-------------------------
 
 ==Moving average==
 
@@ -1143,8 +1276,8 @@ See documentation of [moving window calculations](#moving-window-calculations) o
 
 
 
-☐ `mov_prod`
---------------
+&#9744;&#160;`mov_prod`
+-------------------------
 
 ==Moving product==
 
@@ -1155,8 +1288,8 @@ See documentation of [moving window calculations](#moving-window-calculations) o
 
 
 
-☐ `mov_sum`
--------------
+&#9744;&#160;`mov_sum`
+------------------------
 
 ==Moving sum==
 
@@ -1167,8 +1300,57 @@ See documentation of [moving window calculations](#moving-window-calculations) o
 
 
 
-☐ `pct`
----------
+&#9744;&#160;`overlay`
+------------------------
+
+==Overlay another time series values onto the current time series==
+
+Overlay the values of another time series onto the current time series on the
+entire span of the other time series, i.e. from the start to the end period
+regardless of missing in-sample values.
+
+    self.overlay(
+        other,
+        method="by_span",
+    )
+
+### Input arguments ###
+
+???+ input "self"
+    The current time series object.
+
+???+ input "other"
+    The time series object whose values will be overlaid onto the current time
+    series.
+
+???+ input "method"
+    The method to use for overlaying the values. The default (and currently the
+    only available) method is `"by_span"`.
+
+### Returns ###
+
+This method modifies `self` in place and returns `None`.
+
+### Details ###
+
+The resulting time series is determined the following way:
+
+* The span of the resulting series starts at the earliest start period of the two
+series and ends at the latest end period of the two series.
+
+* First, the observations from the `self` (current) time series used to fill the
+resulting time span.
+
+* Second, within the span of the `other` time series (from the first available
+observation to the last available observation), the observations from this
+`other` time series are superimposed on the resulting time series, including any
+in-sample missing observations.
+
+
+
+
+&#9744;&#160;`pct`
+--------------------
 
 ==Percent change==
 
@@ -1178,8 +1360,30 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `replace_where`
--------------------
+&#9744;&#160;`pct_from_apct`
+------------------------------
+
+==Percent change from annualized percent change==
+
+See documentation for [converting measures of temporal
+change](#temporal-change-conversion).
+        
+
+
+
+&#9744;&#160;`pct_from_roc`
+-----------------------------
+
+==Percent change from gross rate of change==
+
+See documentation for [converting measures of temporal
+change](#temporal-change-conversion).
+        
+
+
+
+&#9744;&#160;`replace_where`
+------------------------------
 
 ==Replace time series values that pass a test==
 
@@ -1216,8 +1420,8 @@ self.replace_where(
 
 
 
-☐ `roc`
----------
+&#9744;&#160;`roc`
+--------------------
 
 ==Gross rate of change==
 
@@ -1227,8 +1431,140 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
 
 
-☐ `x13`
----------
+&#9744;&#160;`roc_from_apct`
+------------------------------
+
+==Gross rate of change from annualized percent change==
+
+See documentation for [converting measures of temporal
+change](#temporal-change-conversion).
+        
+
+
+
+&#9744;&#160;`roc_from_aroc`
+------------------------------
+
+==Gross rate of change from annualized gross rate of change==
+
+See documentation for [converting measures of temporal
+change](#temporal-change-conversion).
+        
+
+
+
+&#9744;&#160;`roc_from_pct`
+-----------------------------
+
+==Gross rate of change from percent change==
+
+See documentation for [converting measures of temporal
+change](#temporal-change-conversion).
+        
+
+
+
+&#9744;&#160;`set_description`
+--------------------------------
+
+
+==Set the description for an Iris Pie object==
+
+    self.set_description(
+        description,
+    )
+
+
+### Input arguments ###
+
+???+ input "self"
+    An Iris Pie object to which to attach the description.
+
+
+???+ input "description"
+    The description to attach to the Iris Pie object.
+
+
+### Returns ###
+
+This method modifies the Iris Pie object in place and returns `None`.
+
+        
+
+
+
+&#9744;&#160;`trim`
+---------------------
+
+==Trim time series data==
+
+Trim leading and trailing missing values from the time series data.
+
+    self.trim()
+
+### Input arguments ###
+
+???+ input "self"
+    The time series object to trim.
+
+### Returns ###
+
+This method modifies `self` in place and returns `None`.
+        
+
+
+
+&#9744;&#160;`underlay`
+-------------------------
+
+==Underlay another time series values beneath the current time series==
+
+Underlay the values of another time series beneath the current time series on
+the entire span of the other time series, i.e. from the start to the end period
+regardless of missing in-sample values.
+
+    self.underlay(
+        other,
+        method="by_span",
+    )
+
+### Input arguments ###
+
+???+ input "self"
+    The current time series object.
+
+???+ input "other"
+    The time series object whose values will be underlaid beneath the current
+    time series.
+
+???+ input "method"
+    The method to use for underlaying the values. The default (and currently the
+    only available) method is `"by_span"`.
+
+### Returns ###
+
+This method modifies `self` in place and returns `None`.
+
+### Details ###
+
+The resulting time series is determined the following way:
+
+* The span of the resulting series starts at the earliest start period of the two
+series and ends at the latest end period of the two series.
+
+* First, the observations from the `other` time series used to fill the
+resulting time span.
+
+* Second, within the span of the `self` time series (from the first available
+observation to the last available observation), the observations from this
+`self` time series are superimposed on the resulting time series, including any
+in-sample missing observations.
+        
+
+
+
+&#9744;&#160;`x13`
+--------------------
 
 ==X13-ARIMA-TRAMO-SEATS seasonal adjustment procedure==
 
@@ -1318,7 +1654,6 @@ info = self.x13(
     | `"seasonal"`            | `d10`     | Seasonal factors
     | `"seasonally_adjusted"` | `d11`     | Seasonally adjusted series
     | `"trend_cycle"`         | `d12`     | Trend-cycle component
-    | `"irregular"`           | `d13`     | Irregular component
     | `"irregular"`           | `d13`     | Irregular component
     | `"seasonal_and_td"`     | `d16`     | Combined seasonal and trading day factors
     | `"holiday_and_td"`      | `d18`     | Combined holiday and trading day factors

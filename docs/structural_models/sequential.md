@@ -12,45 +12,45 @@ and period-by-period.
 Categorical list of functions
 -------------------------------
 
-### Creating new `Sequential` models ###
+### Creating new Sequential models ###
 
 Function | Description
 ----------|------------
-[Sequential.from_file](#sequentialfrom_file) | Create new `Sequential` model object from source file or files
-[Sequential.from_string](#sequentialfrom_string) | Create sequential model object from string
+[`Sequential.from_file`](#sequentialfrom_file) | Create new `Sequential` model object from source file or files
+[`Sequential.from_string`](#sequentialfrom_string) | Create sequential model object from string
 
 
-### Simulating `Sequential` models ###
-
-Function | Description
-----------|------------
-[simulate](#simulate) | Simulate sequential model
-
-
-### Manipulating `Sequential` model parameters ###
+### Getting information about Sequential models ###
 
 Function | Description
 ----------|------------
-[assign](#assign) | Assign model parameters
-[check_missing_parameters](#check_missing_parameters) | Check for missing parameters
-[get_parameters](#get_parameters) | Get model parameters
+[`get_description`](#get_description) | Get model description text
+[`set_description`](#set_description) | Set model description text
 
 
-### Information about `Sequential` models ###
-
-Function | Description
-----------|------------
-[get_description](#get_description) | Get model description text
-[set_description](#set_description) | Set model description text
-
-
-### Manipulating `Sequential` models ###
+### Simulating Sequential models ###
 
 Function | Description
 ----------|------------
-[copy](#copy) | Create a deep copy
-[reorder_equations](#reorder_equations) | Reorder model equations
-[sequentialize](#sequentialize) | Reorder the model equations so that they can be solved sequentially
+[`simulate`](#simulate) | Simulate sequential model
+
+
+### Manipulating Sequential model parameters ###
+
+Function | Description
+----------|------------
+[`assign`](#assign) | Assign model parameters
+[`check_missing_parameters`](#check_missing_parameters) | Check for missing parameters
+[`get_parameters`](#get_parameters) | Get model parameters
+
+
+### Manipulating Sequential models ###
+
+Function | Description
+----------|------------
+[`copy`](#copy) | Create a deep copy
+[`reorder_equations`](#reorder_equations) | Reorder model equations
+[`sequentialize`](#sequentialize) | Reorder the model equations so that they can be solved sequentially
 
 
 
@@ -61,28 +61,28 @@ Directly accessible properties
 
 Property | Description
 ----------|------------
-[all_names](#all_names) | Names of all variables occurring in the model in order of appearance
-[equation_strings](#equation_strings) | Equation strings in order of appearance
-[identity_index](#identity_index) | Indexes of identity equations
-[incidence_matrix](#incidence_matrix) | Incidence matrix with equations in rows and LHS quantities in columns
-[is_sequential](#is_sequential) | `True` if the model equations are ordered sequentially
-[lhs_names](#lhs_names) | Unique names of LHS variables in order of their first appearance in equations
-[lhs_names_in_equations](#lhs_names_in_equations) | Names of LHS variables in order of their appearance in equations
-[lhs_quantities](#lhs_quantities) | LHS quantities in order of appearance
-[max_lag](#max_lag) | Maximum lag occurring on the RHS of equations
-[max_lead](#max_lead) | Maximum lead occurring on the RHS of equations
-[nonidentity_index](#nonidentity_index) | Indexes of nonidentity equations
-[num_equations](#num_equations) | Number of equations
-[num_lhs_names](#num_lhs_names) | Number of unique LHS names
-[parameter_names](#parameter_names) | Names of model parameters
-[residual_names](#residual_names) | Unique names of residuals in order of their first appearance in  equations
-[residual_names_in_equations](#residual_names_in_equations) | Names of residuals in order of their appearance in  equations
-[rhs_only_names](#rhs_only_names) | Names of variables appearing only on the RHS of equations
+`all_names` | Names of all variables occurring in the model in order of appearance
+`equation_strings` | Equation strings in order of appearance
+`identity_index` | Indexes of identity equations
+`incidence_matrix` | Incidence matrix with equations in rows and LHS quantities in columns
+`is_sequential` | `True` if the model equations are ordered sequentially
+`lhs_names` | Unique names of LHS variables in order of their first appearance in equations
+`lhs_names_in_equations` | Names of LHS variables in order of their appearance in equations
+`lhs_quantities` | LHS quantities in order of appearance
+`max_lag` | Maximum lag occurring on the RHS of equations
+`max_lead` | Maximum lead occurring on the RHS of equations
+`nonidentity_index` | Indexes of nonidentity equations
+`num_equations` | Number of equations
+`num_lhs_names` | Number of unique LHS names
+`parameter_names` | Names of model parameters
+`residual_names` | Unique names of residuals in order of their first appearance in  equations
+`residual_names_in_equations` | Names of residuals in order of their appearance in  equations
+`rhs_only_names` | Names of variables appearing only on the RHS of equations
 
 
 
-☐ `Sequential.from_file`
---------------------------
+&#9744;&#160;`Sequential.from_file`
+-------------------------------------
 
 ==Create new `Sequential` model object from source file or files==
 
@@ -125,8 +125,8 @@ model object.
 
 
 
-☐ `Sequential.from_string`
-----------------------------
+&#9744;&#160;`Sequential.from_string`
+---------------------------------------
 
 ==Create sequential model object from string==
 
@@ -157,13 +157,13 @@ See [`Sequential.from_file`](#sequentialfrom_file) for other input arguments.
 
 ### Returns ###
 
-See [`Sequential.from_file`](sequentialfrom_file) for return values.
+See [`Sequential.from_file`](#sequentialfrom_file) for return values.
         
 
 
 
-☐ `assign`
-------------
+&#9744;&#160;`assign`
+-----------------------
 
 ==Assign model parameters==
 
@@ -220,8 +220,8 @@ self.assign(databox, )
 
 
 
-☐ `check_missing_parameters`
-------------------------------
+&#9744;&#160;`check_missing_parameters`
+-----------------------------------------
 
 ==Check for missing parameters==
 
@@ -246,8 +246,8 @@ list of missing parameter names.
 
 
 
-☐ `copy`
-----------
+&#9744;&#160;`copy`
+---------------------
 
 ==Create a deep copy==
 
@@ -272,8 +272,8 @@ other = self.copy()
 
 
 
-☐ `get_description`
----------------------
+&#9744;&#160;`get_description`
+--------------------------------
 
 ==Get model description text==
 
@@ -299,8 +299,8 @@ description = self.get_description()
 
 
 
-☐ `get_parameters`
---------------------
+&#9744;&#160;`get_parameters`
+-------------------------------
 
 ==Get model parameters==
 
@@ -330,8 +330,8 @@ Returns a `Databox` with the parameter values currently assigned within a
 
 
 
-☐ `reorder_equations`
------------------------
+&#9744;&#160;`reorder_equations`
+----------------------------------
 
 ==Reorder model equations==
 
@@ -358,8 +358,8 @@ equation indexes.
 
 
 
-☐ `sequentialize`
--------------------
+&#9744;&#160;`sequentialize`
+------------------------------
 
 ==Reorder the model equations so that they can be solved sequentially==
 
@@ -390,8 +390,8 @@ sequentially. The reordered equation indexes are returned as a tuple.
 
 
 
-☐ `set_description`
----------------------
+&#9744;&#160;`set_description`
+--------------------------------
 
 ==Set model description text==
 
@@ -417,8 +417,8 @@ self.set_description(description, )
 
 
 
-☐ `simulate`
---------------
+&#9744;&#160;`simulate`
+-------------------------
 
 ==Simulate sequential model==
 

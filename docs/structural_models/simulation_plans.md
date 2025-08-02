@@ -17,6 +17,20 @@ the input databox when the simulation is run.
     
 
 
+Directly accessible properties
+------------------------------
+
+Property | Description
+----------|------------
+`end` | End date of the simulation span
+`frequency` | Date frequency of the simulation span
+`num_periods` | Number of periods in the simulation span
+`start` | Start date of the simulation span
+
+
+
+
+
 Categorical list of functions
 -------------------------------
 
@@ -69,28 +83,16 @@ Function | Description
 
 
 
-
-
-Directly accessible properties
-------------------------------
-
-Property | Description
-----------|------------
-`end` | End date of the simulation span
-`frequency` | Date frequency of the simulation span
-`num_periods` | Number of periods in the simulation span
-`start` | Start date of the simulation span
-
-
-
 &#9744;&#160;`SimulationPlan`
 -------------------------------
 
 ==Create new simulation plan object==
 
-```
-self = SimulationPlan(model, time_span, )
-```
+    self = SimulationPlan(
+        model,
+        time_span,
+    )
+
 
 Create a new simulation plan object for a
 [`Simultaneous`](sequential_models) or
@@ -208,12 +210,11 @@ values.
 
 ==Exogenize certain quantities at certain dates==
 
-```
-self.exogenize_anticipated(
-    dates,
-    names,
-)
-```
+    self.exogenize_anticipated(
+        dates,
+        names,
+    )
+
 
 ### Input arguments ###
 

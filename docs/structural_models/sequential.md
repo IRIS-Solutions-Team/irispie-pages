@@ -9,6 +9,33 @@ and period-by-period.
     
 
 
+Directly accessible properties
+------------------------------
+
+Property | Description
+----------|------------
+`all_names` | Names of all variables occurring in the model in order of appearance
+`equation_strings` | Equation strings in order of appearance
+`identity_index` | Indexes of identity equations
+`incidence_matrix` | Incidence matrix with equations in rows and LHS quantities in columns
+`is_sequential` | `True` if the model equations are ordered sequentially
+`lhs_names` | Unique names of LHS variables in order of their first appearance in equations
+`lhs_names_in_equations` | Names of LHS variables in order of their appearance in equations
+`lhs_quantities` | LHS quantities in order of appearance
+`max_lag` | Maximum lag occurring on the RHS of equations
+`max_lead` | Maximum lead occurring on the RHS of equations
+`nonidentity_index` | Indexes of nonidentity equations
+`num_equations` | Number of equations
+`num_lhs_names` | Number of unique LHS names
+`parameter_names` | Names of model parameters
+`residual_names` | Unique names of residuals in order of their first appearance in  equations
+`residual_names_in_equations` | Names of residuals in order of their appearance in  equations
+`rhs_only_names` | Names of variables appearing only on the RHS of equations
+
+
+
+
+
 Categorical list of functions
 -------------------------------
 
@@ -51,33 +78,6 @@ Function | Description
 [`copy`](#copy) | Create a deep copy
 [`reorder_equations`](#reorder_equations) | Reorder model equations
 [`sequentialize`](#sequentialize) | Reorder the model equations so that they can be solved sequentially
-
-
-
-
-
-Directly accessible properties
-------------------------------
-
-Property | Description
-----------|------------
-`all_names` | Names of all variables occurring in the model in order of appearance
-`equation_strings` | Equation strings in order of appearance
-`identity_index` | Indexes of identity equations
-`incidence_matrix` | Incidence matrix with equations in rows and LHS quantities in columns
-`is_sequential` | `True` if the model equations are ordered sequentially
-`lhs_names` | Unique names of LHS variables in order of their first appearance in equations
-`lhs_names_in_equations` | Names of LHS variables in order of their appearance in equations
-`lhs_quantities` | LHS quantities in order of appearance
-`max_lag` | Maximum lag occurring on the RHS of equations
-`max_lead` | Maximum lead occurring on the RHS of equations
-`nonidentity_index` | Indexes of nonidentity equations
-`num_equations` | Number of equations
-`num_lhs_names` | Number of unique LHS names
-`parameter_names` | Names of model parameters
-`residual_names` | Unique names of residuals in order of their first appearance in  equations
-`residual_names_in_equations` | Names of residuals in order of their appearance in  equations
-`rhs_only_names` | Names of variables appearing only on the RHS of equations
 
 
 
@@ -475,7 +475,7 @@ out_db, info = self.simulate(
     span needs to go forward and have a one-period step.
 
 ???+ input "plan"
-    [Simulation plan](plans.md) for the simulation specifying the
+    [Simulation plan](simulation_plans.md) for the simulation specifying the
     exogenized data points. If `None`, no simulation plan is imposed.
 
 ???+ input "prepend_input"

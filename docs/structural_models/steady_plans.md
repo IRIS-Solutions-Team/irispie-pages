@@ -2,6 +2,16 @@
     
 
 
+Directly accessible properties
+------------------------------
+
+Property | Description
+----------|------------
+
+
+
+
+
 Categorical list of functions
 -------------------------------
 
@@ -31,16 +41,6 @@ Function | Description
 Function | Description
 ----------|------------
 [`print_table`](#print_table) | Print the `SimulationPlan` as a table
-
-
-
-
-
-Directly accessible properties
-------------------------------
-
-Property | Description
-----------|------------
 
 
 

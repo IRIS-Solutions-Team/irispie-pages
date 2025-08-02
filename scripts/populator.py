@@ -10,10 +10,11 @@ from types import FunctionType, MethodType
 from typing import Callable
 
 
-docs_root = "docs"
+DOCS_ROOT = "docs"
+
 
 def main():
-    klasses = [
+    namespaces = [
         ir.Sequential,
         ir.Simultaneous,
         ir.SimulationPlan,
@@ -24,19 +25,16 @@ def main():
         ir.Span,
         ir.Frequency,
         ir.Chartpack,
-        ir.Rephrase,
-        #
-        ir.plotly,
     ]
-    for klass in klasses:
-        logger.info(f"Documenting {klass.__name__}...")
-        _document_class(klass, )
+    for n in namespaces:
+        logger.info(f"Documenting {n.__name__}", )
+        _document_namespace(n, )
 
 
-def _document_class(klass: type, ) -> None:
+def _document_namespace(klass: type, ) -> None:
     """
     """
-    klass_path = os.path.join(docs_root, *klass._documark_path, )
+    klass_path = os.path.join(DOCS_ROOT, *klass._documark_path, )
     docstring = _remove_visual_divider(klass.__doc__, )
     if klass._documark_categories:
         attributes = _collect_documented_attributes_from_class(klass, )
@@ -47,8 +45,8 @@ def _document_class(klass: type, ) -> None:
             attribute_to_docstring.items(),
             key=lambda item: (-item[0]._documark_priority, item[0]._documark_call_name.lower(), ),
         ))
-        docstring += _create_categorical_list(klass, attribute_to_docstring, )
         docstring += _create_property_list(klass, property_to_docstring, )
+        docstring += _create_categorical_list(klass, attribute_to_docstring, )
         docstring += _add_attributes(attribute_to_docstring, )
     with open(klass_path, "wt+") as f:
         f.write(docstring, )

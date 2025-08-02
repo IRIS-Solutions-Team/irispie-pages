@@ -1,7 +1,5 @@
 
 nav:
     - index.md
-    - plotly_wrapper.md
     - chartpacks.md
-    - html_reports.md
 

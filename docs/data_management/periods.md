@@ -12,6 +12,19 @@ creating time [`Spans`](spans.md).
     
 
 
+Directly accessible properties
+------------------------------
+
+Property | Description
+----------|------------
+`frequency` | Time frequency of the time period
+`segment` | Segment within the calendar year
+`year` | Calendar year of the time period
+
+
+
+
+
 Categorical list of functions
 -------------------------------
 
@@ -26,6 +39,7 @@ Function | Description
 [`irispie.qq`](#irispieqq) | Create a quarterly-frequency time period or time span
 [`irispie.yy`](#irispieyy) | Create a yearly-frequency time period or time span
 [`Period.from_iso_string`](#periodfrom_iso_string) | Create time period from ISO-8601 string
+[`Period.from_python_date`](#periodfrom_python_date) | Create time period from Python datetime
 [`Period.from_sdmx_string`](#periodfrom_sdmx_string) | Create time period from SDMX string
 [`Period.from_year_segment`](#periodfrom_year_segment) | Create time period from year and segment
 [`Period.from_ymd`](#periodfrom_ymd) | Create time period from year, month, and day
@@ -58,21 +72,9 @@ Function | Description
 
 Function | Description
 ----------|------------
+[`to_compact_string`](#to_compact_string) | Compact representation of time period
 [`to_iso_string`](#to_iso_string) | ISO-8601 representation of time period
 [`to_sdmx_string`](#to_sdmx_string) | SDMX representation of time period
-
-
-
-
-
-Directly accessible properties
-------------------------------
-
-Property | Description
-----------|------------
-`frequency` | Time frequency of the time period
-`segment` | Segment within the calendar year
-`year` | Calendar year of the time period
 
 
 
@@ -278,7 +280,8 @@ integers.
     ISO-8601 string representation of the time period.
 
 ???+ input "frequency"
-    Time frequency of the time period.
+    Time frequency of the time period; if `None`, a time period of daily
+    frequency will be created.
 
 
 ### Returns ###
@@ -286,6 +289,42 @@ integers.
 
 ???+ returns "period"
     Time period object created from the ISO-8601 string.
+        
+
+
+
+&#9744;&#160;`Period.from_python_date`
+----------------------------------------
+
+==Create time period from Python datetime==
+
+Create a time period from a Python `datetime` object. The time period is
+created based on the time frequency specified.
+
+    period = Period.from_python_date(
+        python_date,
+        *,
+        frequency=Frequency.DAILY,
+    )
+
+
+### Input arguments ###
+
+
+???+ input "python_date"
+    Python `datetime.datetime` or `datetime.date` object representing the time
+    period.
+
+???+ input "frequency"
+    Time frequency of the time period; if `None`, a time period of daily
+    frequency will be created.
+
+
+### Returns ###
+
+
+???+ returns "period"
+    Time period object created from the provided Python `datetime` object.
         
 
 
@@ -504,6 +543,46 @@ Shift a time period forward or backward by the specified number of periods.
 
 
 Returns no value; the time period is modified in place.
+        
+
+
+
+&#9744;&#160;`to_compact_string`
+----------------------------------
+
+==Compact representation of time period==
+
+The compact string format is frequency specific:
+
+Time frequency | Compact format   | Example
+---------------|------------------|--------
+Yearly         | `yyY`            | `30Y`
+Half-yearly    | `yyHh`           | `30H1`
+Quarterly      | `yyQq`           | `30Q1`
+Monthly        | `yyMmm`          | `30M01`
+Weekly         | `yyWww`          | `30W01`
+Daily          | `yymmmdd`        | `30Jan01`
+Integer        | `(n)`            | `(1)`
+
+where lowercase letters represent the respective time period components
+(integer values) and uppercase letters are literals.
+
+
+    compact_string = self.to_compact_string()
+
+
+### Input arguments ###
+
+
+???+ input "self"
+    Time period to convert to a compact string.
+
+
+### Returns ###
+
+
+???+ returns "compact_string"
+    Compact string representation of the time period.
         
 
 

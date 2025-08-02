@@ -9,6 +9,27 @@ variants of the data, stored as mutliple columns.
     
 
 
+Directly accessible properties
+------------------------------
+
+Property | Description
+----------|------------
+`start` | Start date of the time series
+`periods` | N-tuple with the periods from the start period to the end period of the time series
+`end` | End period of the time series
+`frequency` | Date frequency of the time series
+`from_until` | Two-tuple with the start date and end date of the time series
+`has_missing` | True if the time series is non-empty and contains in-sample missing values
+`is_empty` | True if the time series is empty
+`num_periods` | Number of periods from the first to the last observation
+`num_variants` | Number of variants (columns) within the `Series` object
+`span` | Time span of the time series
+`shape` | Shape of time series data
+
+
+
+
+
 Categorical list of functions
 -------------------------------
 
@@ -17,6 +38,7 @@ Categorical list of functions
 Function | Description
 ----------|------------
 [`Series`](#series) | Create a new `Series` object
+[`Series.from_start_and_array`](#seriesfrom_start_and_array) | Create a new `Series` object from a start period and a numpy array
 
 
 ### Converting time series frequency ###
@@ -31,8 +53,8 @@ Function | Description
 
 Function | Description
 ----------|------------
-[`get_description`](#get_description) | Get the description attached an Iris Pie object
-[`set_description`](#set_description) | Set the description for an Iris Pie object
+[`get_description`](#get_description) | Get description attached to an object
+[`set_description`](#set_description) | Set the description for an object
 
 
 ### Manipulating time series values ###
@@ -117,27 +139,6 @@ Function | Description
 
 Function | Description
 ----------|------------
-
-
-
-
-
-Directly accessible properties
-------------------------------
-
-Property | Description
-----------|------------
-`start` | Start date of the time series
-`periods` | N-tuple with the periods from the start period to the end period of the time series
-`end` | End period of the time series
-`frequency` | Date frequency of the time series
-`from_until` | Two-tuple with the start date and end date of the time series
-`has_missing` | True if the time series is non-empty and contains in-sample missing values
-`is_empty` | True if the time series is empty
-`num_periods` | Number of periods from the first to the last observation
-`num_variants` | Number of variants (columns) within the `Series` object
-`span` | Time span of the time series
-`shape` | Shape of time series data
 
 
 
@@ -345,7 +346,7 @@ Overview of temporal cumulation calculations:
 
 where
 
-* $k$ is the time shift (time lag) with which the temporal change is
+* $k$ is a time shift (time lag) with which the temporal change is
 calculated, determined by the negative value of the `shift` input argument.
 
 * $t$ is the end date of the time series.
@@ -354,20 +355,20 @@ calculated, determined by the negative value of the `shift` input argument.
 ### Functional forms creating new Series objects ###
 
 ```
-new = irispie.cum_diff(self, /, shift=-1, initial=None, span=None)
-new = irispie.cum_diff_log(self, /, shift=-1, initial=None, span=None)
-new = irispie.cum_pct(self, /, shift=-1, initial=None, span=None)
-new = irispie.cum_roc(self, /, shift=-1, initial=None, span=None)
+new = irispie.cum_diff(self, shift=-1, initial=None, span=None)
+new = irispie.cum_diff_log(self, shift=-1, initial=None, span=None)
+new = irispie.cum_pct(self, shift=-1, initial=None, span=None)
+new = irispie.cum_roc(self, shift=-1, initial=None, span=None)
 ```
 
 
 ### Class methods changing existing Series objects in-place ###
 
 ```
-self.cum_diff(/, shift=-1, initial=None, span=None)
-self.cum_diff_log(/, shift=-1, initial=None, span=None)
-self.cum_pct(/, shift=-1, initial=None, span=None)
-self.cum_roc(/, shift=-1, initial=None, span=None)
+self.cum_diff(shift=-1, initial=None, span=None)
+self.cum_diff_log(shift=-1, initial=None, span=None)
+self.cum_pct(shift=-1, initial=None, span=None)
+self.cum_roc(shift=-1, initial=None, span=None)
 ```
 
 ### Input arguments ###
@@ -530,26 +531,22 @@ self.roc_from_aroc()
 
 ==Create a new `Series` object==
 
-```
-self = Series(
-    start=start,
-    values=values,
-)
-```
+    self = Series(
+        start=start,
+        values=values,
+    )
 
-```
-self = Series(
-    periods=periods,
-    values=values,
-)
-```
 
-```
-self = Series(
-    periods=periods,
-    func=func,
-)
-```
+    self = Series(
+        periods=periods,
+        values=values,
+    )
+
+
+    self = Series(
+        periods=periods,
+        func=func,
+    )
 
 
 ### Input arguments ###
@@ -578,6 +575,46 @@ self = Series(
 ???+ returns "None"
     This method modifies `self` in-place and does not return a value.
 
+        
+
+
+
+&#9744;&#160;`Series.from_start_and_array`
+--------------------------------------------
+
+==Create a new `Series` object from a start period and a numpy array==
+
+    self = Series.from_start_and_array(
+        start,
+        array,
+        description="",
+        trim=True,
+    )
+
+
+### Input arguments ###
+
+???+ input "start"
+    The time [`Period`](periods.md) of the first value in the `array`.
+
+???+ input "array"
+    A numpy array containing the time series values. The array is reshaped to a
+    two-dimensional array if needed. The individual rows are expected to
+    correspond to a continuous sequence of time periods starting from `start`.
+
+???+ input "description"
+    A string description of the time series.
+
+???+ input "trim"
+    If `True`, the time series date will be trimmed to remove any leading
+    or trailing periods that contain only `nan` values.
+
+
+### Returns ###
+
+???+ returns "self"
+    A new `Series` object initialized with the provided start period and
+    numpy array.
         
 
 
@@ -615,18 +652,18 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
     new = irispie.aggregate(
         self,
         target_freq,
-        /,
+
         method="mean",
         discard_missing=False,
         select=None,
     )
 
 
-### Class method form for creating new time `Series` objects ###
+### Class method changing an existing Series object in-place ###
 
     self.aggregate(
         target_freq,
-        /,
+
         method="mean",
         discard_missing=False,
         select=None,
@@ -802,7 +839,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
     new = irispie.disaggregate(
         self,
         target_freq,
-        /,
+
         method="flat",
     )
 
@@ -811,7 +848,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
 
     self.disaggregate(
         target_freq,
-        /,
+
         method="flat",
         model=None,
     )
@@ -831,6 +868,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
     |-----------|-------------
     | "flat"    | Repeat the high-frequency values
     | "first"   | Place the low-frequency value in the first high-frequency period
+    | "middle"  | Place the low-frequency value in the middle high-frequency period
     | "last"    | Place the low-frequency value in the last high-frequency period
     | "arip"    | Interpolate using a smooth autoregressive process
 
@@ -917,7 +955,7 @@ See documentation for [temporal change calculations](#temporal-change-calculatio
     )
 
 
-### Class methods changing an existing time `Series` object in-place ###
+### Class method changing an existing time `Series` object in-place ###
 
 
     self.extrapolate(
@@ -1000,7 +1038,7 @@ $\rho_1,\ \rho_2,\ \dots,\ \rho_p$ given by the input argument `ar_coeff`
     )
 
 
-### Class method form for changing existing time `Series` objects in-place ###
+### Class method form changing existing `Series` objects in-place ###
 
     self.fill_missing(
         method,
@@ -1018,23 +1056,23 @@ $\rho_1,\ \rho_2,\ \dots,\ \rho_p$ given by the input argument `ar_coeff`
 ???+ input "method"
     The method to be used for filling missing observations. The following methods are available:
 
-    | Method        | Description
-    |---------------|-------------
-    | "constant"    | Fill with a constant value
-    | "next"        | Next available observation
-    | "previous"    | Previous available observation
-    | "nearest"     | Nearest available observation
-    | "linear"      | Linear interpolation or extrapolation
-    | "log_linear"  | Log-linear interpolation or extrapolation
-    | "series"      | Fill with values from another time series object
+    | Method         | Description
+    |----------------|-------------
+    | "constant"     | Fill with a constant value
+    | "next"         | Next available observation
+    | "previous"     | Previous available observation
+    | "nearest"      | Nearest available observation
+    | "linear"       | Linear interpolation or extrapolation
+    | "log_linear"   | Log-linear interpolation or extrapolation
+    | "from_series"  | Fill with values from another time series object
 
 ???+ input "*args"
     Additional arguments to be passed to the filling method. The following methods require additional arguments:
 
-    | Method     | Additional argument(s)
-    |------------|-----------------------
-    | "constant" | A single constant value
-    | "series"   | A time `Series` object
+    | Method         | Additional argument(s)
+    |----------------|-----------------------
+    | "constant"     | A single constant value
+    | "from_series"  | A time `Series` object
 
 
 ???+ input "span"
@@ -1057,20 +1095,21 @@ $\rho_1,\ \rho_2,\ \dots,\ \rho_p$ given by the input argument `ar_coeff`
 --------------------------------
 
 
-==Get the description attached an Iris Pie object==
+==Get description attached to an object==
 
     description = self.get_description()
+
 
 ### Input arguments ###
 
 ???+ input "self"
-    An Iris Pie object from which to get the description.
+    An object from which to get the description.
 
 
 ### Returns ###
 
 ???+ returns "description"
-    The description attached to the Iris Pie object.
+    The description attached to the object.
 
         
 
@@ -1082,7 +1121,7 @@ $\rho_1,\ \rho_2,\ \dots,\ \rho_p$ given by the input argument `ar_coeff`
 ==Constrained Hodrick-Prescott filter==
 
 
-### Functional forms creating a new time `Series` object ###
+### Functional form creating a new time `Series` object ###
 
 
     trend, gap = irispie.hpf(
@@ -1096,7 +1135,7 @@ $\rho_1,\ \rho_2,\ \dots,\ \rho_p$ given by the input argument `ar_coeff`
     )
 
 
-### Class methods changing an existing time `Series` object in-place ###
+### Class method changing an existing time `Series` objects in-place ###
 
 
     self.hpf_trend(
@@ -1333,18 +1372,20 @@ This method modifies `self` in place and returns `None`.
 
 ### Details ###
 
-The resulting time series is determined the following way:
+???+ abstract "Algorithm"
 
-* The span of the resulting series starts at the earliest start period of the two
-series and ends at the latest end period of the two series.
+    The resulting time series is determined the following way:
 
-* First, the observations from the `self` (current) time series used to fill the
-resulting time span.
+    1. The span of the resulting series starts at the earliest start period of the two
+    series and ends at the latest end period of the two series.
 
-* Second, within the span of the `other` time series (from the first available
-observation to the last available observation), the observations from this
-`other` time series are superimposed on the resulting time series, including any
-in-sample missing observations.
+    2. The observations from the `self` (current) time series used to fill the
+    resulting time span.
+
+    3. Within the span of the `other` time series (from the first available
+    observation to the last available observation), the observations from this
+    `other` time series are superimposed on the resulting time series, including any
+    in-sample missing observations.
 
 
 
@@ -1387,12 +1428,10 @@ change](#temporal-change-conversion).
 
 ==Replace time series values that pass a test==
 
-```
-self.replace_where(
-    test,
-    new_value,
-)
-```
+    self.replace_where(
+        test,
+        new_value,
+    )
 
 
 ### Input arguments ###
@@ -1468,7 +1507,7 @@ change](#temporal-change-conversion).
 --------------------------------
 
 
-==Set the description for an Iris Pie object==
+==Set the description for an object==
 
     self.set_description(
         description,
@@ -1547,18 +1586,20 @@ This method modifies `self` in place and returns `None`.
 
 ### Details ###
 
-The resulting time series is determined the following way:
+???+ abstract "Algorithm"
 
-* The span of the resulting series starts at the earliest start period of the two
-series and ends at the latest end period of the two series.
+    The resulting time series is determined the following way:
 
-* First, the observations from the `other` time series used to fill the
-resulting time span.
+    1. The span of the resulting series starts at the earliest start period of the two
+    series and ends at the latest end period of the two series.
 
-* Second, within the span of the `self` time series (from the first available
-observation to the last available observation), the observations from this
-`self` time series are superimposed on the resulting time series, including any
-in-sample missing observations.
+    2. The observations from the `other` time series used to fill the
+    resulting time span.
+
+    3. Within the span of the `self` time series (from the first available
+    observation to the last available observation), the observations from this
+    `self` time series are superimposed on the resulting time series, including any
+    in-sample missing observations.
         
 
 
@@ -1601,7 +1642,7 @@ new, info = irispie.x13(
 ```
 
 
-### Class methods for changing existing Series objects in-place ###
+### Class method for changing existing time `Series` objects in-place ###
 
 
 ```

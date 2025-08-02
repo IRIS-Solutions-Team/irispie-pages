@@ -13,6 +13,17 @@ batch processing, importing and exporting data, and more.
     
 
 
+Directly accessible properties
+------------------------------
+
+Property | Description
+----------|------------
+`num_items` | Number of items in the databox
+
+
+
+
+
 Categorical list of functions
 -------------------------------
 
@@ -22,9 +33,10 @@ Function | Description
 ----------|------------
 [`Databox.empty`](#databoxempty) | Create an empty Databox
 [`Databox.from_array`](#databoxfrom_array) | Create a new `Databox` from a numpy array
-[`Databox.from_csv`](#databoxfrom_csv) | Create a new Databox by reading time series from a CSV file
+[`Databox.from_csv_file`](#databoxfrom_csv_file) | Create a new Databox by reading time series from a CSV file
 [`Databox.from_dict`](#databoxfrom_dict) | Create a new `Databox` from a `dict`
 [`steady`](#steady) | Create a steady-state Databox for a model
+[`zero`](#zero) | Create a zero-state Databox for a model
 
 
 ### Copying and converting a Databox ###
@@ -39,7 +51,7 @@ Function | Description
 
 Function | Description
 ----------|------------
-[`from_fred`](#from_fred) | Download time series from FRED (St Louis Fed Database)
+[`_from_fred`](#_from_fred) | Download time series from FRED (St Louis Fed Database)
 
 
 ### Getting information about a Databox ###
@@ -47,12 +59,12 @@ Function | Description
 Function | Description
 ----------|------------
 [`filter`](#filter) | Filter items in a Databox
-[`get_description`](#get_description) | Get the description attached an Iris Pie object
+[`get_description`](#get_description) | Get description attached to an object
 [`get_missing_names`](#get_missing_names) | Identify names not present in a Databox
-[`get_names`](#get_names) | Get all item names from a Databox
+[`get_names`](#get_names) | Get item names from a Databox
 [`get_series_names_by_frequency`](#get_series_names_by_frequency) | Retrieve time series names by frequency
 [`get_span_by_frequency`](#get_span_by_frequency) | Retrieve the date span for time series by frequency
-[`set_description`](#set_description) | Set the description for an Iris Pie object
+[`set_description`](#set_description) | Set the description for an object
 
 
 ### Manipulating a Databox ###
@@ -79,31 +91,27 @@ Function | Description
 
 Function | Description
 ----------|------------
-[`merge`](#merge) | Merge Databoxes
+[`_merge`](#_merge) | Merge Databoxes
 [`overlay`](#overlay) | Overlay another Databox time series onto the ones in the current Databox
 [`prepend`](#prepend) | Prepend time series data to a Databox
 [`underlay`](#underlay) | Underlay another Databox time series beneath those in the current Databox
+
+
+### Extracting data from a Databox ###
+
+Function | Description
+----------|------------
+[`array_from_series`](#array_from_series) | Retrieve time series data into a numpy array
 
 
 ### Importing and exporting a Databox ###
 
 Function | Description
 ----------|------------
-[`from_pickle`](#from_pickle) | Read a Databox from a pickled file
-[`to_csv`](#to_csv) | Write Databox time series to a CSV file
+[`from_pickle_file`](#from_pickle_file) | Read a Databox from a pickled file
+[`to_csv_file`](#to_csv_file) | Write Databox time series to a CSV file
 [`to_json`](#to_json) | Save a Databox to a JSON file
-[`to_pickle`](#to_pickle) | Write Databox to a pickle file
-
-
-
-
-
-Directly accessible properties
-------------------------------
-
-Property | Description
-----------|------------
-`num_items` | Number of items in the databox
+[`to_pickle_file`](#to_pickle_file) | Write Databox to a pickle file
 
 
 
@@ -193,14 +201,14 @@ of the numeric array.
 
 
 
-&#9744;&#160;`Databox.from_csv`
----------------------------------
+&#9744;&#160;`Databox.from_csv_file`
+--------------------------------------
 
 
 ==Create a new Databox by reading time series from a CSV file==
 
 
-    self = Databox.from_csv(
+    self = Databox.from_csv_file(
         file_name,
         *,
         period_from_string=None,
@@ -221,7 +229,7 @@ of the numeric array.
 
 ???+ input "period_from_string"
     A callable for creating date objects from string representations. If `None`,
-    a default method based on the SDMX string format is used.
+    a default method expecting the SDMX string format is used.
 
 ???+ input "start_period_only"
     If `True`, only the start date of each time series is parsed from the CSV;
@@ -332,6 +340,100 @@ VectorAutoregression models.
 
 
 
+&#9744;&#160;`zero`
+---------------------
+
+
+==Create a zero-state Databox for a model==
+
+This constructor is equivalent to calling
+
+    zero_databox = Databox.steady(model, span, deviation=True, ...)
+
+
+See the [`Databox.steady`](#steady) method for details.
+
+        
+
+
+
+&#9744;&#160;`_from_fred`
+---------------------------
+
+==Download time series from FRED (St Louis Fed Database)==
+
+This method downloads time series data from the FRED database. The data is
+downloaded using the FRED API. The method requires an API key, which is provided
+by the FRED website. The API key is stored in the `_API_KEY` variable in the
+`_fred.py` module. The method downloads the data for the specified series IDs
+and returns a `Databox` object with the downloaded series.
+
+db = Databox.from_fred(
+    request,
+)
+
+### Input arguments ###
+
+???+ input "request"
+A dictionary or list of series IDs to download from FRED. If a dictionary is
+provided, the keys are used as the FRED codes and the values are used for
+the names of the time series in the Databox. If list of strings is provided,
+the series IDs are used as the names of the series in the `Databox` object.
+
+### Returns ###
+
+???+ returns "db"
+A `Databox` object containing the downloaded time series data.
+    
+
+
+
+&#9744;&#160;`_merge`
+-----------------------
+
+==Merge Databoxes==
+
+Combine one or more databoxes into a single databox using a specified merge
+strategy to handle potential conflicts between duplicate keys.
+
+self.merge(
+    other,
+    merge_strategy="stack",
+)
+
+
+### Input arguments ###
+
+???+ input "other"
+The databox or iterable of databoxes to merge into the current databox. If
+merging a single databox, it should be passed directly; for multiple
+databoxes, pass an iterable containing all.
+
+???+ input "merge_strategy"
+Determines how to process keys that exist in more than one databox. The
+default strategy is `"stack"`.
+
+* `"stack"`: Stack values; this means combine time series into multiple
+columns, or combine lists, or convert non-lists to lists for stacking.
+
+* `"replace"`: Replace existing values with new values.
+
+* `"discard"` and `"silent"`: Retain original values and ignore new values.
+
+* `"warning"`: Behave like `"discard"` but issue a warning for each conflict.
+
+* `"error"`: Raise an error on encountering the first duplicate key.
+
+* `"critical"`: Raise a critical error on encountering the first duplicate key.
+
+
+### Returns ###
+
+This method modifies the databox in place and returns `None`.
+    
+
+
+
 &#9744;&#160;`apply`
 ----------------------
 
@@ -384,6 +486,54 @@ the results.
     and does not return a value. Errors are handled based on the
     `when_fails’ setting.
 
+        
+
+
+
+&#9744;&#160;`array_from_series`
+----------------------------------
+
+==Retrieve time series data into a numpy array==
+
+Retrieve the values of specified time series in the Databox into a numpy array.
+The values are extracted for the specified periods and variant. This method is
+useful for transforming time series data into a format suitable for numerical
+analysis.
+
+```
+    array = self.array_from_series(
+        names,
+        periods,
+
+
+        variant=0,
+    )
+```
+
+
+### Input arguments ###
+
+???+ input "names"
+    A list of names of the time series to be converted to a numpy array.
+    Each name should correspond to a time series item in the Databox.
+
+???+ input "periods"
+    A list of periods for which the values of the time series will be
+    extracted.
+
+???+ input "variant"
+    The variant (column) of the time series to be extracted. This is typically an
+    integer representing a specific variant of the time series data.
+
+
+### Returns ###
+
+???+ returns "array"
+    A numpy array containing the values of the specified time series for the
+    specified periods and variant. The array is structured such that each row
+    corresponds to a time series, and each column corresponds to a period. The
+    values are extracted in the order specified by the `names` and `periods`
+    arguments. The array is of shape `(len(names), len(periods))`.
         
 
 
@@ -555,39 +705,8 @@ Select Databox items based on custom name or value test functions.
 
 
 
-&#9744;&#160;`from_fred`
---------------------------
-
-==Download time series from FRED (St Louis Fed Database)==
-
-This method downloads time series data from the FRED database. The data is
-downloaded using the FRED API. The method requires an API key, which is provided
-by the FRED website. The API key is stored in the `_API_KEY` variable in the
-`_fred.py` module. The method downloads the data for the specified series IDs
-and returns a `Databox` object with the downloaded series.
-
-    db = Databox.from_fred(
-        mapper,
-    )
-
-### Input arguments ###
-
-???+ input "mapper"
-    A dictionary or list of series IDs to download from FRED. If a dictionary is
-    provided, the keys are used as the FRED codes and the values are used for
-    the names of the time series in the Databox. If list of strings is provided,
-    the series IDs are used as the names of the series in the `Databox` object.
-
-### Returns ###
-
-???+ returns "db"
-    A `Databox` object containing the downloaded time series data.
-        
-
-
-
-&#9744;&#160;`from_pickle`
-----------------------------
+&#9744;&#160;`from_pickle_file`
+---------------------------------
 
 ==Read a Databox from a pickled file==
 
@@ -616,20 +735,21 @@ and returns a `Databox` object with the downloaded series.
 --------------------------------
 
 
-==Get the description attached an Iris Pie object==
+==Get description attached to an object==
 
     description = self.get_description()
+
 
 ### Input arguments ###
 
 ???+ input "self"
-    An Iris Pie object from which to get the description.
+    An object from which to get the description.
 
 
 ### Returns ###
 
 ???+ returns "description"
-    The description attached to the Iris Pie object.
+    The description attached to the object.
 
         
 
@@ -666,20 +786,21 @@ yet to be added to the Databox.
 &#9744;&#160;`get_names`
 --------------------------
 
-==Get all item names from a Databox==
+==Get item names from a Databox==
 
 
-    names = self.get_names()
+    names = self.get_names(filter=None, )
 
 
 ### Input arguments ###
 
-
-No input arguments are required for this method.
+???+ input "filter"
+    A function that takes a name and returns `True` to include the name in the
+    output list, or `False` to keep the name out. If `None`, all names are
+    included.
 
 
 ### Returns ###
-
 
 ???+ returns "names"
     A tuple containing all the names of items in the Databox.
@@ -781,52 +902,6 @@ callable function determining which items to retain.
 ???+ returns "None"
     Modifies the Databox in-place, keeping only the specified items, and does not 
     return a value.
-        
-
-
-
-&#9744;&#160;`merge`
-----------------------
-
-==Merge Databoxes==
-
-Combine one or more databoxes into a single databox using a specified merge
-strategy to handle potential conflicts between duplicate keys.
-
-    self.merge(
-        other,
-        merge_strategy="hstack",
-    )
-
-
-### Input arguments ###
-
-???+ input "other"
-    The databox or iterable of databoxes to merge into the current databox. If
-    merging a single databox, it should be passed directly; for multiple
-    databoxes, pass an iterable containing all.
-
-???+ input "merge_strategy"
-    Determines how to process keys that exist in more than one databox. The
-    default strategy is `"hstack"`.
-
-    * `"hstack"`: Stack values; this means combine time series into multiple
-    columns, or combine lists, or convert non-lists to lists for stacking.
-
-    * `"replace"`: Replace existing values with new values.
-
-    * `"discard"` and `"silent"`: Retain original values and ignore new values.
-
-    * `"warning"`: Behave like `"discard"` but issue a warning for each conflict.
-
-    * `"error"`: Raise an error on encountering the first duplicate key.
-
-    * `"critical"`: Raise a critical error on encountering the first duplicate key.
-
-
-### Returns ###
-
-    This method modifies the databox in place and returns `None`.
         
 
 
@@ -1035,7 +1110,7 @@ Returns `None`; `self` is modified in place.
 --------------------------------
 
 
-==Set the description for an Iris Pie object==
+==Set the description for an object==
 
     self.set_description(
         description,
@@ -1103,13 +1178,13 @@ references, but does not copy the items themselves.
 
 
 
-&#9744;&#160;`to_csv`
------------------------
+&#9744;&#160;`to_csv_file`
+----------------------------
 
 ==Write Databox time series to a CSV file==
 
 
-    self.to_csv(
+    self.to_csv_file(
         file_name,
         *,
         frequency_span=None,
@@ -1238,8 +1313,8 @@ Returns `None`; the Databox is saved to the specified JSON file.
 
 
 
-&#9744;&#160;`to_pickle`
---------------------------
+&#9744;&#160;`to_pickle_file`
+-------------------------------
 
 ==Write Databox to a pickle file==
 

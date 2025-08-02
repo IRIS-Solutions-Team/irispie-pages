@@ -8,6 +8,21 @@ from a start period to an end period (possibly with a step size other than
     
 
 
+Directly accessible properties
+------------------------------
+
+Property | Description
+----------|------------
+`direction` | Direction of the time span
+`end` | End period of the time span
+`frequency` | Frequency of the time span
+`start` | Start period of the time span
+`step` | Step size of the time span
+
+
+
+
+
 Categorical list of functions
 -------------------------------
 
@@ -40,23 +55,9 @@ Function | Description
 
 Function | Description
 ----------|------------
+[`to_compact_strings`](#to_compact_strings) | 
 [`to_iso_strings`](#to_iso_strings) | Convert time span periods to ISO-8601 representations
 [`to_sdmx_strings`](#to_sdmx_strings) | Convert time span periods to SDMX representations
-
-
-
-
-
-Directly accessible properties
-------------------------------
-
-Property | Description
-----------|------------
-`direction` | Direction of the time span
-`end` | End period of the time span
-`frequency` | Frequency of the time span
-`start` | Start period of the time span
-`step` | Step size of the time span
 
 
 
@@ -263,6 +264,13 @@ length depending on the direction and magnitude of the shift.
 ### Returns ###
 
 This method modifies the object in place and does not return a value.
+        
+
+
+
+&#9744;&#160;`to_compact_strings`
+-----------------------------------
+
         
 
 

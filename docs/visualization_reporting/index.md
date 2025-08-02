@@ -7,10 +7,6 @@ charts, complemented with a simple Chartpack object facilitating quick
 off-the-cuff reporting. For more sophisticated reporting needs, especially
 in produciton environments, an HTML based report objects are available.
 
-* [Plotly wrapper](plotly_wrapper.md) functions
-
 * [`Chartpack`](chartpacks.md) objects
-
-* [`Rephrase`](html_reports.md) (HTML report) objects
 
 

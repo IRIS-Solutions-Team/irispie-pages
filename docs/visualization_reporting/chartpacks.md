@@ -4,6 +4,17 @@ Chartpacks
     
 
 
+Directly accessible properties
+------------------------------
+
+Property | Description
+----------|------------
+`num_figures` | Total number of figures in the chartpack
+
+
+
+
+
 Categorical list of functions
 -------------------------------
 
@@ -18,8 +29,8 @@ Function | Description
 
 Function | Description
 ----------|------------
-[`get_description`](#get_description) | Get the description attached an Iris Pie object
-[`set_description`](#set_description) | Set the description for an Iris Pie object
+[`get_description`](#get_description) | Get description attached to an object
+[`set_description`](#set_description) | Set the description for an object
 
 
 ### Plotting chartpacks ###
@@ -38,17 +49,6 @@ Function | Description
 
 
 
-
-
-Directly accessible properties
-------------------------------
-
-Property | Description
-----------|------------
-`num_figures` | Total number of figures in the chartpack
-
-
-
 &#9744;&#160;`Chartpack`
 --------------------------
 
@@ -62,6 +62,7 @@ self = Chartpack(
     transforms=None,
     highlight=None,
     legend=None,
+    show_legend=None,
     reverse_plot_order=False,
 )
 ```
@@ -89,6 +90,10 @@ self = Chartpack(
 
 ???+ input "legend"
     A list of strings that will be used as the legend for the charts.
+
+???+ input "show_legend"
+    Show the legend in the figure. If `None`, the legend will be shown if `legend` is
+    not `None` and non-empty.
 
 ???+ input "reverse_plot_order"
     If `True`, the order of plotting the individual time series within each
@@ -125,20 +130,21 @@ self = Chartpack(
 --------------------------------
 
 
-==Get the description attached an Iris Pie object==
+==Get description attached to an object==
 
     description = self.get_description()
+
 
 ### Input arguments ###
 
 ???+ input "self"
-    An Iris Pie object from which to get the description.
+    An object from which to get the description.
 
 
 ### Returns ###
 
 ???+ returns "description"
-    The description attached to the Iris Pie object.
+    The description attached to the object.
 
         
 
@@ -156,7 +162,7 @@ self = Chartpack(
 --------------------------------
 
 
-==Set the description for an Iris Pie object==
+==Set the description for an object==
 
     self.set_description(
         description,

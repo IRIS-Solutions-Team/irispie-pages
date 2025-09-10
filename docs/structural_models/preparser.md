@@ -1,18 +1,36 @@
 
-# Preparser
+# Preparser and pseudofunctions
 
 The preparser provides a variety of convenience commands that simplify the
-process of writing model source code.
+process of writing model source code. Pseudofunctions provide a compact notation
+for frequently used temporal transformations. The preparser commands and
+pseudofunctions are processed before the model source code is parsed. The
+preparser commands and pseudofunctions can be used in both
+[`Simultaneous`](simultaneous.md) and [`Sequential`](sequential.md) models.
 
 
-List of preparser commands
----------------------------
+# List of preparser commands
+
+Command | Description
+--------|-------------
+`!for ... !do ... !end` | For loops
+`!if ... !then ... !else ... !end` | If-then-else branches
+`!list(...)` | Lists
+`# ...` | Line comments
+`#{ ... #}` | Block comments
 
 
 ## For loops
 
 A for loop can be used to parameterize and repeat certain parts of the model
-source code.
+source code. For loops can be nested. The loop body is delimited by the `!do` and
+`!end` keywords. The loop iterates over a list of tokens, assigning each token in
+turn to a control name. The control name can be implicit (the literal `?`) or
+explicit (a name starting with a `?` sign). If the control name is explicit, it
+can be parenthesized (the name is enclosed in parentheses) or not. The loop body
+can contain occurrences of the control name, which are replaced by the currently
+assigned token from the list.
+
 
 ### Abbreviated syntax with implicit control name
 
@@ -20,15 +38,40 @@ source code.
         ...
     !end
 
+Any occurrence of the literal `?` in the loop body is replaced by the currently
+assigned token from the list `a`, `b`, `c`.
+
+
 ### Full syntax with explicit control name
 
     !for ?name = a, b, c !do
         ...
     !end
 
+Any occurrence of the literal `?name` in the loop body is replaced by the currently
+assigned token from the list `a`, `b`, `c`.
 
-## If-then branches
 
+### Full syntax with parenthesized explicit control name
+
+    !for ?(name) = a, b, c !do
+        ...
+    !end
+
+Any occurrence of the literal `?(name)` in the loop body is replaced by the
+currently assigned token from the list `a`, `b`, `c`.
+
+Any occurrence of `?{name}` in the loop body is replaced by the uppercased token
+currently assigned to `?(name)`.
+
+Any occurrence of `?{name}` in the loop body is replaced by the lowercased token
+currently assigned to `?(name)`.
+
+
+## If-then-else branches
+
+The if-then-else command can be used to conditionally include or exclude parts
+of the model source code.
 
     !if condition !then
         ...
@@ -36,6 +79,24 @@ source code.
         ...
     !end
 
+
+
+## Lists
+
+    abc`n
+    def`n
+    ghi`x
+
+    ...
+
+    !list(`n)
+    !list(`x)
+
+
+The list command expands to the comma-separated list of all tokens (names) that were
+tagged a backtick followed by the name of the list. In the example above, the
+command `!list(`n)` expands to `abc, def`, and the command `!list(`x)` expands
+to `ghi`.
 
 
 ## Comments
@@ -108,6 +169,5 @@ Pseudofunction | Default parameter | Meaning
         name1 := expression1;
         name2 := expression2;
         ...
-
 
 
